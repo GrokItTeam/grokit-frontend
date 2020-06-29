@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Row } from 'react-bootstrap';
+import { Card, Row, Button } from 'react-bootstrap';
+
+import SkillToDoItem from './SkillToDoItem/SkillToDoItem';
 
 
 function SkillsToDo(props) {
@@ -36,9 +38,7 @@ function SkillsToDo(props) {
             </Card.Header>
                 <Card.Body>
                     {skillsToPractise && skillsToPractise.map(skill => (
-                        <Row key={skill.projectName}>
-                            <p>{skill.projectName}: {skill.name}</p>
-                        </Row>
+                        <SkillToDoItem key={skill.projectName} skill={skill}/>
                     ))}                    
                 </Card.Body>
         </Card>
