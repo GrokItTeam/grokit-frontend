@@ -1,16 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import ProjectItem from './ProjectItem/ProjectItem';
+import ProjectItem from "./ProjectItem/ProjectItem";
 
-
-function ProjectList(props) {  
-    return (
-        <>
-            {props.skills && props.projects.map(project => (
-                <ProjectItem key={project.projectId} project={project} skills={props.skills.filter(skill => skill.projectId === project.projectId)}/>
-            ))}
-        </>
-    );
+function ProjectList({ projects = [], skills = [], addSkill = () => {} }) {
+  return (
+    <>
+      {projects.map((project) => (
+        <ProjectItem
+          key={project.projectId}
+          project={project}
+          skills={skills.filter((skill) => skill.projectId === project.projectId)}
+          addSkill={addSkill}
+        />
+      ))}
+    </>
+  );
 }
 
 export default ProjectList;
