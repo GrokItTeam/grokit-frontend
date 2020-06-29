@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import ProjectItem from './ProjectItem/ProjectItem';
 
@@ -30,7 +30,6 @@ function ProjectList() {
                 .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills?projectId=${project.projectId}`)
                 .then(response => {
                     setSkills(response.data.skills);
-                    console.log(response.data.skills);
                 })
                 .catch(error => {
                     console.log("Error fetching data", error);
@@ -44,7 +43,7 @@ function ProjectList() {
     return (
         <Container className="ProjectList">
             {skills && projects.map(project => (
-                <ProjectItem project={project} skills={skills.filter(skill => skill.projectId === project.projectId)}/>
+                <ProjectItem key={project.projectId} project={project} skills={skills.filter(skill => skill.projectId === project.projectId)}/>
             ))}
 
         </Container>

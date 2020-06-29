@@ -1,17 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Container, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Collapse } from 'react-bootstrap';
 
 
 function ProjectItem(props) {
+    const [cardOpen, setCardOpen] = useState(false);
 
     return (
-        <Row key={props.project.projectId}>
-            <h1>{props.project.name}</h1>
-            {props.skills.map(skill => (
-                <p key={skill.skillId}>{skill.name}</p>
-            ))}
-        </Row>
+        <Card key={props.project.projectId} style={{ border: "2px solid black" }}>
+            <Card.Header
+                className="h4"
+                aria-controls="task-item-contents"
+                aria-expanded={props.open}
+                onClick={() => setCardOpen(!cardOpen)}
+            >
+                <h1>{props.project.name}</h1>
+            </Card.Header>
+            <Collapse in={cardOpen}>
+                <Card.Body>
+                    {props.skills.map(skill => (
+                        <p key={skill.skillId}>{skill.name}</p>
+                    ))}
+                </Card.Body>
+            </Collapse>
+        </Card>
     );
 }
 
