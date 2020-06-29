@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Row } from 'react-bootstrap';
 
+import ProjectItem from './ProjectItem/ProjectItem';
+
 
 function ProjectList() {
     const [userId, setUserId] = useState("test-id");
@@ -19,16 +21,30 @@ function ProjectList() {
                     console.log("Error fetching data", error);
                 })
         }
-    }, [userId]);
+    }, [userId]);    
+
+    useEffect(() => {
+        if (projects) {
+            projects.forEach(project => {
+                axios
+                .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills?projectId=${project.projectId}`)
+                .then(response => {
+                    setSkills(response.data.skills);
+                    console.log(response.data.skills);
+                })
+                .catch(error => {
+                    console.log("Error fetching data", error);
+                })
+            })
+        }
+    }, [projects]);
 
 
 
     return (
         <Container className="ProjectList">
-            {projects && projects.map(project => (
-                <Row key={project.projectId}>
-                    <p>{project.name}</p>
-                </Row>
+            {skills && projects.map(project => (
+                <ProjectItem project={project} skills={skills.filter(skill => skill.projectId === project.projectId)}/>
             ))}
 
         </Container>
