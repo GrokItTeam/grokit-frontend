@@ -2,15 +2,15 @@ import React from 'react';
 import { Row, Button } from 'react-bootstrap';
 
 
-function Skill(props) {
+function Skill({ project = [], markAsPractised = () => {} }) {
 
     function handlePractisedButton() {
-        props.markAsPractised(props.skill, props.project);
+        markAsPractised(project);
     }
 
     return (
         <Row>
-            <p>{props.project.name}: {props.skill.name}</p>
+            <p>{project.name}: {project.skills.find(skill => skill.skillId === project.skillToDo).name}</p>
             <Button onClick={handlePractisedButton}>Practised</Button>
         </Row>
     )

@@ -5,17 +5,17 @@ import Skill from './Skill';
 import NoSkill from './NoSkill';
 
 
-function SkillToDoItem(props) {
-    if (props.skill) {
-        if (moment(props.project.datePractised).isSame(moment(),"day")) {
-            return (<PractisedToday {...props}/>)
+function SkillToDoItem({ project = [], markAsPractised = () => {} }) {
+    if (project.skillToDo) {
+        if (moment(project.datePractised).isSame(moment(),"day")) {
+            return (<PractisedToday project={project}/>)
         }
         else {
-            return (<Skill {...props}/>)    
+            return (<Skill project={project}/>)    
         }
     }
     else {
-        return (<NoSkill {...props}/>)
+        return (<NoSkill project={project}/>)
     }
 }
 

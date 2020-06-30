@@ -2,9 +2,9 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 
 
-function PractisedToday(props) {
+function PractisedToday({ project = [] }) {
     return (
-        <Row>{props.project.name}: Done for today</Row>
+        <Row>{project.name}: Done for today</Row>
     )
 }
 

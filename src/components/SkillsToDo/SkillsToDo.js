@@ -1,43 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
-import moment from 'moment';
 import { Card } from 'react-bootstrap';
 
 import SkillToDoItem from './SkillToDoItem/SkillToDoItem';
 
 
-function SkillsToDo(props) {
-    const [ongoingProjects, setOngoingProjects] = useState([]);
-
-    useEffect(() => {
-        if (props.projects) {
-            props.projects.forEach(project => {
-                axios
-                    .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${project.projectId}/skillToDo`)
-                    .then(response => {
-                        let projectItem = {
-                            project,
-                            skill: response.data.skillToDo
-                        }
-                        let updatedOngoingProjects = [...ongoingProjects, projectItem];
-                        setOngoingProjects(updatedOngoingProjects);
-                    })
-                    .catch(error => {
-                        console.log("Error fetching data", error);
-                    })
-            }
-            )
-        }
-    }, [props.projects]);
-
-    function markAsPractised(skill,project) {
+function SkillsToDo({ projects = [], open = true, updatedPractisedSkill = () => {} }) {
+    
+    function markAsPractised(project) {
+        const practisedSkill = project.skills.find(skill => skill.skillId === project.skillToDo); 
         axios
-            .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skill.skillId}/markAsPractised`, skill)
+            .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${practisedSkill.skillId}/markAsPractised`, practisedSkill)
             .then(response => {
-                let updatedOngoingProjects = ongoingProjects.filter(ongoingProject => ongoingProject.project.projectId !== project.projectId);
-                let newProject = {project, skill};
-                newProject.project.datePractised = moment().format("YYYY-MM-DD");
-                setOngoingProjects([...updatedOngoingProjects,newProject]);
+                console.log(response.data.updatedPractisedSkill);                
             })
             .catch(error => {
                 console.log("Error fetching data", error);
@@ -49,13 +24,13 @@ function SkillsToDo(props) {
             <Card.Header
                 className="h4"
                 aria-controls="task-item-contents"
-                aria-expanded={props.open}
+                aria-expanded={open}
             >
                 <h1>Skills to practise today</h1>
             </Card.Header>
             <Card.Body>
-                {ongoingProjects && ongoingProjects.map(projectItem => (
-                    <SkillToDoItem key={projectItem.project.projectId} {...projectItem} markAsPractised={markAsPractised}/>
+                {projects && projects.map(project=> (
+                    <SkillToDoItem key={project.projectId} project={project} markAsPractised={markAsPractised}/>
                 ))}
             </Card.Body>
         </Card>
