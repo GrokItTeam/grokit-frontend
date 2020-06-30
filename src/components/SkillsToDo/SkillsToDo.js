@@ -13,9 +13,9 @@ function SkillsToDo({ projects = [], open = true }) {
                 <h1>Skills to practise today</h1>
             </Card.Header>
                 <Card.Body>
-                    {projects && projects.map(project => (
-                        <Row key={project.projectId}>
-                            <p>{project.name}: {project.skills.find(skill => skill.skillId === project.skillToDo).name}</p>
+                    {projects && projects.map(({projectId, name, skillToDo, skills = []}) => (
+                        <Row key={projectId}>
+                            <p>{name}: {skills.find(({skillId}) => skillId === skillToDo).name}</p>
                         </Row>
                     ))}                    
                 </Card.Body>
