@@ -11,7 +11,6 @@ import "./App.css";
 function App() {
   const [userId, setUserId] = useState("test-id");
   const [projects, setProjects] = useState();
-  const [skills, setSkills] = useState();
 
   useEffect(() => {
     if (userId) {
@@ -25,21 +24,6 @@ function App() {
         });
     }
   }, [userId]);
-
-  useEffect(() => {
-    if (projects) {
-      projects.forEach((project) => {
-        axios
-          .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills?projectId=${project.projectId}`)
-          .then((response) => {
-            setSkills(response.data.skills);
-          })
-          .catch((error) => {
-            console.log("Error fetching data", error);
-          });
-      });
-    }
-  }, [projects]);
 
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
@@ -71,7 +55,7 @@ function App() {
     <Container className="App">
       <NewProject addProject={addProject} />
       <SkillsToDo projects={projects} />
-      <ProjectList skills={skills} projects={projects} addSkill={addSkill} />
+      <ProjectList projects={projects} addSkill={addSkill} />
     </Container>
   );
 }
