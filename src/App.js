@@ -43,8 +43,15 @@ function App() {
     console.log(newSkill);
     axios
       .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
-      .then(({ data: { skills: resSkills = [] } = {} }) => {
-        setSkills([...skills, ...resSkills]);
+      .then((response) => {
+        const updatedProjects = projects.map((project) => {
+          const { skills = [] } = project;
+          if (project.projectId === projectId) {
+            return { ...project, skills: [response.data.skill, ...skills] };
+          }
+          return project;
+        });
+        setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error posting skill", error);
