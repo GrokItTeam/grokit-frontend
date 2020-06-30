@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Collapse } from "react-bootstrap";
 import AddSkill from "components/AddSkill/AddSkill";
 
-function ProjectItem({ project: { projectId, name } = {}, open = true, skills = [], addSkill = () => {} }) {
+function ProjectItem({ project: { projectId, name, skills = [] } = {}, open = true, addSkill = () => {} }) {
   const [cardOpen, setCardOpen] = useState(false);
 
   return (
