@@ -44,27 +44,27 @@ function App() {
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
     console.log(newProject);
-    // axios
-    //   .post("#", newProject)
-    //   .then((response) => {
-    //     //TODO: Response here
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error posting project", error);
-    //   });
+    axios
+      .post("#", newProject)
+      .then(({ data: { projects: resProject = [] } = {} }) => {
+        setProjects([...projects, ...resProject]);
+      })
+      .catch((error) => {
+        console.log("Error posting project", error);
+      });
   };
 
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
     console.log(newSkill);
-    // axios
-    //   .post("#", addSkill)
-    //   .then((response) => {
-    //     //TODO: Response here
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error posting skill", error);
-    //   });
+    axios
+      .post("#", addSkill)
+      .then(({ data: { skills: resSkills = [] } = {} }) => {
+        setSkills([...skills, ...resSkills]);
+      })
+      .catch((error) => {
+        console.log("Error posting skill", error);
+      });
   };
 
   return (
