@@ -45,7 +45,7 @@ function App() {
     const newProject = { name, userId, datePracticed: Date.now() };
     console.log(newProject);
     axios
-      .post("#", newProject)
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`, newProject)
       .then(({ data: { projects: resProject = [] } = {} }) => {
         setProjects([...projects, ...resProject]);
       })
@@ -58,7 +58,7 @@ function App() {
     const newSkill = { name: skillName, projectId: projectId };
     console.log(newSkill);
     axios
-      .post("#", addSkill)
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
       .then(({ data: { skills: resSkills = [] } = {} }) => {
         setSkills([...skills, ...resSkills]);
       })
