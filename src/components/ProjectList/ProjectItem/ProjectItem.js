@@ -1,9 +1,21 @@
 import React, { useState } from "react";
-import { Card, Collapse } from "react-bootstrap";
+import { Button, Card, Collapse } from "react-bootstrap";
 import AddSkill from "components/AddSkill/AddSkill";
 
-function ProjectItem({ project: { projectId, name, skills = [] } = {}, open = true, addSkill = () => {} }) {
+function ProjectItem({ 
+  project: { projectId, name, skills = [] } = {}, 
+  open = true, 
+  addSkill = () => {}, 
+  deleteProject = () => {} 
+}) {
+  
   const [cardOpen, setCardOpen] = useState(false);
+
+  const handleDeleteProjectButton = () => {
+    if (window.confirm(`Are you sure you wish to delete "${name}"? This will delete all associated skills.`)) {
+      deleteProject(projectId);
+    }
+  }
 
   return (
     <Card key={projectId} style={{ border: "2px solid black" }}>
@@ -16,6 +28,7 @@ function ProjectItem({ project: { projectId, name, skills = [] } = {}, open = tr
           {skills.map((skill) => (
             <p key={skill.skillId}>{skill.name}</p>
           ))}
+          <Button onClick={handleDeleteProjectButton}>Delete Project</Button>
         </Card.Body>
       </Collapse>
     </Card>

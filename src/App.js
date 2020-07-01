@@ -51,11 +51,16 @@ function App() {
     //   });
   };
 
+  const deleteProject = (projectId) => {
+    const updatedProjects = projects.filter(project => project.projectId !== projectId ? project:null);
+    setProjects(updatedProjects);
+  }
+
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
       <SkillsToDo projects={projects} />
-      <ProjectList projects={projects} addSkill={addSkill} />
+      <ProjectList projects={projects} addSkill={addSkill} deleteProject={deleteProject}/>
     </Container>
   );
 }
