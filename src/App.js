@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 import { Container } from "react-bootstrap";
 
 import NewProject from "components/CreateNewProject/NewProject";
@@ -26,7 +27,7 @@ function App() {
   }, [userId]);
 
   const addProject = ({ name = "" }) => {
-    const newProject = { name, userId, datePracticed: Date.now() };
+    const newProject = { name, userId, datePractised: Date.now() };
     console.log(newProject);
     // axios
     //   .post("#", newProject)
@@ -51,15 +52,37 @@ function App() {
     //   });
   };
 
-  const updatedPractisedSkill = (updatedSkill) => {
-
-
+  const updatedPractisedSkill = ({projectId, skillToDo, datePractised, skills = []}) => {
+    const practisedSkill = skills.find(({skillId}) => skillId === skillToDo);
+    axios
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillToDo}/markAsPractised`, practisedSkill)
+      .then(response => {
+        const updatedSkill = response.data.updatedSkill[0];
+        const updatedProjects = projects.map(project => {
+          const {skills = []} = project;
+          if (project.projectId === projectId) {
+            project.datePractised = moment().format("YYYY-MM-DD");
+            project.skillToDo = null;
+            skills.map(skill => {
+              if (skill.skillId === skillToDo) {
+                skill = updatedSkill;
+              }
+              return skill;
+            })
+          }          
+          return project;
+        })
+        setProjects(updatedProjects);
+      })
+      .catch(error => {
+        console.log("Error fetching data", error);
+      })
   }
 
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
-      <SkillsToDo projects={projects} updatedPractisedSkill={updatedPractisedSkill}/>
+      <SkillsToDo projects={projects} updatedPractisedSkill={updatedPractisedSkill} />
       <ProjectList projects={projects} addSkill={addSkill} />
     </Container>
   );

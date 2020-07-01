@@ -5,19 +5,7 @@ import { Card } from 'react-bootstrap';
 import SkillToDoItem from './SkillToDoItem/SkillToDoItem';
 
 
-function SkillsToDo({ projects = [], open = true, updatedPractisedSkill = () => {} }) {
-    
-    function markAsPractised(project) {
-        const practisedSkill = project.skills.find(skill => skill.skillId === project.skillToDo); 
-        axios
-            .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${practisedSkill.skillId}/markAsPractised`, practisedSkill)
-            .then(response => {
-                console.log(response.data.updatedPractisedSkill);                
-            })
-            .catch(error => {
-                console.log("Error fetching data", error);
-            })
-    }
+function SkillsToDo({ projects = [], open = true, updatedPractisedSkill = () => {} }) {    
 
     return (
         <Card style={{ border: "2px solid black" }}>
@@ -30,7 +18,7 @@ function SkillsToDo({ projects = [], open = true, updatedPractisedSkill = () => 
             </Card.Header>
             <Card.Body>
                 {projects && projects.map(project=> (
-                    <SkillToDoItem key={project.projectId} project={project} markAsPractised={markAsPractised}/>
+                    <SkillToDoItem key={project.projectId} project={project} updatedPractisedSkill={updatedPractisedSkill}/>
                 ))}
             </Card.Body>
         </Card>

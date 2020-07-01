@@ -2,10 +2,10 @@ import React from 'react';
 import { Row, Button } from 'react-bootstrap';
 
 
-function Skill({ project = [], markAsPractised = () => {} }) {
+function Skill({ project = [], updatedPractisedSkill = () => {} }) {
 
     function handlePractisedButton() {
-        markAsPractised(project);
+        updatedPractisedSkill(project);
     }
 
     return (
