@@ -52,13 +52,12 @@ function App() {
   };
 
   const deleteSkill = (skillId) => {
-    console.log(`delete`+ skillId);
     axios
-      .delete("#")
+      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
       .then((response) => {
         const updatedProjects = projects.map(project => {
           const { skills = [] } = project;
-          return {...project, skills: skills.filter(skill => skill.skillId === skillId)};
+          return {...project, skills: skills.filter(skill => skill.skillId !== skillId)};
         });
         setProjects(updatedProjects);
       })
