@@ -52,9 +52,17 @@ function App() {
   };
 
   const deleteProject = (projectId) => {
-    const updatedProjects = projects.filter(project => project.projectId !== projectId ? project:null);
-    setProjects(updatedProjects);
+    axios
+      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
+      .then (response => {
+        const updatedProjects = projects.filter(project => project.projectId !== projectId ? project:null);
+        setProjects(updatedProjects);
+      })
+      .catch(error => {
+        console.log("Error deleting project");
+      })
   }
+
 
   return (
     <Container className="App">
