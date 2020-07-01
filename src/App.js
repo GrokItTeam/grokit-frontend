@@ -51,11 +51,27 @@ function App() {
     //   });
   };
 
+  const deleteSkill = (skillId) => {
+    console.log(`delete`+ skillId);
+    axios
+      .delete("#")
+      .then((response) => {
+        const updatedProjects = projects.map(project => {
+          const { skills = [] } = project;
+          return {...project, skills: skills.filter(skill => skill.skillId === skillId)};
+        });
+        setProjects(updatedProjects);
+      })
+      .catch((error) => {
+        console.log("Error deleting skill", error);
+      });
+  };
+
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
       <SkillsToDo projects={projects} />
-      <ProjectList projects={projects} addSkill={addSkill} />
+      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill}/>
     </Container>
   );
 }
