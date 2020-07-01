@@ -37,7 +37,6 @@ function App() {
         console.log("Error posting project", error);
       });
   };
-
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
     console.log(newSkill);
@@ -47,6 +46,9 @@ function App() {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
+            if (project.skills.length === 0) {
+              return { ...project, skillToDo: response.data.skill.skillId, skills: [response.data.skill, ...skills] };
+            }
             return { ...project, skills: [response.data.skill, ...skills] };
           }
           return project;
