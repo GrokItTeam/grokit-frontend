@@ -66,11 +66,23 @@ function App() {
       });
   };
 
+  const editSkillName = (skillId, skillName) => {
+    const updatedProjects = projects.map(project => {
+      const { skills = [] } = project;
+      skills.map(skill => {
+        if (skill.skillId === skillId) {skill.name = skillName}
+        return skill;
+      })
+      return project;
+    })
+    setProjects(updatedProjects);
+  }
+
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
       <SkillsToDo projects={projects} />
-      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill}/>
+      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill} editSkillName={editSkillName}/>
     </Container>
   );
 }

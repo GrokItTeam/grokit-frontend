@@ -3,7 +3,14 @@ import { Card, Collapse } from "react-bootstrap";
 import AddSkill from "components/AddSkill/AddSkill";
 import SkillItem from "components/ProjectList/SkillItem/SkillItem";
 
-function ProjectItem({ project: { projectId, name, skills = [] } = {}, open = true, addSkill = () => {}, deleteSkill = () => {} }) {
+function ProjectItem({ 
+  project: { projectId, name, skills = [] } = {}, 
+  open = true, 
+  addSkill = () => {}, 
+  deleteSkill = () => {},
+  editSkillName = () => {} 
+}){
+
   const [cardOpen, setCardOpen] = useState(false);
 
   return (
@@ -15,7 +22,7 @@ function ProjectItem({ project: { projectId, name, skills = [] } = {}, open = tr
         <Card.Body>
           <AddSkill projectId={projectId} addSkill={addSkill} />
           {skills.map(({skillId, name}) => (
-            <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill}/>
+            <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill} editSkillName={editSkillName}/>
           ))}
         </Card.Body>
       </Collapse>
