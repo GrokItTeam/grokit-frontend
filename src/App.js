@@ -27,28 +27,35 @@ function App() {
 
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
-    console.log(newProject);
-    // axios
-    //   .post("#", newProject)
-    //   .then((response) => {
-    //     //TODO: Response here
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error posting project", error);
-    //   });
+    axios
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`, newProject)
+      .then(({ data: { projects: resProject = [] } = {} }) => {
+        setProjects([...projects, ...resProject]);
+      })
+      .catch((error) => {
+        console.log("Error posting project", error);
+      });
   };
-
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
-    console.log(newSkill);
-    // axios
-    //   .post("#", addSkill)
-    //   .then((response) => {
-    //     //TODO: Response here
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error posting skill", error);
-    //   });
+    axios
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
+      .then((response) => {
+        const updatedProjects = projects.map((project) => {
+          const { skills = [] } = project;
+          if (project.projectId === projectId) {
+            if (!project.skills) {
+              return { ...project, skillToDo: response.data.skill.skillId, skills: [response.data.skill, ...skills] };
+            }
+            return { ...project, skills: [response.data.skill, ...skills] };
+          }
+          return project;
+        });
+        setProjects(updatedProjects);
+      })
+      .catch((error) => {
+        console.log("Error posting skill", error);
+      });
   };
 
   const deleteSkill = (skillId) => {
