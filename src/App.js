@@ -27,7 +27,6 @@ function App() {
 
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
-    console.log(newProject);
     axios
       .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`, newProject)
       .then(({ data: { projects: resProject = [] } = {} }) => {
@@ -39,14 +38,13 @@ function App() {
   };
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
-    console.log(newSkill);
     axios
       .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
-            if (project.skills.length === 0) {
+            if (!project.skills) {
               return { ...project, skillToDo: response.data.skill.skillId, skills: [response.data.skill, ...skills] };
             }
             return { ...project, skills: [response.data.skill, ...skills] };
@@ -60,11 +58,26 @@ function App() {
       });
   };
 
+  const deleteSkill = (skillId) => {
+    axios
+      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
+      .then((response) => {
+        const updatedProjects = projects.map(project => {
+          const { skills = [] } = project;
+          return {...project, skills: skills.filter(skill => skill.skillId !== skillId)};
+        });
+        setProjects(updatedProjects);
+      })
+      .catch((error) => {
+        console.log("Error deleting skill", error);
+      });
+  };
+
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
       <SkillsToDo projects={projects} />
-      <ProjectList projects={projects} addSkill={addSkill} />
+      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill}/>
     </Container>
   );
 }
