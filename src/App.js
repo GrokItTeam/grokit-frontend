@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment";
 import { Container } from "react-bootstrap";
 
 import NewProject from "components/CreateNewProject/NewProject";
@@ -58,6 +59,34 @@ function App() {
       });
   };
 
+  const updatePractisedSkill = (practisedSkill) => {
+    const {projectId, skillId} = practisedSkill;
+
+    axios
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`, practisedSkill)
+      .then(response => {
+        const updatedSkill = response.data.practisedSkill[0];
+        
+        const updatedProjects = projects.map(project => {
+          const {skills = []} = project;
+          if (project.projectId === projectId) {
+            project.datePractised = moment().format("YYYY-MM-DD");
+            project.skillToDo = null;
+            skills.map(skill => {
+              if (skill.skillId === skillId) {
+                skill = updatedSkill;
+              }
+              return skill;
+            })
+          }          
+          return project;
+        })
+        setProjects(updatedProjects);
+      })
+      .catch(error => {
+        console.log("Error fetching data", error);
+      })
+  }
   const deleteSkill = (skillId) => {
     axios
       .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
@@ -76,8 +105,8 @@ function App() {
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
-      <SkillsToDo projects={projects} />
-      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill}/>
+      <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
+      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill} />
     </Container>
   );
 }
