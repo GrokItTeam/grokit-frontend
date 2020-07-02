@@ -2,9 +2,9 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 
 
-function NoSkill({ project = [] }) {
+function NoSkill({ projectName = "" }) {
     return (
-        <Row>{project.name}: No task today</Row>
+        <Row>{projectName}: No task today</Row>
     )
 }
 

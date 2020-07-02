@@ -2,15 +2,15 @@ import React from 'react';
 import { Row, Button } from 'react-bootstrap';
 
 
-function Skill({ project = [], updatedPractisedSkill = () => {} }) {
+function Skill({ projectName = "", skillName = "", skillToDo, updatedPractisedSkill = () => { } }) {
 
     function handlePractisedButton() {
-        updatedPractisedSkill(project);
+        updatedPractisedSkill(skillToDo);
     }
 
     return (
         <Row>
-            <p>{project.name}: {project.skills.find(skill => skill.skillId === project.skillToDo).name}</p>
+            <p>{projectName}: {skillName}</p>
             <Button onClick={handlePractisedButton}>Practised</Button>
         </Row>
     )
