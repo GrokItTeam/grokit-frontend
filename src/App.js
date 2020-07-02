@@ -61,19 +61,21 @@ function App() {
       });
   };
 
-  const updatedPractisedSkill = ({projectId, skillToDo, datePractised, skills = []}) => {
-    const practisedSkill = skills.find(({skillId}) => skillId === skillToDo);
+  const updatePractisedSkill = (practisedSkill) => {
+    const {projectId, skillId} = practisedSkill;
+
     axios
-      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillToDo}/markAsPractised`, practisedSkill)
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`, practisedSkill)
       .then(response => {
-        const updatedSkill = response.data.updatedSkill[0];
+        const updatedSkill = response.data.practisedSkill[0];
+        
         const updatedProjects = projects.map(project => {
           const {skills = []} = project;
           if (project.projectId === projectId) {
             project.datePractised = moment().format("YYYY-MM-DD");
             project.skillToDo = null;
             skills.map(skill => {
-              if (skill.skillId === skillToDo) {
+              if (skill.skillId === skillId) {
                 skill = updatedSkill;
               }
               return skill;
@@ -91,7 +93,7 @@ function App() {
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
-      <SkillsToDo projects={projects} updatedPractisedSkill={updatedPractisedSkill} />
+      <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
       <ProjectList projects={projects} addSkill={addSkill} />
     </Container>
   );

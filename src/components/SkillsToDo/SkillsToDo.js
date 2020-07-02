@@ -4,7 +4,7 @@ import { Card } from 'react-bootstrap';
 import SkillToDoItem from './SkillToDoItem/SkillToDoItem';
 
 
-function SkillsToDo({ projects = [], open = true, updatedPractisedSkill = () => { } }) {
+function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => { } }) {
 
   return (
     <Card style={{ border: "2px solid black" }}>
@@ -12,13 +12,21 @@ function SkillsToDo({ projects = [], open = true, updatedPractisedSkill = () => 
         <h1>Skills to practise today</h1>
       </Card.Header>
       <Card.Body>
-        {projects && projects.map(({ projectId, name, skillToDo, skills = [] }) => {
+        {projects && projects.map(({ projectId, datePractised, name, skillToDo, skills = [] }) => {
           if (!skills.length) {
             return null;
           }
-          const { name: skillName = "" } = skills.find(({ skillId }) => skillId === skillToDo) || {};
+          const skill = skills.find(({ skillId }) => skillId === skillToDo) || {};
+          
           return (
-            <SkillToDoItem key={projectId} projectName={name} skillName={skillName} skillToDo={skillToDo} updatedPractisedSkill={updatedPractisedSkill} />
+            <SkillToDoItem
+              key={projectId}
+              datePractised={datePractised}
+              projectName={name}
+              skill={skill}
+              skillToDo={skillToDo}
+              updatePractisedSkill={updatePractisedSkill}
+            />
           )
         })}
       </Card.Body>

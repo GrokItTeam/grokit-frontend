@@ -5,13 +5,13 @@ import Skill from './Skill';
 import NoSkill from './NoSkill';
 
 
-function SkillToDoItem({ datePractised = "", projectName = "", skillName = "", skillToDo, updatedPractisedSkill = () => { } }) {
+function SkillToDoItem({ datePractised = "", projectName = "", skillToDo, skill = {}, updatePractisedSkill = () => { } }) {
     if (moment(datePractised).isSame(moment(), "day")) {
         return (<PractisedToday projectName={projectName} />)
     }
     else {
         if (skillToDo) {
-            return (<Skill projectName={projectName} skillName={skillName} skillToDo={skillToDo} updatedPractisedSkill={updatedPractisedSkill} />)
+            return (<Skill projectName={projectName} skill={skill} updatePractisedSkill={updatePractisedSkill} />)
         }
         else {
             return (<NoSkill projectName={projectName} />)
