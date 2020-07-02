@@ -102,11 +102,24 @@ function App() {
       });
   };
 
+  const deleteProject = (projectId) => {
+    axios
+      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
+      .then (response => {
+        const updatedProjects = projects.filter(project => project.projectId !== projectId ? project:null);
+        setProjects(updatedProjects);
+      })
+      .catch(error => {
+        console.log("Error deleting project");
+      })
+  }
+
+
   return (
     <Container className="App">
       <NewProject addProject={addProject} />
       <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
-      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill} />
+      <ProjectList projects={projects} addSkill={addSkill} deleteSkill={deleteSkill} deleteProject={deleteProject}/>
     </Container>
   );
 }
