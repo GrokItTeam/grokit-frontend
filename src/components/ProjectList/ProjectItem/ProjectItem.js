@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Button, Card, Collapse } from "react-bootstrap";
 import AddSkill from "components/AddSkill/AddSkill";
+import SkillItem from "components/ProjectList/SkillItem/SkillItem";
 
 function ProjectItem({ 
   project: { projectId, name, skills = [] } = {}, 
   open = true, 
-  addSkill = () => {}, 
+  addSkill = () => {},
+  deleteSkill = () => {}, 
   deleteProject = () => {} 
 }) {
   
@@ -25,8 +27,8 @@ function ProjectItem({
       <Collapse in={cardOpen}>
         <Card.Body>
           <AddSkill projectId={projectId} addSkill={addSkill} />
-          {skills.map((skill) => (
-            <p key={skill.skillId}>{skill.name}</p>
+          {skills.map(({skillId, name}) => (
+            <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill}/>
           ))}
           <Button onClick={handleDeleteProjectButton}>Delete Project</Button>
         </Card.Body>
