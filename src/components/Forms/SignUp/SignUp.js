@@ -9,7 +9,7 @@ import "./SignUp.css";
 function SignUp(props) {
   const [newUser, setNewUser] = useState(null);
   const [newUsernameError, setNewUsernameError] = useState(false);
-  const { userHasAuthenticated } = useAppContext();
+  const { setLoggedIn } = useAppContext();
   const [fields, handleFieldChange] = useFormFields({
     newName: "",
     newEmail: "",
@@ -46,7 +46,7 @@ function SignUp(props) {
     try {
       await Auth.confirmSignUp(fields.newEmail, fields.confirmationCode);
       await Auth.signIn(fields.newEmail, fields.newPassword);
-      userHasAuthenticated(true);
+      setLoggedIn(true);
       console.log("You've Signed Up");
     } catch (e) {
       onError(e);
