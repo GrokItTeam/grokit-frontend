@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import BootstrapModal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-function EditSkillModal({ 
+function EditProjectModal({ 
   name = "", 
   title = "", 
   status = false, 
   handleClose = () => {}, 
   onSave = () => {} }) {
 
-  const [skillName, setSkillName] = useState(name);
+  const [projectName, setProjectName] = useState(name);
 
   const saveChanges = () => {
-    onSave(skillName);
+    onSave(projectName);
   };
 
   return (
@@ -22,14 +22,14 @@ function EditSkillModal({
       </BootstrapModal.Header>
       <BootstrapModal.Body>
         <label>
-          <input type="text" placeholder="Enter new skill name" value={skillName} name="name" onChange={e => setSkillName(e.target.value)} />
+          <input type="text" placeholder="Enter new skill name" value={projectName} name="name" onChange={e => setProjectName(e.target.value)} />
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
         <Button variant="danger" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="success" onClick={saveChanges} disabled={!skillName}>
+        <Button variant="success" onClick={saveChanges} disabled={!projectName}>
           Save
         </Button>
       </BootstrapModal.Footer>
@@ -37,4 +37,4 @@ function EditSkillModal({
   );
 }
 
-export default EditSkillModal;
+export default EditProjectModal;
