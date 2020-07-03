@@ -6,19 +6,12 @@ import SkillItem from "components/ProjectList/SkillItem/SkillItem";
 function ProjectItem({ 
   project: { projectId, name, skills = [] } = {}, 
   open = true, 
-<<<<<<< HEAD
-  addSkill = () => {}, 
-  deleteSkill = () => {},
-  editSkillName = () => {} 
-}){
-
-=======
   addSkill = () => {},
   deleteSkill = () => {}, 
-  deleteProject = () => {} 
+  deleteProject = () => {} , 
+  editSkillName = () => {} 
 }) {
   
->>>>>>> master
   const [cardOpen, setCardOpen] = useState(false);
 
   const handleDeleteProjectButton = () => {
