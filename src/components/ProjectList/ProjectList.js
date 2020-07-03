@@ -6,6 +6,7 @@ function ProjectList({
   projects = [], 
   addSkill = () => {}, 
   deleteSkill = () => {},
+  deleteProject = () => {},
   editSkillName = () => {} 
 }) {
   return (
@@ -15,6 +16,7 @@ function ProjectList({
           key={project.projectId}
           project={project}
           addSkill={addSkill}
+          deleteProject={deleteProject}
           deleteSkill={deleteSkill}
           editSkillName={editSkillName}
         />

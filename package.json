@@ -3,14 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/api": "^3.1.17",
+    "@aws-amplify/auth": "^3.2.14",
+    "@aws-amplify/pubsub": "^3.0.18",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "antd": "^4.4.0",
+    "aws-amplify": "^3.0.18",
+    "aws-amplify-react": "^4.1.17",
+    "bootstrap": "^4.5.0",
+    "jwt-decode": "^2.2.0",
+    "password-validator": "^5.0.3",
     "axios": "^0.19.2",
+    "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "styled-components": "^5.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
