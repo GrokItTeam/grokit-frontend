@@ -8,7 +8,8 @@ function ProjectItem({
   open = true, 
   addSkill = () => {},
   deleteSkill = () => {}, 
-  deleteProject = () => {} 
+  deleteProject = () => {} , 
+  editSkillName = () => {} 
 }) {
   
   const [cardOpen, setCardOpen] = useState(false);
@@ -28,7 +29,7 @@ function ProjectItem({
         <Card.Body>
           <AddSkill projectId={projectId} addSkill={addSkill} />
           {skills.map(({skillId, name}) => (
-            <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill}/>
+            <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill} editSkillName={editSkillName}/>
           ))}
           <Button onClick={handleDeleteProjectButton}>Delete Project</Button>
         </Card.Body>

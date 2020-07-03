@@ -2,7 +2,13 @@ import React from "react";
 
 import ProjectItem from "./ProjectItem/ProjectItem";
 
-function ProjectList({ projects = [], addSkill = () => {}, deleteProject = () => {}, deleteSkill = () => {} }) {
+function ProjectList({ 
+  projects = [], 
+  addSkill = () => {}, 
+  deleteSkill = () => {},
+  deleteProject = () => {},
+  editSkillName = () => {} 
+}) {
   return (
     <>
       {projects.map((project) => (
@@ -12,6 +18,7 @@ function ProjectList({ projects = [], addSkill = () => {}, deleteProject = () =>
           addSkill={addSkill}
           deleteProject={deleteProject}
           deleteSkill={deleteSkill}
+          editSkillName={editSkillName}
         />
       ))}
     </>

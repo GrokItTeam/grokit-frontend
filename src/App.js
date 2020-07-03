@@ -124,6 +124,25 @@ function App() {
       });
   };
 
+  const editSkillName = (skillId, skillName) => {
+    axios
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,{name:skillName})
+      .then((response) => {
+        const updatedProjects = projects.map(project => {
+          const { skills = [] } = project;
+          skills.map(skill => {
+            if (skill.skillId === skillId) {skill.name = skillName}
+            return skill;
+          })
+          return project;
+        })
+        setProjects(updatedProjects);
+      })
+      .catch((error) => {
+        console.log("Error updating skill", error);
+      });    
+  }
+  
   const deleteProject = (projectId) => {
     axios
       .delete(
@@ -157,6 +176,7 @@ function App() {
               addSkill={addSkill}
               deleteSkill={deleteSkill}
               deleteProject={deleteProject}
+              editSkillName={editSkillName}
             />
           </>
         )}
