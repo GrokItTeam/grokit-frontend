@@ -26,10 +26,10 @@ function Modal({
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="danger" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="primary" onClick={saveChanges} disabled={!skillName}>
+        <Button variant="success" onClick={saveChanges} disabled={!skillName}>
           Save
         </Button>
       </BootstrapModal.Footer>

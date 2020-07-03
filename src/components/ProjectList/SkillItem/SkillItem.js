@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Button } from "react-bootstrap";
-import EditSkill from "components/SkillsToDo/EditSkill/EditSkill";
+import EditSkill from "components/ProjectList/SkillItem/EditSkill/EditSkill";
 
 function SkillItem({ skillId, name, deleteSkill = () => { }, editSkillName = () => {} }) {
 
@@ -8,9 +8,7 @@ function SkillItem({ skillId, name, deleteSkill = () => { }, editSkillName = () 
         if (window.confirm(`Are you sure you wish to delete "${name}"`)) {
             deleteSkill(skillId);
         }
-    }
-
-    
+    }    
 
     return (
         <Row>
