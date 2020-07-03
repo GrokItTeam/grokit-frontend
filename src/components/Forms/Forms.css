@@ -1,0 +1,11 @@
+.forms {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 30px;
+}
+
+@media only screen and (max-width: 750px) {
+  .App {
+    flex-direction: column;
+  }
+}

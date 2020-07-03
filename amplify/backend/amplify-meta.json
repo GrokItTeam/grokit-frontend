@@ -1,0 +1,38 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-grokit-dev-133932-authRole",
+            "UnauthRoleArn": "arn:aws:iam::701989966234:role/amplify-grokit-dev-133932-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::701989966234:role/amplify-grokit-dev-133932-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "amplify-grokit-dev-133932-deployment",
+            "UnauthRoleName": "amplify-grokit-dev-133932-unauthRole",
+            "StackName": "amplify-grokit-dev-133932",
+            "StackId": "arn:aws:cloudformation:eu-west-2:701989966234:stack/amplify-grokit-dev-133932/c042e420-bace-11ea-b086-0a7f7081acf8",
+            "AmplifyAppId": "d27fcbmdc1g9xy"
+        }
+    },
+    "auth": {
+        "grokit341a72d0": {
+            "service": "Cognito",
+            "providerPlugin": "awscloudformation",
+            "dependsOn": [],
+            "customAuth": false,
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-grokit-dev-133932-deployment/amplify-cfn-templates/auth/grokit341a72d0-cloudformation-template.yml",
+                "logicalId": "authgrokit341a72d0"
+            },
+            "lastPushTimeStamp": "2020-07-01T19:07:36.019Z",
+            "output": {
+                "AppClientSecret": "10udlhiv15mrrq4ik8b3h7kqtbjg5pn43349jqkb00es5uov12vr",
+                "UserPoolId": "eu-west-2_ClW6loYYP",
+                "AppClientIDWeb": "3c1umvnq91sa0rh6k11g8lvmms",
+                "AppClientID": "1nesqrgmj66qbqti9e7m8fr36a",
+                "IdentityPoolId": "eu-west-2:37b9d485-35c5-4b40-88aa-69630db6ec00",
+                "IdentityPoolName": "grokit341a72d0_identitypool_341a72d0__dev",
+                "UserPoolName": "grokit341a72d0_userpool_341a72d0"
+            },
+            "lastPushDirHash": "dnJDfOGc6h+/j1DCPUiVFDhrcWU="
+        }
+    }
+}
