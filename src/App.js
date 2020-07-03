@@ -11,7 +11,7 @@ import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState("test-id");
   const [projects, setProjects] = useState();
 
