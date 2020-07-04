@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import EditSkillModal from './EditSkillModal';
+import SingleInputModal from 'components/Modals/SingleInputModal';
 
 function EditSkill({ skillId, name, editSkillName = () => {} }) {
     const [smShow, setSmShow] = useState(false);
@@ -17,7 +17,7 @@ function EditSkill({ skillId, name, editSkillName = () => {} }) {
     return (
         <>
         <Button onClick={handleShow}>Edit name</Button>
-        {smShow ? <EditSkillModal title="Edit skill name" name={name} status={smShow} handleClose={handleClose} onSave={onSave}/> : ""}
+        {smShow ? <SingleInputModal title="Edit skill name" startValue={name} placeholder="Enter a new skill name" status={smShow} handleClose={handleClose} onSave={onSave}/> : ""}
         </>
     );
 }

@@ -9,14 +9,14 @@ import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [userId, setUserId] = useState("test-id");
   const [projects, setProjects] = useState();
 
   useEffect(() => {
     if (userId) {
       axios
-        .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`)
+        .get(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`)
         .then((response) => {
           setProjects(response.data.projects);
         })
@@ -67,7 +67,7 @@ function App() {
     const { projectId, skillId } = practisedSkill;
 
     axios
-      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`, practisedSkill)
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`, practisedSkill)
       .then((response) => {
         const updatedSkill = response.data.practisedSkill[0];
 
@@ -93,7 +93,7 @@ function App() {
   };
   const deleteSkill = (skillId) => {
     axios
-      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
+      .delete(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -111,7 +111,7 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -132,13 +132,30 @@ function App() {
 
   const deleteProject = (projectId) => {
     axios
-      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
+      .delete(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
       .then((response) => {
         const updatedProjects = projects.filter((project) => (project.projectId !== projectId ? project : null));
         setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error deleting project");
+      });
+  };
+
+  const editProjectName = (projectId, projectName) => {
+    axios
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`, { name: projectName })
+      .then((response) => {
+        const updatedProjects = projects.map((project) => {
+          if (project.projectId === projectId) {
+            project.name = projectName;
+          }
+          return project;
+        });
+        setProjects(updatedProjects);
+      })
+      .catch((error) => {
+        console.log("Error updating skill", error);
       });
   };
 
@@ -157,6 +174,7 @@ function App() {
               deleteSkill={deleteSkill}
               deleteProject={deleteProject}
               editSkillName={editSkillName}
+              editProjectName={editProjectName}
             />
           </>
         )}
