@@ -11,7 +11,7 @@ import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [userId, setUserId] = useState("test-id");
   const [projects, setProjects] = useState();
 
@@ -34,7 +34,7 @@ function App() {
     const newProject = { name, userId, datePracticed: Date.now() };
     axios
       .post(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`,
+        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects`,
         newProject
       )
       .then(({ data: { projects: resProject = [] } = {} }) => {
@@ -48,7 +48,7 @@ function App() {
     const newSkill = { name: skillName, projectId: projectId };
     axios
       .post(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`,
+        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills`,
         newSkill
       )
       .then((response) => {
@@ -159,6 +159,21 @@ function App() {
       });
   };
 
+  const editProjectName = (projectId, projectName) => {
+    axios
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,{name:projectName})
+      .then((response) => {
+        const updatedProjects = projects.map(project => {
+          if (project.projectId === projectId) {project.name = projectName}
+          return project;
+        });
+      setProjects(updatedProjects);
+      })
+      .catch((error) => {
+        console.log("Error updating skill", error);
+      });
+  }
+
   return (
     <AppContext.Provider value={{ setLoggedIn }}>
       <Container className="App">
@@ -177,6 +192,7 @@ function App() {
               deleteSkill={deleteSkill}
               deleteProject={deleteProject}
               editSkillName={editSkillName}
+              editProjectName = {editProjectName}
             />
           </>
         )}

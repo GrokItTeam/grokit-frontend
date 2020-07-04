@@ -7,7 +7,8 @@ function ProjectList({
   addSkill = () => {}, 
   deleteSkill = () => {},
   deleteProject = () => {},
-  editSkillName = () => {} 
+  editSkillName = () => {},
+  editProjectName = () => {} 
 }) {
   return (
     <>
@@ -19,6 +20,7 @@ function ProjectList({
           deleteProject={deleteProject}
           deleteSkill={deleteSkill}
           editSkillName={editSkillName}
+          editProjectName={editProjectName}
         />
       ))}
     </>
