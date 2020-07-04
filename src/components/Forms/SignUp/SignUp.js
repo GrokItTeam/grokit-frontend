@@ -4,6 +4,8 @@ import { Auth } from "aws-amplify";
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
 import "./SignUp.css";
 
 function SignUp(props) {
@@ -143,6 +145,11 @@ function SignUp(props) {
           >
             Sign up
           </Button>
+          <div>
+            <small>
+              Already have an account? <Link to="/signin">Sign in</Link>
+            </small>
+          </div>
         </Form>
       </div>
     );

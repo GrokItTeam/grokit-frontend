@@ -11,7 +11,7 @@ import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState("test-id");
   const [projects, setProjects] = useState();
 
@@ -126,23 +126,28 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,{name:skillName})
+      .put(
+        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
+        { name: skillName }
+      )
       .then((response) => {
-        const updatedProjects = projects.map(project => {
+        const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
-          skills.map(skill => {
-            if (skill.skillId === skillId) {skill.name = skillName}
+          skills.map((skill) => {
+            if (skill.skillId === skillId) {
+              skill.name = skillName;
+            }
             return skill;
-          })
+          });
           return project;
-        })
+        });
         setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error updating skill", error);
-      });    
-  }
-  
+      });
+  };
+
   const deleteProject = (projectId) => {
     axios
       .delete(
@@ -161,18 +166,23 @@ function App() {
 
   const editProjectName = (projectId, projectName) => {
     axios
-      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,{name:projectName})
+      .put(
+        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,
+        { name: projectName }
+      )
       .then((response) => {
-        const updatedProjects = projects.map(project => {
-          if (project.projectId === projectId) {project.name = projectName}
+        const updatedProjects = projects.map((project) => {
+          if (project.projectId === projectId) {
+            project.name = projectName;
+          }
           return project;
         });
-      setProjects(updatedProjects);
+        setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error updating skill", error);
       });
-  }
+  };
 
   return (
     <AppContext.Provider value={{ setLoggedIn }}>
@@ -192,7 +202,7 @@ function App() {
               deleteSkill={deleteSkill}
               deleteProject={deleteProject}
               editSkillName={editSkillName}
-              editProjectName = {editProjectName}
+              editProjectName={editProjectName}
             />
           </>
         )}
