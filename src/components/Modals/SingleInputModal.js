@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import BootstrapModal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-function Modal({ 
-  name = "", 
+function SingleInputModal({ 
+  startValue = "", 
   title = "", 
+  placeholder = "",
   status = false, 
   handleClose = () => {}, 
   onSave = () => {} }) {
 
-  const [skillName, setSkillName] = useState(name);
+  const [value, setValue] = useState(startValue);
 
   const saveChanges = () => {
-    onSave(skillName);
+    onSave(value);
   };
 
   return (
@@ -22,14 +23,14 @@ function Modal({
       </BootstrapModal.Header>
       <BootstrapModal.Body>
         <label>
-          <input type="text" placeholder="Enter new skill name" value={skillName} name="name" onChange={e => setSkillName(e.target.value)} />
+          <input type="text" placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} />
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
         <Button variant="danger" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="success" onClick={saveChanges} disabled={!skillName}>
+        <Button variant="success" onClick={saveChanges} disabled={!value}>
           Save
         </Button>
       </BootstrapModal.Footer>
@@ -37,4 +38,4 @@ function Modal({
   );
 }
 
-export default Modal;
+export default SingleInputModal;
