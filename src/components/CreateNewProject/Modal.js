@@ -26,9 +26,9 @@ function Modal({ title = "", status = false, handleClose = () => {}, onSave = ()
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <button type="button" className="modal__addProject" onClick={handleClose}>
           Cancel
-        </Button>
+        </button>
         <Button variant="primary" onClick={saveChanges} disabled={!name}>
           Save
         </Button>

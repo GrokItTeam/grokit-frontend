@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "components/CreateNewProject/Modal";
-import "./NewProject.css";
 
 function NewProject({ addProject = () => {} }) {
   const [smShow, setSmShow] = useState(false);

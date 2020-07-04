@@ -8,8 +8,6 @@ import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 
-import "./App.css";
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState("test-id");
@@ -18,9 +16,7 @@ function App() {
   useEffect(() => {
     if (userId) {
       axios
-        .get(
-          `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
-        )
+        .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`)
         .then((response) => {
           setProjects(response.data.projects);
         })
@@ -33,10 +29,7 @@ function App() {
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
     axios
-      .post(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`,
-        newProject
-      )
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`, newProject)
       .then(({ data: { projects: resProject = [] } = {} }) => {
         setProjects([...projects, ...resProject]);
       })
@@ -47,10 +40,7 @@ function App() {
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
     axios
-      .post(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`,
-        newSkill
-      )
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -77,10 +67,7 @@ function App() {
     const { projectId, skillId } = practisedSkill;
 
     axios
-      .put(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`,
-        practisedSkill
-      )
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`, practisedSkill)
       .then((response) => {
         const updatedSkill = response.data.practisedSkill[0];
 
@@ -106,9 +93,7 @@ function App() {
   };
   const deleteSkill = (skillId) => {
     axios
-      .delete(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
-      )
+      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -126,32 +111,30 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,{name:skillName})
+      .put(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
       .then((response) => {
-        const updatedProjects = projects.map(project => {
+        const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
-          skills.map(skill => {
-            if (skill.skillId === skillId) {skill.name = skillName}
+          skills.map((skill) => {
+            if (skill.skillId === skillId) {
+              skill.name = skillName;
+            }
             return skill;
-          })
+          });
           return project;
-        })
+        });
         setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error updating skill", error);
-      });    
-  }
-  
+      });
+  };
+
   const deleteProject = (projectId) => {
     axios
-      .delete(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`
-      )
+      .delete(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
       .then((response) => {
-        const updatedProjects = projects.filter((project) =>
-          project.projectId !== projectId ? project : null
-        );
+        const updatedProjects = projects.filter((project) => (project.projectId !== projectId ? project : null));
         setProjects(updatedProjects);
       })
       .catch((error) => {
@@ -167,10 +150,7 @@ function App() {
         {loggedIn && (
           <>
             <NewProject addProject={addProject} />
-            <SkillsToDo
-              projects={projects}
-              updatePractisedSkill={updatePractisedSkill}
-            />
+            <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
             <ProjectList
               projects={projects}
               addSkill={addSkill}

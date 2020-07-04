@@ -4,7 +4,6 @@ import { Auth } from "aws-amplify";
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
-import "./SignUp.css";
 
 function SignUp(props) {
   const [newUser, setNewUser] = useState(null);
@@ -58,12 +57,7 @@ function SignUp(props) {
       <form onSubmit={handleConfirmationSubmit}>
         <Form.Group controlId="confirmationCode" bsSize="large">
           <Form.Label>Confirmation Code</Form.Label>
-          <Form.Control
-            type="tel"
-            placeholder="Confirmation Code"
-            onChange={handleFieldChange}
-            value={fields.confirmationCode}
-          />
+          <Form.Control type="tel" placeholder="Confirmation Code" onChange={handleFieldChange} value={fields.confirmationCode} />
         </Form.Group>
         <Button block type="submit" bsSize="large">
           Verify
@@ -78,61 +72,25 @@ function SignUp(props) {
           <h2>Create an account</h2>
           <Form.Group controlId="newName">
             <Form.Label> Name</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter name"
-              value={fields.newName}
-              onChange={handleFieldChange}
-            />
-            {newUsernameError && (
-              <Form.Text style={{ color: "red" }}>
-                Please enter a valid name.
-              </Form.Text>
-            )}
+            <Form.Control type="name" placeholder="Enter name" value={fields.newName} onChange={handleFieldChange} />
+            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid name.</Form.Text>}
           </Form.Group>
 
           <Form.Group controlId="newEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              value={fields.newEmail}
-              onChange={handleFieldChange}
-            />
-            {newUsernameError && (
-              <Form.Text style={{ color: "red" }}>
-                Please enter a valid email.
-              </Form.Text>
-            )}
+            <Form.Control type="email" placeholder="Enter email" value={fields.newEmail} onChange={handleFieldChange} />
+            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid email.</Form.Text>}
           </Form.Group>
           <Form.Group controlId="newPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Enter password"
-              value={fields.newPassword}
-              onChange={handleFieldChange}
-            />
-            {newUsernameError && (
-              <Form.Text style={{ color: "red" }}>
-                Please enter a valid password.
-              </Form.Text>
-            )}
+            <Form.Control type="password" placeholder="Enter password" value={fields.newPassword} onChange={handleFieldChange} />
+            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Confirm password"
-              value={fields.confirmPassword}
-              onChange={handleFieldChange}
-            />
-            {newUsernameError && (
-              <Form.Text style={{ color: "red" }}>
-                Please enter a valid password.
-              </Form.Text>
-            )}
+            <Form.Control type="password" placeholder="Confirm password" value={fields.confirmPassword} onChange={handleFieldChange} />
+            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
           </Form.Group>
 
           <Button
