@@ -2,17 +2,18 @@ import React, { useState } from "react";
 import BootstrapModal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-function EditProjectModal({ 
-  name = "", 
+function SingleInputModal({ 
+  startValue = "", 
   title = "", 
+  placeholder = "",
   status = false, 
   handleClose = () => {}, 
   onSave = () => {} }) {
 
-  const [projectName, setProjectName] = useState(name);
+  const [value, setValue] = useState(startValue);
 
   const saveChanges = () => {
-    onSave(projectName);
+    onSave(value);
   };
 
   return (
@@ -22,14 +23,14 @@ function EditProjectModal({
       </BootstrapModal.Header>
       <BootstrapModal.Body>
         <label>
-          <input type="text" placeholder="Enter new skill name" value={projectName} name="name" onChange={e => setProjectName(e.target.value)} />
+          <input type="text" placeholder={placeholder} value={value} onChange={e => setValue(e.target.value)} />
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
         <Button variant="danger" onClick={handleClose}>
           Cancel
         </Button>
-        <Button variant="success" onClick={saveChanges} disabled={!projectName}>
+        <Button variant="success" onClick={saveChanges} disabled={!value}>
           Save
         </Button>
       </BootstrapModal.Footer>
@@ -37,4 +38,4 @@ function EditProjectModal({
   );
 }
 
-export default EditProjectModal;
+export default SingleInputModal;

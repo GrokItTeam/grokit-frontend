@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import EditProjectModal from './EditProjectModal';
+import SingleInputModal from 'components/Modals/SingleInputModal';
 
 function EditProject({ projectId, name, editProjectName = () => {} }) {
     const [smShow, setSmShow] = useState(false);
@@ -17,7 +17,7 @@ function EditProject({ projectId, name, editProjectName = () => {} }) {
     return (
         <>
             <Button onClick={handleShow}>Edit name</Button>
-            {smShow ? <EditProjectModal title="Edit project name" name={name} status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}
+            {smShow ? <SingleInputModal title="Edit project name" placeholder = "Enter new project name" startValue={name} status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}
         </>
     );
 }
