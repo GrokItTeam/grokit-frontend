@@ -15,10 +15,6 @@ function Forms() {
               Sign in
             </p>
           </div>
-          {/* <div>
-            <Link to="/signup">SignUp</Link>
-          </div> */}
-          {/* <Route exact path="/default-path" component={SignIn} /> */}
           <Switch>
             <Route path="/signup">
               <SignUp />
