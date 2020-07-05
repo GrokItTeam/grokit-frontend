@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
+import { Link } from "react-router-dom";
+
 import "./SignUp.css";
 
 function SignUp({history}) {
@@ -67,7 +69,7 @@ function SignUp({history}) {
             value={fields.confirmationCode}
           />
         </Form.Group>
-        <Button block type="submit" bsSize="large">
+        <Button block type="submit" bsSize="large" className="colour">
           Verify
         </Button>
       </form>
@@ -140,11 +142,16 @@ function SignUp({history}) {
           <Button
             variant="primary"
             type="submit"
-            // disabled={!validateForm()}
+            className="colour"
             onClick={handleNewUserSubmit}
           >
             Sign up
           </Button>
+          <div>
+            <small>
+              Already have an account? <Link to="/forms/signin">Sign in</Link>
+            </small>
+          </div>
         </Form>
       </div>
     );

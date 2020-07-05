@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
+import { Link } from "react-router-dom";
 
 function SignIn({history}) {
   const { setLoggedIn } = useAppContext();
@@ -62,9 +63,24 @@ function SignIn({history}) {
           )}
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSignInSubmit}>
+        <Button
+          variant="primary"
+          type="submit"
+          className="colour"
+          onClick={handleSignInSubmit}
+        >
           Sign In
         </Button>
+        <div>
+          <small>
+            Forgot password? <Link to="/forms/resetpassword">Reset password</Link>
+          </small>
+        </div>
+        <div>
+          <small>
+            No account? Create an <Link to="/forms/signup">account</Link>
+          </small>
+        </div>
       </Form>
     </div>
   );

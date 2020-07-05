@@ -26,7 +26,10 @@ function Header({history}) {
                 <Nav className="ml-auto">                    
                 {loggedIn ? 
                     <Button variant="primary" onClick={handleLogOut}>Log Out</Button> :
-                    <Button variant="success" onClick={() => history.push("/login")}>Log In</Button>}
+                    <>
+                    <Button variant="success" onClick={() => history.push("/forms/signin")}>Log In</Button>
+                    <Button variant="primary" onClick={() => history.push("/forms/signup")}>Sign up</Button>
+                    </>}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

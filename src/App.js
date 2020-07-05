@@ -14,7 +14,7 @@ import NavBar from "components/NavBar/NavBar";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState("test-id");
   const [projects, setProjects] = useState();
 
@@ -129,22 +129,27 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
+      .put(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
+        { name: skillName }
+      )
       .then((response) => {
-        const updatedProjects = projects.map(project => {
+        const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
-          skills.map(skill => {
-            if (skill.skillId === skillId) { skill.name = skillName }
+          skills.map((skill) => {
+            if (skill.skillId === skillId) {
+              skill.name = skillName;
+            }
             return skill;
-          })
+          });
           return project;
-        })
+        });
         setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error updating skill", error);
       });
-  }
+  };
 
   const deleteProject = (projectId) => {
     axios
@@ -164,10 +169,15 @@ function App() {
 
   const editProjectName = (projectId, projectName) => {
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`, { name: projectName })
+      .put(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,
+        { name: projectName }
+      )
       .then((response) => {
-        const updatedProjects = projects.map(project => {
-          if (project.projectId === projectId) { project.name = projectName }
+        const updatedProjects = projects.map((project) => {
+          if (project.projectId === projectId) {
+            project.name = projectName;
+          }
           return project;
         });
         setProjects(updatedProjects);
@@ -175,7 +185,7 @@ function App() {
       .catch((error) => {
         console.log("Error updating skill", error);
       });
-  }
+  };
 
   return (
     <Router>
@@ -185,7 +195,7 @@ function App() {
 
           <Switch>
             {!loggedIn &&
-              <Route path="/login">
+              <Route path="/forms">
                 <Forms />
               </Route>}
             {loggedIn && (
