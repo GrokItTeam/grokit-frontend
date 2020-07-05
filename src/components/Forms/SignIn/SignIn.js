@@ -65,12 +65,12 @@ function SignIn() {
         </Button>
         <div>
           <small>
-            Forgot password? <Link to="/resetpassword">Reset Passwprd</Link>
+            Forgot password? <Link to="/resetpassword">Reset password</Link>
           </small>
         </div>
         <div>
           <small>
-            No account? Create <Link to="/signup">account</Link>
+            No account? Create an <Link to="/signup">account</Link>
           </small>
         </div>
       </Form>
