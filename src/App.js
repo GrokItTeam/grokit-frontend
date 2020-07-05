@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Container } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import { AppContext } from "./libs/ContextLib.js";
 import Forms from "components/Forms/Forms.js";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
+import NavBar from "components/NavBar/NavBar";
 
 import "./App.css";
 
@@ -126,12 +129,12 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,{name:skillName})
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
       .then((response) => {
         const updatedProjects = projects.map(project => {
           const { skills = [] } = project;
           skills.map(skill => {
-            if (skill.skillId === skillId) {skill.name = skillName}
+            if (skill.skillId === skillId) { skill.name = skillName }
             return skill;
           })
           return project;
@@ -140,9 +143,9 @@ function App() {
       })
       .catch((error) => {
         console.log("Error updating skill", error);
-      });    
+      });
   }
-  
+
   const deleteProject = (projectId) => {
     axios
       .delete(
@@ -161,13 +164,13 @@ function App() {
 
   const editProjectName = (projectId, projectName) => {
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,{name:projectName})
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`, { name: projectName })
       .then((response) => {
         const updatedProjects = projects.map(project => {
-          if (project.projectId === projectId) {project.name = projectName}
+          if (project.projectId === projectId) { project.name = projectName }
           return project;
         });
-      setProjects(updatedProjects);
+        setProjects(updatedProjects);
       })
       .catch((error) => {
         console.log("Error updating skill", error);
@@ -175,29 +178,41 @@ function App() {
   }
 
   return (
-    <AppContext.Provider value={{ setLoggedIn }}>
-      <Container className="App">
-        {!loggedIn && <Forms />}
+    <Router>
+      <AppContext.Provider value={{ loggedIn, setLoggedIn }}>
+        <NavBar />
+        <Container className="App">
 
-        {loggedIn && (
-          <>
-            <NewProject addProject={addProject} />
-            <SkillsToDo
-              projects={projects}
-              updatePractisedSkill={updatePractisedSkill}
-            />
-            <ProjectList
-              projects={projects}
-              addSkill={addSkill}
-              deleteSkill={deleteSkill}
-              deleteProject={deleteProject}
-              editSkillName={editSkillName}
-              editProjectName = {editProjectName}
-            />
-          </>
-        )}
-      </Container>
-    </AppContext.Provider>
+          <Switch>
+            {!loggedIn &&
+              <Route path="/login">
+                <Forms />
+              </Route>}
+            {loggedIn && (
+              <>
+                <Route exact path="/">
+                  <NewProject addProject={addProject} />
+                  <SkillsToDo
+                    projects={projects}
+                    updatePractisedSkill={updatePractisedSkill}
+                  />
+                </Route>
+                <Route path="/projects">
+                  <ProjectList
+                    projects={projects}
+                    addSkill={addSkill}
+                    deleteSkill={deleteSkill}
+                    deleteProject={deleteProject}
+                    editSkillName={editSkillName}
+                    editProjectName={editProjectName}
+                  />
+                </Route>
+              </>
+            )}
+          </Switch>
+        </Container>
+      </AppContext.Provider>
+    </Router>
   );
 }
 

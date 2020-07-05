@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Auth } from "aws-amplify";
+import { withRouter } from 'react-router-dom';
+
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
 import "./SignUp.css";
 
-function SignUp(props) {
+function SignUp({history}) {
   const [newUser, setNewUser] = useState(null);
   const [newUsernameError, setNewUsernameError] = useState(false);
   const { setLoggedIn } = useAppContext();
@@ -47,7 +49,7 @@ function SignUp(props) {
       await Auth.confirmSignUp(fields.newEmail, fields.confirmationCode);
       await Auth.signIn(fields.newEmail, fields.newPassword);
       setLoggedIn(true);
-      console.log("You've Signed Up");
+      history.push("/");
     } catch (e) {
       onError(e);
     }
@@ -150,4 +152,4 @@ function SignUp(props) {
   return newUser === null ? renderForm() : renderConfirmationForm();
 }
 
-export default SignUp;
+export default withRouter(SignUp);
