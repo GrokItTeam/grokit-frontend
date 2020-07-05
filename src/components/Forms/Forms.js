@@ -23,7 +23,7 @@ function Forms() {
               <SignIn />
             </Route>
             <Route>
-              <ResetPassword />
+              <ResetPassword path="/resetpassword" />
             </Route>
           </Switch>
         </div>

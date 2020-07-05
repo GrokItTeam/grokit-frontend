@@ -67,7 +67,7 @@ function SignUp(props) {
             value={fields.confirmationCode}
           />
         </Form.Group>
-        <Button block type="submit" bsSize="large">
+        <Button block type="submit" bsSize="large" className="colour">
           Verify
         </Button>
       </form>
@@ -140,7 +140,7 @@ function SignUp(props) {
           <Button
             variant="primary"
             type="submit"
-            // disabled={!validateForm()}
+            className="colour"
             onClick={handleNewUserSubmit}
           >
             Sign up

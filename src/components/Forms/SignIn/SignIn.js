@@ -60,7 +60,12 @@ function SignIn() {
           )}
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSignInSubmit}>
+        <Button
+          variant="primary"
+          type="submit"
+          className="colour"
+          onClick={handleSignInSubmit}
+        >
           Sign In
         </Button>
         <div>
