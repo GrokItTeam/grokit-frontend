@@ -1,6 +1,7 @@
 import React from "react";
 import SignUp from "./SignUp/SignUp";
 import SignIn from "./SignIn/SignIn";
+import ResetPassword from "./ResetPassword/ResetPassword";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./Forms.css";
 function Forms() {
@@ -24,6 +25,9 @@ function Forms() {
             </Route>
             <Route path="/signin">
               <SignIn />
+            </Route>
+            <Route>
+              <ResetPassword />
             </Route>
           </Switch>
         </div>

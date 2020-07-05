@@ -64,7 +64,9 @@ function SignIn() {
           Sign In
         </Button>
         <div>
-          <small>Forgot password?</small>
+          <small>
+            Forgot password? <Link to="/resetpassword">Reset Passwprd</Link>
+          </small>
         </div>
         <div>
           <small>
