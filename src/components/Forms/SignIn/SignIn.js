@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function SignIn() {
   const { setLoggedIn } = useAppContext();
@@ -59,9 +60,24 @@ function SignIn() {
           )}
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSignInSubmit}>
+        <Button
+          variant="primary"
+          type="submit"
+          className="colour"
+          onClick={handleSignInSubmit}
+        >
           Sign In
         </Button>
+        <div>
+          <small>
+            Forgot password? <Link to="/resetpassword">Reset password</Link>
+          </small>
+        </div>
+        <div>
+          <small>
+            No account? Create an <Link to="/signup">account</Link>
+          </small>
+        </div>
       </Form>
     </div>
   );
