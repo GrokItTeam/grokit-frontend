@@ -19,7 +19,7 @@ function App() {
     if (userId) {
       axios
         .get(
-          `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
+          `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
         )
         .then((response) => {
           setProjects(response.data.projects);
@@ -34,7 +34,7 @@ function App() {
     const newProject = { name, userId, datePracticed: Date.now() };
     axios
       .post(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects`,
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`,
         newProject
       )
       .then(({ data: { projects: resProject = [] } = {} }) => {
@@ -48,7 +48,7 @@ function App() {
     const newSkill = { name: skillName, projectId: projectId };
     axios
       .post(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills`,
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`,
         newSkill
       )
       .then((response) => {
@@ -78,7 +78,7 @@ function App() {
 
     axios
       .put(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`,
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`,
         practisedSkill
       )
       .then((response) => {
@@ -107,7 +107,7 @@ function App() {
   const deleteSkill = (skillId) => {
     axios
       .delete(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
       )
       .then((response) => {
         const updatedProjects = projects.map((project) => {
@@ -127,7 +127,7 @@ function App() {
   const editSkillName = (skillId, skillName) => {
     axios
       .put(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
         { name: skillName }
       )
       .then((response) => {
@@ -151,7 +151,7 @@ function App() {
   const deleteProject = (projectId) => {
     axios
       .delete(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`
       )
       .then((response) => {
         const updatedProjects = projects.filter((project) =>
@@ -167,7 +167,7 @@ function App() {
   const editProjectName = (projectId, projectName) => {
     axios
       .put(
-        `https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,
         { name: projectName }
       )
       .then((response) => {
