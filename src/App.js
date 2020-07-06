@@ -3,15 +3,16 @@ import axios from "axios";
 import moment from "moment";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 import { AppContext } from "./libs/ContextLib.js";
+
 import SignIn from "components/Forms/SignIn/SignIn";
 import SignUp from "components/Forms/SignUp/SignUp";
 import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
-import { Auth } from "aws-amplify";
 import NavBar from "components/NavBar/NavBar";
 
 import "./App.css";
