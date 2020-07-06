@@ -34,7 +34,6 @@ function App() {
       setUserId(userInfo.username);
     } catch (e) {
       }
-
     setIsAuthenticating(false);
   }
 
@@ -210,7 +209,7 @@ function App() {
   return (
     !isAuthenticating && (
       <Router>
-        <AppContext.Provider value={{ loggedIn, setLoggedIn }}>
+        <AppContext.Provider value={{ loggedIn, setLoggedIn, setUserId }}>
           <NavBar />
           <Container className="App">
             <Switch>

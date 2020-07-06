@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import "../Forms.css";
 
 function SignIn({history}) {
-  const { setLoggedIn } = useAppContext();
+  const { setLoggedIn, setUserId } = useAppContext();
   const [usernameError, setUsernameError] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
     email: "",
@@ -25,7 +25,9 @@ function SignIn({history}) {
     } else {
       try {
         await Auth.signIn(fields.email, fields.password);
+        const userInfo = await Auth.currentUserInfo();
         setLoggedIn(true);
+        setUserId(userInfo.username);
         history.push("/");
       } catch (e) {
         onError(e);
