@@ -12,7 +12,6 @@ import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import { Auth } from "aws-amplify";
-import { onError } from "libs/ErrorLib.js";
 import NavBar from "components/NavBar/NavBar";
 
 import "./App.css";
@@ -21,7 +20,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
-  const [projects, setProjects] = useState();
+  const [projects, setProjects] = useState([]);
   useEffect(() => {
     onLoad();
   }, []);
@@ -31,7 +30,7 @@ function App() {
       await Auth.currentSession();
       setLoggedIn(true);
       const userInfo = await Auth.currentUserInfo();
-      setUserId(userInfo.userId);
+      setUserId(userInfo.username);
     } catch (e) {
       }
 
