@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Container } from "react-bootstrap";
-import { AppContext } from "libs/ContextLib.js";
-import Forms from "components/Forms/Forms.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Auth } from "aws-amplify";
+
+import { AppContext } from "./libs/ContextLib.js";
+
+import SignIn from "components/Forms/SignIn/SignIn";
+import SignUp from "components/Forms/SignUp/SignUp";
+import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import NavBar from "components/NavBar/NavBar";
+
+import "./App.css";
+import IntroPage from "components/IntroPage/IntroPage.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -82,7 +91,7 @@ function App() {
     const { projectId, skillId } = practisedSkill;
 
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`, practisedSkill)
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`, practisedSkill)
       .then((response) => {
         const updatedSkill = response.data.practisedSkill[0];
 
@@ -175,26 +184,51 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{ setLoggedIn }}>
-      <Container className="App">
-        {!loggedIn && <Forms />}
-
-        {loggedIn && (
-          <>
-            <NewProject addProject={addProject} />
-            <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
-            <ProjectList
-              projects={projects}
-              addSkill={addSkill}
-              deleteSkill={deleteSkill}
-              deleteProject={deleteProject}
-              editSkillName={editSkillName}
-              editProjectName={editProjectName}
-            />
-          </>
-        )}
-      </Container>
-    </AppContext.Provider>
+    !isAuthenticating && (
+      <Router>
+        <AppContext.Provider value={{ loggedIn, setLoggedIn, setUserId }}>
+          <NavBar />
+          <Container className="App">
+            <Switch>
+              {!loggedIn && (
+                <>
+                  <Route exact path="/">
+                    <IntroPage />
+                  </Route>
+                  <Route path="/signup">
+                    <SignUp setUserId={setUserId} />
+                  </Route>
+                  <Route path="/signin">
+                    <SignIn />
+                  </Route>
+                  <Route path="/resetpassword">
+                    <ResetPassword />
+                  </Route>
+                </>
+              )}
+              {loggedIn && (
+                <>
+                  <Route exact path="/">
+                    <NewProject addProject={addProject} />
+                    <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
+                  </Route>
+                  <Route path="/projects">
+                    <ProjectList
+                      projects={projects}
+                      addSkill={addSkill}
+                      deleteSkill={deleteSkill}
+                      deleteProject={deleteProject}
+                      editSkillName={editSkillName}
+                      editProjectName={editProjectName}
+                    />
+                  </Route>
+                </>
+              )}
+            </Switch>
+          </Container>
+        </AppContext.Provider>
+      </Router>
+    )
   );
 }
 
