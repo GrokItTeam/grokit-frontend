@@ -211,58 +211,60 @@ function App() {
   };
 
   return (
-    <Router>
-      <AppContext.Provider value={{ loggedIn, setLoggedIn }}>
-        <NavBar />
-        <Container className="App">
-          <Switch>
-            {!loggedIn && (
-              <>
-                <Route exact path="/">
-                  <div>
-                    <p>
-                      {" "}
-                      Welcome to GrokIt, please click{" "}
-                      <Link to="/signin">here</Link> to Sign in{" "}
-                    </p>
-                  </div>
-                </Route>
-                <Route path="/signup">
-                  <SignUp />
-                </Route>
-                <Route path="/signin">
-                  <SignIn />
-                </Route>
-                <Route path="/resetpassword">
-                  <ResetPassword />
-                </Route>
-              </>
-            )}
-            {loggedIn && (
-              <>
-                <Route exact path="/">
-                  <NewProject addProject={addProject} />
-                  <SkillsToDo
-                    projects={projects}
-                    updatePractisedSkill={updatePractisedSkill}
-                  />
-                </Route>
-                <Route path="/projects">
-                  <ProjectList
-                    projects={projects}
-                    addSkill={addSkill}
-                    deleteSkill={deleteSkill}
-                    deleteProject={deleteProject}
-                    editSkillName={editSkillName}
-                    editProjectName={editProjectName}
-                  />
-                </Route>
-              </>
-            )}
-          </Switch>
-        </Container>
-      </AppContext.Provider>
-    </Router>
+    !isAuthenticating && (
+      <Router>
+        <AppContext.Provider value={{ loggedIn, setLoggedIn }}>
+          <NavBar />
+          <Container className="App">
+            <Switch>
+              {!loggedIn && (
+                <>
+                  <Route exact path="/">
+                    <div>
+                      <p>
+                        {" "}
+                        Welcome to GrokIt, please click{" "}
+                        <Link to="/signin">here</Link> to Sign in{" "}
+                      </p>
+                    </div>
+                  </Route>
+                  <Route path="/signup">
+                    <SignUp />
+                  </Route>
+                  <Route path="/signin">
+                    <SignIn />
+                  </Route>
+                  <Route path="/resetpassword">
+                    <ResetPassword />
+                  </Route>
+                </>
+              )}
+              {loggedIn && (
+                <>
+                  <Route exact path="/">
+                    <NewProject addProject={addProject} />
+                    <SkillsToDo
+                      projects={projects}
+                      updatePractisedSkill={updatePractisedSkill}
+                    />
+                  </Route>
+                  <Route path="/projects">
+                    <ProjectList
+                      projects={projects}
+                      addSkill={addSkill}
+                      deleteSkill={deleteSkill}
+                      deleteProject={deleteProject}
+                      editSkillName={editSkillName}
+                      editProjectName={editProjectName}
+                    />
+                  </Route>
+                </>
+              )}
+            </Switch>
+          </Container>
+        </AppContext.Provider>
+      </Router>
+    )
   );
 }
 
