@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Auth } from "aws-amplify";
 
 import { AppContext } from "./libs/ContextLib.js";
@@ -16,6 +16,7 @@ import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import NavBar from "components/NavBar/NavBar";
 
 import "./App.css";
+import IntroPage from "components/IntroPage/IntroPage.js";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -217,13 +218,7 @@ function App() {
               {!loggedIn && (
                 <>
                   <Route exact path="/">
-                    <div>
-                      <p>
-                        {" "}
-                        Welcome to GrokIt, please click{" "}
-                        <Link to="/signin">here</Link> to Sign in{" "}
-                      </p>
-                    </div>
+                    <IntroPage/>
                   </Route>
                   <Route path="/signup">
                     <SignUp setUserId={setUserId}/>
