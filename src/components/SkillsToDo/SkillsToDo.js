@@ -12,10 +12,10 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
     <>
       {showTimer
         ? <>
-          <Button onClick={() => setShowTimer(true)}>Close Timer</Button>
+          <Button onClick={() => setShowTimer(false)}>Close Pomodoro Timer</Button>
           <Timer duration={1500}/>
         </>
-        : <Button onClick={() => setShowTimer(true)}>Show Timer</Button>}
+        : <Button onClick={() => setShowTimer(true)}>Show Pomodoro Timer</Button>}
 
       <Card style={{ border: "2px solid black" }}>
         <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open}>

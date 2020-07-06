@@ -1,10 +1,9 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
-import { withRouter } from 'react-router-dom';
 import MarkSkillAsPractised from './MarkSkillAsPractised';
 
 
-function Skill({ history, projectName = "", skill={}, updatePractisedSkill = () => { } }) {
+function Skill({ projectName = "", skill={}, updatePractisedSkill = () => { } }) {
 
     return (
         <Row>
@@ -14,4 +13,4 @@ function Skill({ history, projectName = "", skill={}, updatePractisedSkill = () 
     )
 }
 
-export default withRouter(Skill);
+export default Skill;

@@ -256,9 +256,6 @@ function App() {
                       editProjectName={editProjectName}
                     />
                   </Route>
-                  <Route path = "/timer">
-                    <Timer/>
-                  </Route>
                 </>
               )}
             </Switch>
