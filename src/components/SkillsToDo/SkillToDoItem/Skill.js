@@ -1,17 +1,14 @@
 import React from 'react';
-import { Row, Button } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
+import MarkSkillAsPractised from './MarkSkillAsPractised';
 
 
 function Skill({ projectName = "", skill={}, updatePractisedSkill = () => { } }) {
 
-    function handlePractisedButton() {
-        updatePractisedSkill(skill);
-    }
-
     return (
         <Row>
             <p>{projectName}: {skill.name}</p>
-            <Button onClick={handlePractisedButton}>Practised</Button>
+            <MarkSkillAsPractised updatePractisedSkill = {updatePractisedSkill} skill={skill}/>
         </Row>
     )
 }

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Form, Button } from "react-bootstrap";
+import { withRouter } from 'react-router-dom';
+
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
+import { Link } from "react-router-dom";
 
-function SignIn() {
-  const { setLoggedIn } = useAppContext();
+import "../Forms.css";
+
+function SignIn({history}) {
+  const { setLoggedIn, setUserId } = useAppContext();
   const [usernameError, setUsernameError] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
     email: "",
@@ -20,14 +25,17 @@ function SignIn() {
     } else {
       try {
         await Auth.signIn(fields.email, fields.password);
+        const userInfo = await Auth.currentUserInfo();
         setLoggedIn(true);
+        setUserId(userInfo.username);
+        history.push("/");
       } catch (e) {
         onError(e);
       }
     }
   }
   return (
-    <div>
+    <div className = "forms">
       <Form className="border">
         <h2>Please Sign in</h2>
         <Form.Group controlId="email">
@@ -59,11 +67,26 @@ function SignIn() {
           )}
         </Form.Group>
 
-        <Button variant="primary" type="submit" onClick={handleSignInSubmit}>
+        <Button
+          variant="primary"
+          type="submit"
+          className="colour"
+          onClick={handleSignInSubmit}
+        >
           Sign In
         </Button>
+        <div>
+          <small>
+            Forgot password? <Link to="/resetpassword">Reset password</Link>
+          </small>
+        </div>
+        <div>
+          <small>
+            No account? Create an <Link to="/signup">account</Link>
+          </small>
+        </div>
       </Form>
     </div>
   );
 }
-export default SignIn;
+export default withRouter(SignIn);

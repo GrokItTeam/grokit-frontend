@@ -7,11 +7,26 @@ import Forms from "components/Forms/Forms.js";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
+import NavBar from "components/NavBar/NavBar";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [userId, setUserId] = useState("test-id");
-  const [projects, setProjects] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      setLoggedIn(true);
+      const userInfo = await Auth.currentUserInfo();
+      setUserId(userInfo.username);
+    } catch (e) {}
+    setIsAuthenticating(false);
+  }
 
   useEffect(() => {
     if (userId) {
@@ -63,7 +78,7 @@ function App() {
       });
   };
 
-  const updatePractisedSkill = (practisedSkill) => {
+  const updatePractisedSkill = (practisedSkill, difficulty) => {
     const { projectId, skillId } = practisedSkill;
 
     axios
