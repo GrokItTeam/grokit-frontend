@@ -11,7 +11,7 @@ function Header({history}) {
     async function handleLogOut() {
         await Auth.signOut();
         setLoggedIn(false);
-        history.push("/login");
+        history.push("/signin");
     }
 
     return (
