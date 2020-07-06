@@ -1,9 +1,65 @@
-.grokitButtons {
+.grokitButton {
   background-color: $RoyalBlue;
   color: $Cararra;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border: none;
+  outline-style: none;
 
   &:hover {
     opacity: 0.9;
     text-decoration: none;
+  }
+}
+
+.primaryButton {
+  background: none;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 5px 15px;
+  text-decoration: none;
+  border: 1px solid $RoyalBlue;
+  background-color: $RoyalBlue;
+  color: $Cararra;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:not(:disabled):hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.secondaryButton {
+  color: $Bombay;
+  background: none;
+  letter-spacing: 1px;
+  border: 1px solid $Bombay;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.grokitSignInButton {
+  background-color: $MountainMeadow;
+  color: $Cararra;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+
+  &:hover {
+    opacity: 0.9;
+    text-decoration: none;
+    background-color: $MountainMeadow;
   }
 }

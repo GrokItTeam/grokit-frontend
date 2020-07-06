@@ -1,13 +1,5 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 // default styling
@@ -17,7 +9,11 @@ code {
 
 // component styling
 @import "./App.scss";
-@import "components/CreateNewProject/NewProject.scss";
-@import "components/CreateNewProject/Modal.scss";
+@import "components/IntroPage/IntroPage.scss";
+@import "components/NavBar/NavBar.scss";
 @import "components/Forms/Forms.scss";
 @import "components/Forms/SignUp/SignUp.scss";
+@import "components/Forms/ResetPassword/ResetPassword.scss";
+@import "components/CreateNewProject/NewProject.scss";
+@import "components/CreateNewProject/Modal.scss";
+@import "components/Timer/Timer.scss";

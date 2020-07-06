@@ -15,7 +15,6 @@ import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import NavBar from "components/NavBar/NavBar";
 
-import "./App.css";
 import IntroPage from "components/IntroPage/IntroPage.js";
 
 function App() {

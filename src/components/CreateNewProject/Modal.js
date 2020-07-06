@@ -25,10 +25,10 @@ function Modal({ title = "", status = false, handleClose = () => {}, onSave = ()
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <button type="button" className="modal__cancelButton" onClick={handleClose}>
+        <button type="button" className="secondaryButton" onClick={handleClose}>
           Cancel
         </button>
-        <button type="button" className="modal__saveButton" onClick={saveChanges} disabled={!name}>
+        <button type="button" className="primaryButton" onClick={saveChanges} disabled={!name}>
           Save
         </button>
       </BootstrapModal.Footer>

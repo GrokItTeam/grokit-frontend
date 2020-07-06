@@ -9,9 +9,6 @@ import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
 import { Link } from "react-router-dom";
 
-import "./SignUp.css";
-import "../Forms.css";
-
 function SignUp({ history, setUserId = () => {} }) {
   const [newUser, setNewUser] = useState(null);
   const [newUsernameError, setNewUsernameError] = useState(false);
@@ -77,7 +74,7 @@ function SignUp({ history, setUserId = () => {} }) {
             <Form.Label>Confirmation Code</Form.Label>
             <Form.Control type="tel" placeholder="Confirmation Code" onChange={handleFieldChange} value={fields.confirmationCode} />
           </Form.Group>
-          <Button block type="submit" bsSize="large" className="colour">
+          <Button block type="submit" bsSize="large" className="primary">
             Verify
           </Button>
         </Form>
@@ -112,7 +109,7 @@ function SignUp({ history, setUserId = () => {} }) {
             {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="colour" onClick={handleNewUserSubmit}>
+          <Button variant="primary" type="submit" className="primaryButton" onClick={handleNewUserSubmit}>
             Sign up
           </Button>
           <div>
