@@ -8,6 +8,8 @@ import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
 import { Link } from "react-router-dom";
 
+import "../Forms.css";
+
 function SignIn({history}) {
   const { setLoggedIn } = useAppContext();
   const [usernameError, setUsernameError] = useState(false);
@@ -31,7 +33,7 @@ function SignIn({history}) {
     }
   }
   return (
-    <div>
+    <div className = "forms">
       <Form className="border">
         <h2>Please Sign in</h2>
         <Form.Group controlId="email">
@@ -73,12 +75,12 @@ function SignIn({history}) {
         </Button>
         <div>
           <small>
-            Forgot password? <Link to="/forms/resetpassword">Reset password</Link>
+            Forgot password? <Link to="/resetpassword">Reset password</Link>
           </small>
         </div>
         <div>
           <small>
-            No account? Create an <Link to="/forms/signup">account</Link>
+            No account? Create an <Link to="/signup">account</Link>
           </small>
         </div>
       </Form>

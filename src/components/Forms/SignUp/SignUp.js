@@ -9,8 +9,9 @@ import { onError } from "libs/ErrorLib.js";
 import { Link } from "react-router-dom";
 
 import "./SignUp.css";
+import "../Forms.css";
 
-function SignUp({history}) {
+function SignUp({ history }) {
   const [newUser, setNewUser] = useState(null);
   const [newUsernameError, setNewUsernameError] = useState(false);
   const { setLoggedIn } = useAppContext();
@@ -59,25 +60,27 @@ function SignUp({history}) {
 
   function renderConfirmationForm() {
     return (
-      <form onSubmit={handleConfirmationSubmit}>
-        <Form.Group controlId="confirmationCode" bsSize="large">
-          <Form.Label>Confirmation Code</Form.Label>
-          <Form.Control
-            type="tel"
-            placeholder="Confirmation Code"
-            onChange={handleFieldChange}
-            value={fields.confirmationCode}
-          />
-        </Form.Group>
-        <Button block type="submit" bsSize="large" className="colour">
-          Verify
+      <div className="forms">
+        <Form onSubmit={handleConfirmationSubmit}>
+          <Form.Group controlId="confirmationCode" bsSize="large">
+            <Form.Label>Confirmation Code</Form.Label>
+            <Form.Control
+              type="tel"
+              placeholder="Confirmation Code"
+              onChange={handleFieldChange}
+              value={fields.confirmationCode}
+            />
+          </Form.Group>
+          <Button block type="submit" bsSize="large" className="colour">
+            Verify
         </Button>
-      </form>
+        </Form>
+      </div>
     );
   }
   function renderForm() {
     return (
-      <div>
+      <div className="forms">
         <Form className="border">
           <h2>Create an account</h2>
           <Form.Group controlId="newName">
@@ -149,7 +152,7 @@ function SignUp({history}) {
           </Button>
           <div>
             <small>
-              Already have an account? <Link to="/forms/signin">Sign in</Link>
+              Already have an account? <Link to="/signin">Sign in</Link>
             </small>
           </div>
         </Form>

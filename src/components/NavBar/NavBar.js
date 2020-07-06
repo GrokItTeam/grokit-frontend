@@ -27,8 +27,8 @@ function Header({history}) {
                 {loggedIn ? 
                     <Button variant="primary" onClick={handleLogOut}>Log Out</Button> :
                     <>
-                    <Button variant="success" onClick={() => history.push("/forms/signin")}>Log In</Button>
-                    <Button variant="primary" onClick={() => history.push("/forms/signup")}>Sign up</Button>
+                    <Button variant="success" onClick={() => history.push("/signin")}>Log In</Button>
+                    <Button variant="primary" onClick={() => history.push("/signup")}>Sign up</Button>
                     </>}
                 </Nav>
             </Navbar.Collapse>
