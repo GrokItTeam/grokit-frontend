@@ -14,7 +14,6 @@ import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import NavBar from "components/NavBar/NavBar";
-import Timer from "components/Timer/Timer";
 
 import "./App.css";
 
