@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
@@ -11,7 +12,7 @@ import { Link } from "react-router-dom";
 import "./SignUp.css";
 import "../Forms.css";
 
-function SignUp({ history }) {
+function SignUp({ history, setUserId = () => { } }) {
   const [newUser, setNewUser] = useState(null);
   const [newUsernameError, setNewUsernameError] = useState(false);
   const { setLoggedIn } = useAppContext();
@@ -51,8 +52,18 @@ function SignUp({ history }) {
     try {
       await Auth.confirmSignUp(fields.newEmail, fields.confirmationCode);
       await Auth.signIn(fields.newEmail, fields.newPassword);
-      setLoggedIn(true);
-      history.push("/");
+      const userInfo = await Auth.currentUserInfo();
+      const user = { userId: userInfo.username, name: userInfo.attributes.name };
+      axios
+        .post("https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/users", user)
+        .then(response => {
+          setUserId(user.userId);
+          setLoggedIn(true);
+          history.push("/");
+        })
+        .catch(error => {
+          console.log("Error fetching data", error);
+        })
     } catch (e) {
       onError(e);
     }

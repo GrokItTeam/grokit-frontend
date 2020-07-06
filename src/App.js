@@ -33,10 +33,7 @@ function App() {
       const userInfo = await Auth.currentUserInfo();
       setUserId(userInfo.userId);
     } catch (e) {
-      if (e !== "No current user") {
-        onError(e);
       }
-    }
 
     setIsAuthenticating(false);
   }
@@ -229,7 +226,7 @@ function App() {
                     </div>
                   </Route>
                   <Route path="/signup">
-                    <SignUp />
+                    <SignUp setUserId={setUserId}/>
                   </Route>
                   <Route path="/signin">
                     <SignIn />
