@@ -15,7 +15,7 @@ function NewProject({ addProject = () => {} }) {
   return (
     <>
       <div className="newProject" onClick={handleShow}>
-        <p>Add New Project</p>
+        <p className="grokitFont">Add New Project</p>
         <button type="button" className="newProject__addIcon">
           +
         </button>

@@ -1,6 +1,9 @@
 .grokitButtons {
-  background-color: $KaitokeGreen;
+  background-color: $RoyalBlue;
+  color: $Cararra;
 
   &:hover {
+    opacity: 0.9;
+    text-decoration: none;
   }
 }

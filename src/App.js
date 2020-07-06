@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Container } from "react-bootstrap";
-import { AppContext } from "./libs/ContextLib.js";
+import { AppContext } from "libs/ContextLib.js";
 import Forms from "components/Forms/Forms.js";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";

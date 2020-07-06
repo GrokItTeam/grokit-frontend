@@ -1,4 +1,26 @@
-.modal__addProject {
-  background-color: $KaitokeGreen;
-  color: $Cararra;
+.modal__cancelButton {
+  border-color: #dfe1e5;
+  color: #929283;
+  background: none;
+  letter-spacing: 1px;
+  border: 1px solid #dfe1e5;
+  font-weight: 600;
+  padding: 5px 15px;
+}
+
+.modal__saveButton {
+  color: $RoyalBlue;
+  background: none;
+  border-color: $RoyalBlue;
+  letter-spacing: 1px;
+  border: 1px solid $RoyalBlue;
+  font-weight: 600;
+  padding: 5px 15px;
+
+  &:hover {
+    opacity: 0.9;
+    text-decoration: none;
+    background-color: $RoyalBlue;
+    color: $Cararra;
+  }
 }
