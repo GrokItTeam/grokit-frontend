@@ -96,12 +96,12 @@ function App() {
       });
   };
 
-  const updatePractisedSkill = (practisedSkill) => {
+  const updatePractisedSkill = (practisedSkill, difficulty) => {
     const { projectId, skillId } = practisedSkill;
 
     axios
       .put(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}/markAsPractised`,
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`,
         practisedSkill
       )
       .then((response) => {
