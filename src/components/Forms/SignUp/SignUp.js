@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Auth } from "aws-amplify";
+import { withRouter } from 'react-router-dom';
+
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import "./SignUp.css";
+import "../Forms.css";
 
-function SignUp(props) {
+function SignUp({ history }) {
   const [newUser, setNewUser] = useState(null);
   const [newUsernameError, setNewUsernameError] = useState(false);
   const { setLoggedIn } = useAppContext();
@@ -49,7 +52,7 @@ function SignUp(props) {
       await Auth.confirmSignUp(fields.newEmail, fields.confirmationCode);
       await Auth.signIn(fields.newEmail, fields.newPassword);
       setLoggedIn(true);
-      console.log("You've Signed Up");
+      history.push("/");
     } catch (e) {
       onError(e);
     }
@@ -57,25 +60,27 @@ function SignUp(props) {
 
   function renderConfirmationForm() {
     return (
-      <form onSubmit={handleConfirmationSubmit}>
-        <Form.Group controlId="confirmationCode" bsSize="large">
-          <Form.Label>Confirmation Code</Form.Label>
-          <Form.Control
-            type="tel"
-            placeholder="Confirmation Code"
-            onChange={handleFieldChange}
-            value={fields.confirmationCode}
-          />
-        </Form.Group>
-        <Button block type="submit" bsSize="large" className="colour">
-          Verify
+      <div className="forms">
+        <Form onSubmit={handleConfirmationSubmit}>
+          <Form.Group controlId="confirmationCode" bsSize="large">
+            <Form.Label>Confirmation Code</Form.Label>
+            <Form.Control
+              type="tel"
+              placeholder="Confirmation Code"
+              onChange={handleFieldChange}
+              value={fields.confirmationCode}
+            />
+          </Form.Group>
+          <Button block type="submit" bsSize="large" className="colour">
+            Verify
         </Button>
-      </form>
+        </Form>
+      </div>
     );
   }
   function renderForm() {
     return (
-      <div>
+      <div className="forms">
         <Form className="border">
           <h2>Create an account</h2>
           <Form.Group controlId="newName">
@@ -157,4 +162,4 @@ function SignUp(props) {
   return newUser === null ? renderForm() : renderConfirmationForm();
 }
 
-export default SignUp;
+export default withRouter(SignUp);
