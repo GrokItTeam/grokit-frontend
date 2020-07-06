@@ -7,13 +7,34 @@ import Forms from "components/Forms/Forms.js";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
+import { Auth } from "aws-amplify";
+import { onError } from "libs/ErrorLib.js";
 
 import "./App.css";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState("test-id");
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [projects, setProjects] = useState();
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      setLoggedIn(true);
+      const userInfo = await Auth.currentUserInfo();
+      setUserId(userInfo.userId);
+    } catch (e) {
+      if (e !== "No current user") {
+        onError(e);
+      }
+    }
+
+    setIsAuthenticating(false);
+  }
 
   useEffect(() => {
     if (userId) {
