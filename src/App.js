@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { AppContext } from "./libs/ContextLib.js";
 import SignIn from "components/Forms/SignIn/SignIn";
@@ -11,14 +11,35 @@ import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
+import { Auth } from "aws-amplify";
+import { onError } from "libs/ErrorLib.js";
 import NavBar from "components/NavBar/NavBar";
 
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [userId, setUserId] = useState("test-id");
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userId, setUserId] = useState(null);
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [projects, setProjects] = useState();
+  useEffect(() => {
+    onLoad();
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      setLoggedIn(true);
+      const userInfo = await Auth.currentUserInfo();
+      setUserId(userInfo.userId);
+    } catch (e) {
+      if (e !== "No current user") {
+        onError(e);
+      }
+    }
+
+    setIsAuthenticating(false);
+  }
 
   useEffect(() => {
     if (userId) {
@@ -190,55 +211,60 @@ function App() {
   };
 
   return (
-    <Router>
-      <AppContext.Provider value={{ loggedIn, setLoggedIn }}>
-        <NavBar />
-        <Container className="App">
-
-          <Switch>
-            {!loggedIn &&
-              <>
-                <Route exact path="/">
-                  <div>
-                    <p> Welcome to GrokIt, please click <Link to="/signin">here</Link> to Sign in </p>
-                  </div>
-                </Route>
-                <Route path="/signup">
-                  <SignUp />
-                </Route>
-                <Route path="/signin">
-                  <SignIn />
-                </Route>
-                <Route path="/resetpassword">
-                  <ResetPassword />
-                </Route>
-
-              </>}
-            {loggedIn && (
-              <>
-                <Route exact path="/">
-                  <NewProject addProject={addProject} />
-                  <SkillsToDo
-                    projects={projects}
-                    updatePractisedSkill={updatePractisedSkill}
-                  />
-                </Route>
-                <Route path="/projects">
-                  <ProjectList
-                    projects={projects}
-                    addSkill={addSkill}
-                    deleteSkill={deleteSkill}
-                    deleteProject={deleteProject}
-                    editSkillName={editSkillName}
-                    editProjectName={editProjectName}
-                  />
-                </Route>
-              </>
-            )}
-          </Switch>
-        </Container>
-      </AppContext.Provider>
-    </Router>
+    !isAuthenticating && (
+      <Router>
+        <AppContext.Provider value={{ loggedIn, setLoggedIn }}>
+          <NavBar />
+          <Container className="App">
+            <Switch>
+              {!loggedIn && (
+                <>
+                  <Route exact path="/">
+                    <div>
+                      <p>
+                        {" "}
+                        Welcome to GrokIt, please click{" "}
+                        <Link to="/signin">here</Link> to Sign in{" "}
+                      </p>
+                    </div>
+                  </Route>
+                  <Route path="/signup">
+                    <SignUp />
+                  </Route>
+                  <Route path="/signin">
+                    <SignIn />
+                  </Route>
+                  <Route path="/resetpassword">
+                    <ResetPassword />
+                  </Route>
+                </>
+              )}
+              {loggedIn && (
+                <>
+                  <Route exact path="/">
+                    <NewProject addProject={addProject} />
+                    <SkillsToDo
+                      projects={projects}
+                      updatePractisedSkill={updatePractisedSkill}
+                    />
+                  </Route>
+                  <Route path="/projects">
+                    <ProjectList
+                      projects={projects}
+                      addSkill={addSkill}
+                      deleteSkill={deleteSkill}
+                      deleteProject={deleteProject}
+                      editSkillName={editSkillName}
+                      editProjectName={editProjectName}
+                    />
+                  </Route>
+                </>
+              )}
+            </Switch>
+          </Container>
+        </AppContext.Provider>
+      </Router>
+    )
   );
 }
 

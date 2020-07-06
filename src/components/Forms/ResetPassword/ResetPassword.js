@@ -17,8 +17,6 @@ function ResetPassword() {
   });
   const [codeSent, setCodeSent] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
-  const [isConfirming, setIsConfirming] = useState(false);
-  const [isSendingCode, setIsSendingCode] = useState(false);
 
   async function handleSendCodeClick(event) {
     event.preventDefault();
@@ -27,13 +25,11 @@ function ResetPassword() {
       setCodeSent(true);
     } catch (error) {
       onError(error);
-      setIsSendingCode(false);
     }
   }
 
   async function handleConfirmClick(event) {
     event.preventDefault();
-    setIsConfirming(true);
     try {
       await Auth.forgotPasswordSubmit(
         fields.email,
@@ -43,7 +39,6 @@ function ResetPassword() {
       setConfirmed(true);
     } catch (error) {
       onError(error);
-      setIsConfirming(false);
     }
   }
   function renderRequestCodeForm() {
