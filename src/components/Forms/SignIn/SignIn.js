@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Form, Button } from "react-bootstrap";
+import { withRouter } from 'react-router-dom';
+
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function SignIn() {
+import "../Forms.css";
+
+function SignIn({history}) {
   const { setLoggedIn } = useAppContext();
   const [usernameError, setUsernameError] = useState(false);
   const [fields, handleFieldChange] = useFormFields({
@@ -22,13 +26,14 @@ function SignIn() {
       try {
         await Auth.signIn(fields.email, fields.password);
         setLoggedIn(true);
+        history.push("/");
       } catch (e) {
         onError(e);
       }
     }
   }
   return (
-    <div>
+    <div className = "forms">
       <Form className="border">
         <h2>Please Sign in</h2>
         <Form.Group controlId="email">
@@ -82,4 +87,4 @@ function SignIn() {
     </div>
   );
 }
-export default SignIn;
+export default withRouter(SignIn);

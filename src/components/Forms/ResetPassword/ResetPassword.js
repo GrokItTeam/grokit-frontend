@@ -3,8 +3,11 @@ import { Auth } from "aws-amplify";
 import { useFormFields } from "libs/HooksLib.js";
 import { Form, Button } from "react-bootstrap";
 import { onError } from "libs/ErrorLib.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import "./ResetPassword.css";
+import "../Forms.css";
+
 function ResetPassword() {
   const [fields, handleFieldChange] = useFormFields({
     code: "",
@@ -46,7 +49,7 @@ function ResetPassword() {
   function renderRequestCodeForm() {
     return (
       <div className="border">
-        <form onSubmit={handleSendCodeClick}>
+        <Form onSubmit={handleSendCodeClick}>
           <Form.Group bsSize="large" controlId="email">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -59,14 +62,24 @@ function ResetPassword() {
           <Button block type="submit" bsSize="large" className="colour">
             Send Confirmation
           </Button>
-        </form>
+        </Form>
+        <div>
+          <small>
+            Want to try to sign in? <Link to="/signin">Sign In</Link>
+          </small>
+        </div>
+        <div>
+          <small>
+            No account? Create an <Link to="/signup">account</Link>
+          </small>
+        </div>
       </div>
     );
   }
   function renderConfirmationForm() {
     return (
       <div className="border">
-        <form onSubmit={handleConfirmClick}>
+        <Form onSubmit={handleConfirmClick}>
           <Form.Group bsSize="large" controlId="code">
             <Form.Label>Confirmation Code</Form.Label>
             <Form.Control
@@ -100,7 +113,7 @@ function ResetPassword() {
           <Button block type="submit" bsSize="large" className="colour">
             Confirm
           </Button>
-        </form>
+        </Form>
       </div>
     );
   }
@@ -117,7 +130,7 @@ function ResetPassword() {
   }
 
   return (
-    <div className="ResetPassword">
+    <div className="ResetPassword forms">
       {!codeSent
         ? renderRequestCodeForm()
         : !confirmed
