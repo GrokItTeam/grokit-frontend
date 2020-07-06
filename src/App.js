@@ -19,7 +19,7 @@ import "./App.css";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userId, setUserId] = useState("test-id");
+  const [userId, setUserId] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [projects, setProjects] = useState();
   useEffect(() => {
