@@ -14,8 +14,6 @@ import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import NavBar from "components/NavBar/NavBar";
-
-import "./App.css";
 import IntroPage from "components/IntroPage/IntroPage";
 import LineChart from "components/Charts/LineChart";
 
@@ -34,17 +32,14 @@ function App() {
       setLoggedIn(true);
       const userInfo = await Auth.currentUserInfo();
       setUserId(userInfo.username);
-    } catch (e) {
-      }
+    } catch (e) {}
     setIsAuthenticating(false);
   }
 
   useEffect(() => {
     if (userId) {
       axios
-        .get(
-          `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
-        )
+        .get(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`)
         .then((response) => {
           setProjects(response.data.projects);
         })
@@ -57,10 +52,7 @@ function App() {
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
     axios
-      .post(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`,
-        newProject
-      )
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`, newProject)
       .then(({ data: { projects: resProject = [] } = {} }) => {
         setProjects([...projects, ...resProject]);
       })
@@ -71,10 +63,7 @@ function App() {
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
     axios
-      .post(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`,
-        newSkill
-      )
+      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -101,10 +90,7 @@ function App() {
     const { projectId, skillId } = practisedSkill;
 
     axios
-      .put(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`,
-        practisedSkill
-      )
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`, practisedSkill)
       .then((response) => {
         const updatedSkill = response.data.practisedSkill[0];
 
@@ -130,9 +116,7 @@ function App() {
   };
   const deleteSkill = (skillId) => {
     axios
-      .delete(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
-      )
+      .delete(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -150,10 +134,7 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
-        { name: skillName }
-      )
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -174,13 +155,9 @@ function App() {
 
   const deleteProject = (projectId) => {
     axios
-      .delete(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`
-      )
+      .delete(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
       .then((response) => {
-        const updatedProjects = projects.filter((project) =>
-          project.projectId !== projectId ? project : null
-        );
+        const updatedProjects = projects.filter((project) => (project.projectId !== projectId ? project : null));
         setProjects(updatedProjects);
       })
       .catch((error) => {
@@ -190,10 +167,7 @@ function App() {
 
   const editProjectName = (projectId, projectName) => {
     axios
-      .put(
-        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,
-        { name: projectName }
-      )
+      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`, { name: projectName })
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           if (project.projectId === projectId) {
@@ -217,30 +191,27 @@ function App() {
             <Switch>
               {!loggedIn && (
                 <>
-                  <Route exact path="/">
-                    <IntroPage/>
+                  <Route exact path="/grokit-frontend/">
+                    <IntroPage />
                   </Route>
-                  <Route path="/signup">
-                    <SignUp setUserId={setUserId}/>
+                  <Route path="/grokit-frontend/signup">
+                    <SignUp setUserId={setUserId} />
                   </Route>
-                  <Route path="/signin">
+                  <Route path="/grokit-frontend/signin">
                     <SignIn />
                   </Route>
-                  <Route path="/resetpassword">
+                  <Route path="/grokit-frontend/resetpassword">
                     <ResetPassword />
                   </Route>
                 </>
               )}
               {loggedIn && (
                 <>
-                  <Route exact path="/">
+                  <Route exact path="/grokit-frontend/">
                     <NewProject addProject={addProject} />
-                    <SkillsToDo
-                      projects={projects}
-                      updatePractisedSkill={updatePractisedSkill}
-                    />
+                    <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
                   </Route>
-                  <Route path="/projects">
+                  <Route path="/grokit-frontend/projects">
                     <ProjectList
                       projects={projects}
                       addSkill={addSkill}
