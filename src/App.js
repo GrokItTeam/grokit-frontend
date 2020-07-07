@@ -208,10 +208,10 @@ function App() {
               {loggedIn && (
                 <>
                   <Route exact path="/">
-                    <NewProject addProject={addProject} />
                     <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
                   </Route>
                   <Route path="/projects">
+                    <NewProject addProject={addProject} />
                     <ProjectList
                       projects={projects}
                       addSkill={addSkill}
