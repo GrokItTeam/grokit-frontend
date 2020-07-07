@@ -27,10 +27,8 @@ function generateXYData(practisedData,dateFirstPractised) {
     return simpleData.map((data,i) => {return {x:i, y:data}});
 }
 
-
-
 export default function generateLineChartData(backendData) {
-    return backendData.map(skill => {
+    return backendData.flatMap(skill => {
         let dataItem = {};
         dataItem.id = skill.skillId;
         dataItem.data = generateXYData(skill.practisedData, skill.dateFirstPractised);

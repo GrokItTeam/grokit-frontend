@@ -23,9 +23,9 @@ function LineChart(props) {
     function CustomTooltip({point: {serieId, data: {x, y}}}) {
         return (
             <div style={{ backgroundColor: "#f1f0ec", padding: 5 }}>
-                {serieId} <br/>
+                Skill: {serieId} <br/>
                 Day: {x} <br />
-                {y === 100 ? "Practised" : `Remember: ${y | 0}%`}
+                {y === 100 ? "Practised" : `Remembered: ${y | 0}%`}
             </div>
         )
     }
@@ -48,7 +48,7 @@ function LineChart(props) {
         <Container fluid="lg" style={{ height: 600 }}>
             <ResponsiveLine className="graph"
                 data={data}
-                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+                margin={{ top: 50, right: 200, bottom: 80, left: 60 }}
                 xScale={{
                     type: "linear",
                     tickValues: 1
@@ -99,7 +99,8 @@ function LineChart(props) {
                                 on: 'hover',
                                 style: {
                                     itemBackground: 'rgba(0, 0, 0, .03)',
-                                    itemOpacity: 1
+                                    itemOpacity: 1,
+                                    symbolSize:30
                                 }
                             }
                         ]
