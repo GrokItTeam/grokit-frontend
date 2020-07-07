@@ -27,8 +27,8 @@ function Timer({ duration }) {
   const timerProps = {
     isPlaying: playing,
     size: 120,
-    strokeWidth: 6,
-    colors: [["#004225"]],
+    strokeWidth: 8,
+    colors: [["#004225"],["#17aa56"]]
   };
 
   const handleResetClick = () => {
