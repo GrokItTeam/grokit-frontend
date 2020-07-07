@@ -12,7 +12,7 @@ function Modal({ title = "", status = false, handleClose = () => {}, onSave = ()
     onSave(project);
   };
 
-  const { name } = project;
+  const { name = "" } = project;
 
   return (
     <BootstrapModal size="sm" show={status} onHide={handleClose} aria-labelledby="example-modal-sizes-title-sm">
@@ -20,12 +20,12 @@ function Modal({ title = "", status = false, handleClose = () => {}, onSave = ()
         <BootstrapModal.Title id="example-modal-sizes-title-sm">{title}</BootstrapModal.Title>
       </BootstrapModal.Header>
       <BootstrapModal.Body>
-        <label>
-          <input type="text" placeholder="Enter project name" value={name} name="name" onChange={updateProject} />
+        <label className="Modal__label">
+          <input className="Modal__input" type="text" placeholder="Enter project name" value={name} name="name" onChange={updateProject} />
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
-        <button type="button" className="secondaryButton" onClick={handleClose}>
+        <button type="button" className="secondaryButton darker" onClick={handleClose}>
           Cancel
         </button>
         <button type="button" className="primaryButton" onClick={saveChanges} disabled={!name}>

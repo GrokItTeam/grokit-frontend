@@ -11,8 +11,8 @@ function NoProjects({ projects = [], open = true, updatePractisedSkill = () => {
         Welcome to Grokit. Let's get started by adding some projects that you want to Grok. <br />
         Look at the the example projects below and then click <Link to="/projects">here</Link> to start adding your own.
       </div>
-      <Row className="grokitCard">
-        <Col className="grokitCard">
+      <Row>
+        <Col>
           <ExampleProject addProject={addProject} projects={projects} project={timesTablesProject} />
         </Col>
         <Col>
