@@ -9,11 +9,12 @@ body {
 
 // component styling
 @import "./App.scss";
-@import "components/IntroPage/IntroPage.scss";
 @import "components/NavBar/NavBar.scss";
+@import "components/IntroPage/IntroPage.scss";
 @import "components/Forms/Forms.scss";
 @import "components/Forms/SignUp/SignUp.scss";
 @import "components/Forms/ResetPassword/ResetPassword.scss";
+@import "components/SkillsToDo/NoProjects.scss";
 @import "components/CreateNewProject/NewProject.scss";
 @import "components/CreateNewProject/Modal.scss";
 @import "components/Timer/Timer.scss";

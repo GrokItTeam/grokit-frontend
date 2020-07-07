@@ -1,4 +1,25 @@
 .NavBar {
+  background-color: $NileBlue;
+
+  .navbar-brand {
+    color: $Cararra;
+    cursor: default;
+
+    &:hover {
+      color: $Cararra;
+    }
+  }
+
+  .navbar-nav {
+    a {
+      color: $Cararra;
+      text-decoration: none;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
   .secondaryButton {
     margin-right: 10px;
   }
