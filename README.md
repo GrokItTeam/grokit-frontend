@@ -52,3 +52,13 @@ In this pattern the values spread out, and so serve as a good basis for how ofte
 
 Exactly how often you need to review the skill depends on your retention of it, which is dependent on a wide variety of factors (how much time you spent learning it, how well it is linked to other memories, how complex the skill is etc). 
 To help account for this you can rate the difficulty of the practise each time you do it.
+
+## Future Work
+
+Dependent on user feedback, these are the next features we are looking into:
+- Charts to show progress
+- Badges to reward progress
+- Daily notifications
+- Information about each skill and project (e.g. when it was last practised)
+- Ability to add text to each skill/project to add extra information and useful links
+- Predicted upcoming schedule
