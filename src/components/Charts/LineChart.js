@@ -7,42 +7,6 @@ import generateLineChatData from './generateLineChartData';
 
 function LineChart(props) {
 
-    // const data = [{
-    //     "id": "skill 1",
-    //     "data": [
-    //         {
-    //             "x": 0,
-    //             "y": 100
-    //         },
-    //         {
-    //             "x": 1,
-    //             "y": 36.78794412
-    //         },
-    //         {
-    //             "x": 1,
-    //             "y": 100
-    //         },
-    //         {
-    //             "x": 2,
-    //             "y": 60.65306597
-
-    //         },
-    //         {
-    //             "x": 3,
-    //             "y": 36.78794412
-    //         },
-    //         {
-    //             "x": 3,
-    //             "y": 100
-    //         },
-    //         {
-    //             "x": 4,
-    //             "y": 71.65313106
-
-    //         }
-    //     ]
-    // }]
-
     const backendData = [{
         skillId: 1,
         name: "Skill 1",
@@ -109,7 +73,7 @@ function LineChart(props) {
                 curve={"linear"}
                 colors={{ scheme: "accent" }}
                 lineWidth={5}
-                pointSize={20}
+                pointSize={10}
                 enableGridX={true}
                 enableGridY={true}
                 tooltip={CustomTooltip}
