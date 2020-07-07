@@ -2,44 +2,59 @@ import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import { Container } from 'react-bootstrap';
 
+import generateLineChatData from './generateLineChartData';
+
 
 function LineChart(props) {
 
-    const data = [{
-        "id": "skill 1",
-        "data": [
-            {
-                "x": 0,
-                "y": 100
-            },
-            {
-                "x": 1,
-                "y": 36.78794412
-            },
-            {
-                "x": 1,
-                "y": 100
-            },
-            {
-                "x": 2,
-                "y": 60.65306597
+    // const data = [{
+    //     "id": "skill 1",
+    //     "data": [
+    //         {
+    //             "x": 0,
+    //             "y": 100
+    //         },
+    //         {
+    //             "x": 1,
+    //             "y": 36.78794412
+    //         },
+    //         {
+    //             "x": 1,
+    //             "y": 100
+    //         },
+    //         {
+    //             "x": 2,
+    //             "y": 60.65306597
 
-            },
-            {
-                "x": 3,
-                "y": 36.78794412
-            },
-            {
-                "x": 3,
-                "y": 100
-            },
-            {
-                "x": 4,
-                "y": 71.65313106
+    //         },
+    //         {
+    //             "x": 3,
+    //             "y": 36.78794412
+    //         },
+    //         {
+    //             "x": 3,
+    //             "y": 100
+    //         },
+    //         {
+    //             "x": 4,
+    //             "y": 71.65313106
 
-            }
-        ]
-    }]
+    //         }
+    //     ]
+    // }]
+
+    const backendData = [{
+        skillId: 1,
+        name: "Skill 1",
+        dateFirstPractised: "2020-06-01",
+        practisedData: [{day:0,lastGap0:1,lastGap1:1},{day:1,lastGap0:1,lastGap1:2},{day:3,lastGap0:2,lastGap1:3},{day:6,lastGap0:3,lastGap1:5},{day:11,lastGap0:5,lastGap1:8}]
+    },
+    {
+        skillId: 2,
+        name: "Skill 2",
+        dateFirstPractised: "2020-06-03",
+        practisedData: [{day:0,lastGap0:1,lastGap1:1},{day:1,lastGap0:1,lastGap1:2},{day:3,lastGap0:2,lastGap1:3},{day:6,lastGap0:3,lastGap1:5}]
+    }];
 
     function CustomTooltip({point: {serieId, data: {x, y}}}) {
         return (
@@ -63,11 +78,13 @@ function LineChart(props) {
         }
     };
 
+    const data = generateLineChatData(backendData);
+
     return (
         <Container fluid="lg" style={{ height: 600 }}>
             <ResponsiveLine className="graph"
                 data={data}
-                margin={{ top: 70, right: 20, bottom: 70, left: 150 }}
+                margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
                 xScale={{
                     type: "linear",
                     tickValues: 1
@@ -98,6 +115,32 @@ function LineChart(props) {
                 tooltip={CustomTooltip}
                 useMesh={true}
                 enableCrosshair={false}
+                legends={[
+                    {
+                        anchor: 'bottom-right',
+                        direction: 'column',
+                        justify: false,
+                        translateX: 100,
+                        translateY: 0,
+                        itemsSpacing: 0,
+                        itemDirection: 'left-to-right',
+                        itemWidth: 80,
+                        itemHeight: 20,
+                        itemOpacity: 0.75,
+                        symbolSize: 12,
+                        symbolShape: 'circle',
+                        symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                        effects: [
+                            {
+                                on: 'hover',
+                                style: {
+                                    itemBackground: 'rgba(0, 0, 0, .03)',
+                                    itemOpacity: 1
+                                }
+                            }
+                        ]
+                    }
+                ]}
             />
         </Container>
     );
