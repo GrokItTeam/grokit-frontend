@@ -48,12 +48,12 @@ function ResetPassword() {
         </Form>
         <div>
           <small>
-            Want to try to sign in? <Link to="/signin">Sign In</Link>
+            Want to try to sign in? <Link to="/grokit-frontend/signin">Sign In</Link>
           </small>
         </div>
         <div>
           <small>
-            No account? Create an <Link to="/signup">account</Link>
+            No account? Create an <Link to="/grokit-frontend/signup">account</Link>
           </small>
         </div>
       </div>
