@@ -222,7 +222,7 @@ function App() {
                       editProjectName={editProjectName}
                     />
                   </Route>
-                  <Route path="/charts">
+                  <Route path="/grokit-frontend/charts">
                       <LineChart/>
                   </Route>
                 </>

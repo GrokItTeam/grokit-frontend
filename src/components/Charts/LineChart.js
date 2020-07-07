@@ -9,16 +9,18 @@ function LineChart(props) {
 
     const backendData = [{
         skillId: 1,
+        projectId: 1,
         name: "Skill 1",
         dateFirstPractised: "2020-06-01",
         practisedData: [{day:0,lastGap0:1,lastGap1:1},{day:1,lastGap0:1,lastGap1:2},{day:3,lastGap0:2,lastGap1:3},{day:6,lastGap0:3,lastGap1:5},{day:11,lastGap0:5,lastGap1:8}]
     },
-    {
-        skillId: 2,
-        name: "Skill 2",
-        dateFirstPractised: "2020-06-03",
-        practisedData: [{day:0,lastGap0:1,lastGap1:1},{day:1,lastGap0:1,lastGap1:2},{day:3,lastGap0:2,lastGap1:3},{day:6,lastGap0:3,lastGap1:5}]
-    }];
+    // {
+    //     skillId: 2,
+    //     name: "Skill 2",
+    //     dateFirstPractised: "2020-06-03",
+    //     practisedData: [{day:0,lastGap0:1,lastGap1:1},{day:1,lastGap0:1,lastGap1:2},{day:3,lastGap0:2,lastGap1:3},{day:6,lastGap0:3,lastGap1:5}]
+    // }
+];
 
     function CustomTooltip({point: {serieId, data: {x, y}}}) {
         return (
@@ -73,7 +75,8 @@ function LineChart(props) {
                 curve={"linear"}
                 colors={{ scheme: "accent" }}
                 lineWidth={5}
-                pointSize={10}
+                pointSize={0}
+                enableArea={true}
                 enableGridX={true}
                 enableGridY={true}
                 tooltip={CustomTooltip}

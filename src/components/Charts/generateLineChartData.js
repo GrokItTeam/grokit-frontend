@@ -4,7 +4,7 @@ function generateXYData(practisedData,dateFirstPractised) {
     let lastData = practisedData[0];
     let multiplier = 1;
 
-    const simpleData = practisedData.flatMap((data,i) => {
+    const simpleData = practisedData.flatMap((data,i) => {      
       let newData = [];
       let days = data.day - lastData.day;
       multiplier = multiplier*lastData.lastGap0/lastData.lastGap1;
@@ -13,7 +13,8 @@ function generateXYData(practisedData,dateFirstPractised) {
         newData.push(val);
       }
       newData.push(100);
-      lastData = data;
+      lastData = data;      
+      
       if (i === practisedData.length-1) {
         let remainingDays = moment().diff(moment(dateFirstPractised),"days")-lastData.day;      
         multiplier = multiplier*lastData.lastGap0/lastData.lastGap1;
@@ -28,10 +29,10 @@ function generateXYData(practisedData,dateFirstPractised) {
 }
 
 export default function generateLineChartData(backendData) {
-    return backendData.flatMap(skill => {
+    return backendData.flatMap(({skillId, practisedData, dateFirstPractised}) => {
         let dataItem = {};
-        dataItem.id = skill.skillId;
-        dataItem.data = generateXYData(skill.practisedData, skill.dateFirstPractised);
+        dataItem.id = skillId;
+        dataItem.data = generateXYData(practisedData, dateFirstPractised);
         return dataItem;
     })
 }
