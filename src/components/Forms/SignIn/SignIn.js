@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 
 import { useFormFields } from "libs/HooksLib.js";
@@ -26,7 +26,7 @@ function SignIn({ history }) {
         const userInfo = await Auth.currentUserInfo();
         setLoggedIn(true);
         setUserId(userInfo.username);
-        history.push("/");
+        history.push("/grokit-frontend/");
       } catch (e) {
         onError(e);
       }
@@ -53,12 +53,12 @@ function SignIn({ history }) {
 
         <div>
           <small>
-            Forgot password? <Link to="/resetpassword">Reset password</Link>
+            Forgot password? <Link to="/grokit-frontend/resetpassword">Reset password</Link>
           </small>
         </div>
         <div>
           <small>
-            No account? Create an <Link to="/signup">account</Link>
+            No account? Create an <Link to="/grokit-frontend/signup">account</Link>
           </small>
         </div>
       </Form>

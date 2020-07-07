@@ -8,7 +8,7 @@ function IntroPage() {
       <Row className="introPage__introduction">
         <Col>
           <p>
-            Welcome to GrokIt, please click here to <Link to="/signin">Sign in</Link> or <Link to="/signup">Sign Up</Link>{" "}
+            Welcome to GrokIt, please click here to <Link to="/grokit-frontend/signin">Sign in</Link> or <Link to="/grokit-frontend/signup">Sign Up</Link>{" "}
           </p>
         </Col>
       </Row>

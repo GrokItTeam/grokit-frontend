@@ -191,27 +191,27 @@ function App() {
             <Switch>
               {!loggedIn && (
                 <>
-                  <Route exact path="/">
+                  <Route exact path="/grokit-frontend/">
                     <IntroPage />
                   </Route>
-                  <Route path="/signup">
+                  <Route path="/grokit-frontend/signup">
                     <SignUp setUserId={setUserId} />
                   </Route>
-                  <Route path="/signin">
+                  <Route path="/grokit-frontend/signin">
                     <SignIn />
                   </Route>
-                  <Route path="/resetpassword">
+                  <Route path="/grokit-frontend/resetpassword">
                     <ResetPassword />
                   </Route>
                 </>
               )}
               {loggedIn && (
                 <>
-                  <Route exact path="/">
+                  <Route exact path="/grokit-frontend/">
                     <NewProject addProject={addProject} />
                     <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
                   </Route>
-                  <Route path="/projects">
+                  <Route path="/grokit-frontend/projects">
                     <ProjectList
                       projects={projects}
                       addSkill={addSkill}
