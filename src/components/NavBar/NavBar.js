@@ -11,7 +11,7 @@ function Header({ history }) {
   async function handleLogOut() {
     await Auth.signOut();
     setLoggedIn(false);
-    history.push("/");
+    history.push("/grokit-frontend/");
   }
 
   return (
@@ -20,11 +20,11 @@ function Header({ history }) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")} />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>
-          <Link className="px-3" to="/">
+          <Link className="px-3" to="/grokit-frontend/">
             Home
           </Link>
           {loggedIn ? (
-            <Link className="px-3" to="/projects">
+            <Link className="px-3" to="/grokit-frontend/projects">
               Projects
             </Link>
           ) : (
@@ -38,10 +38,10 @@ function Header({ history }) {
             </button>
           ) : (
             <>
-              <button type="button" className="secondaryButton" onClick={() => history.push("/signin")}>
+              <button type="button" className="secondaryButton" onClick={() => history.push("/grokit-frontend/signin")}>
                 Log In
               </button>
-              <button type="button" className="primaryButton" onClick={() => history.push("/signup")}>
+              <button type="button" className="primaryButton" onClick={() => history.push("/grokit-frontend/signup")}>
                 Sign up
               </button>
             </>

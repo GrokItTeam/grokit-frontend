@@ -56,7 +56,7 @@ function SignUp({ history, setUserId = () => {} }) {
         .then((response) => {
           setUserId(user.userId);
           setLoggedIn(true);
-          history.push("/");
+          history.push("/grokit-frontend/");
         })
         .catch((error) => {
           console.log("Error fetching data", error);
@@ -114,7 +114,7 @@ function SignUp({ history, setUserId = () => {} }) {
           </Button>
           <div>
             <small>
-              Already have an account? <Link to="/signin">Sign in</Link>
+              Already have an account? <Link to="/grokit-frontend/signin">Sign in</Link>
             </small>
           </div>
         </Form>
