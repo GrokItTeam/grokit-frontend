@@ -8,10 +8,14 @@ Information is lost from our memory over time if no effort is made to retain it.
 
 ![Forgetting Curve](https://vectr.com/smbryar/a3qRCjhluB.svg?width=320&height=220&select=a3qRCjhluBpage0)
 
+*Image from [Growth Engineering](https://www.growthengineering.co.uk/wp-content/uploads/2016/11/the-forgetting-curve.png)*
+
 The most effective time to practise a skill or rehearse knowledge is just before you forget it. 
 We will remind you what to work on each day, until you GrokIt.
 
 ![Spaced Practice](https://vectr.com/smbryar/a1rKHNM3C.svg?width=320&height=220&select=a1rKHNM3Cpage0)
+
+*Image from [Growth Engineering](https://www.growthengineering.co.uk/wp-content/uploads/2016/09/combating-the-forgetting-curve.png)*
 
 Learn more about Spaced Repition [here](https://www.gwern.net/Spaced-repetition).
 
