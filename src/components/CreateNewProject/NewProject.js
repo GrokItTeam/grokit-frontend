@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Modal from "components/CreateNewProject/Modal";
-import "./NewProject.css";
 
 function NewProject({ addProject = () => {} }) {
   const [smShow, setSmShow] = useState(false);
@@ -16,7 +15,7 @@ function NewProject({ addProject = () => {} }) {
   return (
     <>
       <div className="newProject" onClick={handleShow}>
-        <p>Add New Project</p>
+        <p className="grokitFont">Add New Project</p>
         <button type="button" className="newProject__addIcon">
           +
         </button>
