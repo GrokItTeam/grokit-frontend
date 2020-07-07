@@ -12,7 +12,7 @@ import SignUp from "components/Forms/SignUp/SignUp";
 import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
 import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
-import SkillsToDo from "components/SkillsToDo/SkillsToDo";
+import HomePage from "components/SkillsToDo/HomePage";
 import NavBar from "components/NavBar/NavBar";
 import IntroPage from "components/IntroPage/IntroPage";
 import LineChart from "components/Charts/LineChart";
@@ -60,6 +60,7 @@ function App() {
         console.log("Error posting project", error);
       });
   };
+
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
     axios
@@ -208,10 +209,10 @@ function App() {
               {loggedIn && (
                 <>
                   <Route exact path="/grokit-frontend/">
-                    <NewProject addProject={addProject} />
-                    <SkillsToDo projects={projects} updatePractisedSkill={updatePractisedSkill} />
+                    <HomePage projects={projects} updatePractisedSkill={updatePractisedSkill} addProject={addProject}/>
                   </Route>
                   <Route path="/grokit-frontend/projects">
+                    <NewProject addProject={addProject} />
                     <ProjectList
                       projects={projects}
                       addSkill={addSkill}
