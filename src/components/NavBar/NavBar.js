@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "libs/ContextLib.js";
