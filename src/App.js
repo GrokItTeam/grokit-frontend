@@ -16,7 +16,8 @@ import SkillsToDo from "components/SkillsToDo/SkillsToDo";
 import NavBar from "components/NavBar/NavBar";
 
 import "./App.css";
-import IntroPage from "components/IntroPage/IntroPage.js";
+import IntroPage from "components/IntroPage/IntroPage";
+import LineChart from "components/Charts/LineChart";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -248,6 +249,9 @@ function App() {
                       editSkillName={editSkillName}
                       editProjectName={editProjectName}
                     />
+                  </Route>
+                  <Route path="/charts">
+                      <LineChart/>
                   </Route>
                 </>
               )}
