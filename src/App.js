@@ -186,7 +186,7 @@ function App() {
   return (
     !isAuthenticating && (
       <Router>
-        <AppContext.Provider value={{ loggedIn, setLoggedIn, setUserId }}>
+        <AppContext.Provider value={{ loggedIn, setLoggedIn, userId, setUserId }}>
           <NavBar />
           <Container className="App">
             <Switch>

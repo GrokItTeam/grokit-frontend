@@ -25,14 +25,17 @@ function generateXYData(practisedData,dateFirstPractised) {
       }
       return newData;
     })
-    return simpleData.map((data,i) => {return {x:i, y:data}});
+    let x = 0;
+    return simpleData.map((data) => {      
+      if (data !== 100) {x++}
+      let result = {x, y:data}
+      return result;
+    });
 }
 
-export default function generateLineChartData(backendData) {
-    return backendData.flatMap(({skillId, practisedData, dateFirstPractised}) => {
-        let dataItem = {};
-        dataItem.id = skillId;
-        dataItem.data = generateXYData(practisedData, dateFirstPractised);
-        return dataItem;
-    })
+export default function generateLineChartData({skillName, dateFirstPractised, practisedData = []}) {
+  let chartDataSeries = {id:skillName};
+  chartDataSeries.data = generateXYData(practisedData, dateFirstPractised);
+  return [chartDataSeries];
 }
+  
