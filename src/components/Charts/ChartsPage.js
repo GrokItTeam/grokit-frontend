@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useAppContext } from "libs/ContextLib.js";
 
 import LineChart from "components/Charts/LineChart";
+import NoChartsDisplay from "components/Charts/NoChartsDisplay";
 
 
 function ChartsPage() {
@@ -14,7 +15,6 @@ function ChartsPage() {
           axios
             .get(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/linechart?userId=${userId}`)
             .then((response) => {
-                console.log(response)
               setChartData(response.data.linechartData);
             })
             .catch((error) => {
@@ -24,7 +24,9 @@ function ChartsPage() {
 
     return (
         <Container fluid="lg" >
-            {chartData && chartData.map(project => (
+            {chartData.length === 0 
+            ? <NoChartsDisplay/>
+            : chartData && chartData.map(project => (
                 <>
                 <Row key = {project.projectName}>
                     <h3>{project.projectName}</h3>

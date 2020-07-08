@@ -7,8 +7,6 @@ import './LineChart.scss';
 
 function LineChart({title = "", height = 250, chartData = []}) {
 
-    console.log(chartData)
-
     function CustomTooltip({point: {serieId, data: {x, y}}}) {
         return (
             <div style={{ backgroundColor: "#193654", padding: 5, color: "#f1f0ec", borderRadius: 10 }}>
@@ -31,7 +29,6 @@ function LineChart({title = "", height = 250, chartData = []}) {
     };
 
     const data = generateLineChartData(chartData);
-    console.log(data);
 
     return (
         <div className = "linechart" style = {{height}}>
