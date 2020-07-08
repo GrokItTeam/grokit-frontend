@@ -15,9 +15,8 @@ function NewProject({ addProject = () => {} }) {
   return (
     <>
       <div className="newProject" onClick={handleShow}>
-        <p className="grokitFont">Add New Project</p>
-        <button type="button" className="newProject__addIcon">
-          +
+        <button type="button" className="primaryButton">
+          Add New Project +
         </button>
       </div>
       {smShow ? <Modal title="Create New Project" status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}

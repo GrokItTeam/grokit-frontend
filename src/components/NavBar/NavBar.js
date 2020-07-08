@@ -15,7 +15,7 @@ function Header({ history }) {
   }
 
   return (
-    <Navbar className="NavBar" bg="dark" variant="dark" expand="sm" expanded={expanded}>
+    <Navbar className="NavBar" expand="sm" expanded={expanded}>
       <Navbar.Brand>GrokIt</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")} />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -34,12 +34,12 @@ function Header({ history }) {
         <Nav className="ml-auto">
           {loggedIn ? (
             <button type="button" className="secondaryButton" onClick={handleLogOut}>
-              Log Out
+              Sign Out
             </button>
           ) : (
             <>
               <button type="button" className="secondaryButton" onClick={() => history.push("/grokit-frontend/signin")}>
-                Log In
+                Sign In
               </button>
               <button type="button" className="primaryButton" onClick={() => history.push("/grokit-frontend/signup")}>
                 Sign up

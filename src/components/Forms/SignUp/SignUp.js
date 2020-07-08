@@ -71,10 +71,11 @@ function SignUp({ history, setUserId = () => {} }) {
       <div className="forms">
         <Form onSubmit={handleConfirmationSubmit}>
           <Form.Group controlId="confirmationCode" bsSize="large">
-            <Form.Label>Confirmation Code</Form.Label>
+            <Form.Label className="forms__confirmationTitle">Confirmation Code</Form.Label>
+            <Form.Text className="forms__confirmationText">We have just sent you a confirmation code, please check your email</Form.Text>
             <Form.Control type="tel" placeholder="Confirmation Code" onChange={handleFieldChange} value={fields.confirmationCode} />
           </Form.Group>
-          <Button block type="submit" bsSize="large" className="primary">
+          <Button block type="submit" bsSize="large" className="primaryButton">
             Verify
           </Button>
         </Form>
@@ -109,9 +110,9 @@ function SignUp({ history, setUserId = () => {} }) {
             {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="primaryButton" onClick={handleNewUserSubmit}>
+          <button type="submit" className="primaryButton" onClick={handleNewUserSubmit}>
             Sign up
-          </Button>
+          </button>
           <div>
             <small>
               Already have an account? <Link to="/grokit-frontend/signin">Sign in</Link>

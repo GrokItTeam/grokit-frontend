@@ -42,7 +42,7 @@ function ResetPassword() {
             <Form.Label>Email</Form.Label>
             <Form.Control autoFocus type="email" value={fields.email} onChange={handleFieldChange} />
           </Form.Group>
-          <Button block type="submit" bsSize="large" className="colour">
+          <Button block type="submit" bsSize="large" className="primaryButton">
             Send Confirmation
           </Button>
         </Form>
@@ -77,7 +77,7 @@ function ResetPassword() {
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control type="password" value={fields.confirmPassword} onChange={handleFieldChange} />
           </Form.Group>
-          <Button block type="submit" bsSize="large" className="colour">
+          <Button block type="submit" bsSize="large" className="primaryButton">
             Confirm
           </Button>
         </Form>
