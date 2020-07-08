@@ -8,7 +8,7 @@ function NoProjects({ projects = [], open = true, updatePractisedSkill = () => {
   return (
     <>
       <div className="NoProjects__description">
-        Welcome to Grokit. Let's get started by adding some projects that you want to Grok. <br />
+        Welcome to <span className="grokitLogo">GrokIt</span>. Let's get started by adding some projects that you want to Grok. <br />
         Look at the the example projects below and then click <Link to="/projects">here</Link> to start adding your own.
       </div>
       <Row>
