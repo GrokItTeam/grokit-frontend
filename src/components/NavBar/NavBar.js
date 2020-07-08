@@ -16,7 +16,7 @@ function Header({ history }) {
 
   return (
     <Navbar className="NavBar" expand="sm" expanded={expanded}>
-      <Navbar.Brand>GrokIt</Navbar.Brand>
+      <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")} />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>

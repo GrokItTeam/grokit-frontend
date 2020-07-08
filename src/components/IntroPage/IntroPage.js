@@ -8,13 +8,16 @@ function IntroPage() {
       <Row className="introPage__introduction">
         <Col>
           <p>
-            Welcome to GrokIt, please click here to <Link to="/grokit-frontend/signin">Sign in</Link> or <Link to="/grokit-frontend/signup">Sign Up</Link>{" "}
+            Welcome, please click here to <br />
+            <Link to="/grokit-frontend/signin">Sign in</Link> or <Link to="/grokit-frontend/signup">Sign Up</Link>{" "}
           </p>
         </Col>
       </Row>
       <Row>
         <Col>
-          <h2>Why GrokIt?</h2>
+          <h2>
+            Why <span className="grokitLogo">GrokIt</span>?
+          </h2>
           <h3 className="introPage__quotation">
             <i>
               grok <small>(verb)</small>
@@ -32,7 +35,11 @@ function IntroPage() {
           <Image src="https://vectr.com/smbryar/a1rKHNM3C.svg?width=320&height=220&select=a1rKHNM3Cpage0" rounded />
           <p>
             The most effective time to practise a skill or rehearse knowledge is just before you forget it. We will remind you what to work
-            on each day, until you <strong>GrokIt</strong>.
+            on each day, until you{" "}
+            <strong>
+              <span className="grokitLogo">GrokIt</span>
+            </strong>
+            .
           </p>
         </Col>
       </Row>
