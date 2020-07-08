@@ -93,7 +93,7 @@ function App() {
     axios
       .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`, practisedSkill)
       .then((response) => {
-        const updatedSkill = response.data.practisedSkill[0];
+        const updatedSkill = response.data.practisedSkill;
 
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
