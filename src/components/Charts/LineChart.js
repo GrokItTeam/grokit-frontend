@@ -3,13 +3,11 @@ import { ResponsiveLine } from '@nivo/line';
 
 import generateLineChartData from './generateLineChartData';
 
-import './LineChart.scss';
-
 function LineChart({title = "", height = 250, chartData = []}) {
 
-    function CustomTooltip({point: {serieId, data: {x, y}}}) {
+    function CustomTooltip({point: {data: {x, y}}}) {
         return (
-            <div style={{ backgroundColor: "#193654", padding: 5, color: "#f1f0ec", borderRadius: 10 }}>
+            <div className = "linechart__tooltip">
                 Day: {x} <br />
                 {y === 100 ? "Practised" : `Remembered: ${y | 0}%`}
             </div>
