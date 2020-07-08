@@ -26,13 +26,13 @@ function ChartsPage() {
         <Container fluid="lg" >
             {chartData.length === 0 
             ? <NoChartsDisplay/>
-            : chartData && chartData.map(project => (
+            : chartData && chartData.map(({projectName, skills = []}) => (
                 <>
-                <Row key = {project.projectName}>
-                    <h3>{project.projectName}</h3>
+                <Row key = {projectName}>
+                    <h3>{projectName}</h3>
                     </Row>
                     <Row>
-                    {project.skills.map((skill) => (
+                    {skills.map((skill) => (
                         <Col key={skill.skillId}>
                         <LineChart chartData = {skill} title = {skill.skillName} height = {300}/>                            
                         </Col>
