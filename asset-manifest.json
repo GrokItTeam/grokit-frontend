@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/grokit-frontend/static/css/main.7de66c90.chunk.css",
-    "main.js": "/grokit-frontend/static/js/main.446e1193.chunk.js",
-    "main.js.map": "/grokit-frontend/static/js/main.446e1193.chunk.js.map",
+    "main.css": "/grokit-frontend/static/css/main.29d00e59.chunk.css",
+    "main.js": "/grokit-frontend/static/js/main.80f3317f.chunk.js",
+    "main.js.map": "/grokit-frontend/static/js/main.80f3317f.chunk.js.map",
     "runtime-main.js": "/grokit-frontend/static/js/runtime-main.028a27d6.js",
     "runtime-main.js.map": "/grokit-frontend/static/js/runtime-main.028a27d6.js.map",
     "static/js/2.90ca5d87.chunk.js": "/grokit-frontend/static/js/2.90ca5d87.chunk.js",
     "static/js/2.90ca5d87.chunk.js.map": "/grokit-frontend/static/js/2.90ca5d87.chunk.js.map",
     "index.html": "/grokit-frontend/index.html",
-    "precache-manifest.34a4d97a24e4e8aeefe6bc96cc477057.js": "/grokit-frontend/precache-manifest.34a4d97a24e4e8aeefe6bc96cc477057.js",
+    "precache-manifest.ae30909ea4a3579257f8e0c8351ec5e1.js": "/grokit-frontend/precache-manifest.ae30909ea4a3579257f8e0c8351ec5e1.js",
     "service-worker.js": "/grokit-frontend/service-worker.js",
-    "static/css/main.7de66c90.chunk.css.map": "/grokit-frontend/static/css/main.7de66c90.chunk.css.map",
+    "static/css/main.29d00e59.chunk.css.map": "/grokit-frontend/static/css/main.29d00e59.chunk.css.map",
     "static/js/2.90ca5d87.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.90ca5d87.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.028a27d6.js",
     "static/js/2.90ca5d87.chunk.js",
-    "static/css/main.7de66c90.chunk.css",
-    "static/js/main.446e1193.chunk.js"
+    "static/css/main.29d00e59.chunk.css",
+    "static/js/main.80f3317f.chunk.js"
   ]
 }
