@@ -1,11 +1,11 @@
 import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
-import { Container } from 'react-bootstrap';
 
 import generateLineChatData from './generateLineChartData';
 
+import './LineChart.scss';
 
-function LineChart(props) {
+function LineChart({title = "", height = 200}) {
 
     const backendData = [{
         skillId: 1,
@@ -47,10 +47,11 @@ function LineChart(props) {
     const data = generateLineChatData(backendData);
 
     return (
-        <Container fluid="lg" style={{ height: 600 }}>
+        <div className = "linechart" style = {{height}}>
+        <h3> {title}</h3>
             <ResponsiveLine className="graph"
                 data={data}
-                margin={{ top: 50, right: 200, bottom: 80, left: 60 }}
+                margin={{ top: 10, right: 0, bottom: 50, left: 60 }}
                 xScale={{
                     type: "linear",
                     tickValues: 1
@@ -76,41 +77,14 @@ function LineChart(props) {
                 colors={{ scheme: "accent" }}
                 lineWidth={5}
                 pointSize={0}
-                enableArea={true}
+                enableArea={false}
                 enableGridX={true}
                 enableGridY={true}
                 tooltip={CustomTooltip}
                 useMesh={true}
-                enableCrosshair={false}
-                legends={[
-                    {
-                        anchor: 'bottom-right',
-                        direction: 'column',
-                        justify: false,
-                        translateX: 100,
-                        translateY: 0,
-                        itemsSpacing: 0,
-                        itemDirection: 'left-to-right',
-                        itemWidth: 80,
-                        itemHeight: 20,
-                        itemOpacity: 0.75,
-                        symbolSize: 12,
-                        symbolShape: 'circle',
-                        symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                        effects: [
-                            {
-                                on: 'hover',
-                                style: {
-                                    itemBackground: 'rgba(0, 0, 0, .03)',
-                                    itemOpacity: 1,
-                                    symbolSize:30
-                                }
-                            }
-                        ]
-                    }
-                ]}
+                enableCrosshair={false}                
             />
-        </Container>
+            </div>
     );
 }
 

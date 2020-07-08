@@ -15,7 +15,7 @@ import ProjectList from "components/ProjectList/ProjectList";
 import HomePage from "components/SkillsToDo/HomePage";
 import NavBar from "components/NavBar/NavBar";
 import IntroPage from "components/IntroPage/IntroPage";
-import LineChart from "components/Charts/LineChart";
+import ChartsPage from "components/Charts/ChartsPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -223,7 +223,7 @@ function App() {
                     />
                   </Route>
                   <Route path="/grokit-frontend/charts">
-                      <LineChart/>
+                      <ChartsPage/>
                   </Route>
                 </>
               )}
