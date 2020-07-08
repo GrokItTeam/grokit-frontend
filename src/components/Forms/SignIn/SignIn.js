@@ -47,7 +47,7 @@ function SignIn({ history }) {
           {usernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
         </Form.Group>
 
-        <button type="button" className="primaryButton" onClick={handleSignInSubmit}>
+        <button type="submit" className="primaryButton" onClick={handleSignInSubmit}>
           Sign In
         </button>
 
