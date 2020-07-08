@@ -12,8 +12,9 @@ function ChartsPage() {
 
     useEffect(() => {
           axios
-            .get(`https://q20eu71jqa.execute-api.eu-west-2.amazonaws.com/dev/linechart?userId=${userId}`)
+            .get(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/linechart?userId=${userId}`)
             .then((response) => {
+                console.log(response)
               setChartData(response.data.linechartData);
             })
             .catch((error) => {
