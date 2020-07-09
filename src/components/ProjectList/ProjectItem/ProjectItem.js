@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, Collapse } from "react-bootstrap";
 import AddSkill from "components/AddSkill/AddSkill";
 import SkillItem from "components/ProjectList/SkillItem/SkillItem";
-import EditProject from "components/ProjectList/ProjectItem/EditProject/EditProject";
 import SingleInputModal from "components/Modals/SingleInputModal";
 
 function ProjectItem({
@@ -32,9 +31,10 @@ function ProjectItem({
   };
 
   return (
-    <Card className="grokitCard" key={projectId}>
-      <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open} onClick={() => setCardOpen(!cardOpen)}>
+    <Card className="grokitCard projectItem" key={projectId}>
+      <Card.Header className="h4">
         <div className="projectItem__modifier">
+          <h2>✎</h2>
           <h1>{name}</h1>
           <button type="button" onClick={handleShow}>
             ✎
@@ -51,8 +51,10 @@ function ProjectItem({
           ) : (
             ""
           )}
-        </div>{" "}
-        <div className={`arrow ${cardOpen ? "open" : ""}`}></div>
+        </div>
+        <div onClick={() => setCardOpen(!cardOpen)}>
+          <div className={`arrow ${cardOpen ? "open" : ""}`} aria-controls="task-item-contents" aria-expanded={open}></div>
+        </div>
       </Card.Header>
       <Collapse in={cardOpen}>
         <Card.Body>
@@ -63,7 +65,6 @@ function ProjectItem({
           <button type="button" className="secondaryButton" onClick={handleDeleteProjectButton}>
             Delete Project
           </button>
-          <EditProject projectId={projectId} name={name} editProjectName={editProjectName} />
         </Card.Body>
       </Collapse>
     </Card>

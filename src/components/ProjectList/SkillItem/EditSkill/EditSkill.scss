@@ -1,10 +1,24 @@
 .skillItem {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
   @include breakpoint(mobileonly) {
     width: 100%;
     margin: 0;
+
+    p {
+      width: 35px;
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      display: inline-block;
+    }
   }
 
   input {
+    margin-bottom: 10px;
+    width: 50%;
     border: 1px solid #b5b6b7;
     height: 25px;
     border-radius: 5px;
@@ -17,14 +31,16 @@
     }
   }
 
-  span {
-    padding-left: 15px;
+  p {
+    line-height: 20px;
+    height: 25px;
+    display: inline-block;
+    margin: 0;
     font-weight: 800;
-    font-size: 25px;
-
+    font-size: 28px;
     @include breakpoint(mobileonly) {
-      width: 10%;
-      padding-left: 8px;
+      padding-left: 3px;
+      font-size: 20px;
     }
   }
 }

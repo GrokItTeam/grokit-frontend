@@ -11,10 +11,8 @@ function EditSkill({ skillId, name, editSkillName = () => {}, deleteSkill = () =
 
   return (
     <div className="skillItem">
-      <p>
-        <input type="text" defaultValue={name} onChange={modifySkill} />
-        <span onClick={delSkill}>×</span>
-      </p>
+      <input type="text" defaultValue={name} onChange={modifySkill} />
+      <p onClick={delSkill}>×</p>
     </div>
   );
 }
