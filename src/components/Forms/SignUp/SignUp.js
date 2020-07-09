@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import passwordValidator from 'password-validator';
+import passwordValidator from "password-validator";
 
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
@@ -12,23 +12,31 @@ import { Link } from "react-router-dom";
 
 const passwordSchema = new passwordValidator();
 passwordSchema
-  .is().min(8)
-  .has().uppercase()
-  .has().lowercase()
-  .has().digits()
-  .has().symbols();
+  .is()
+  .min(8)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits()
+  .has()
+  .symbols();
 
-function SignUp({ history, setUserId = () => { } }) {
+function SignUp({ history }) {
   const [newUser, setNewUser] = useState(null);
-  const [validationError, setValidationError] = useState(
-    {
-      name: { error: false, message: "Please enter a name." },
-      email: { error: false, message: "Please enter a valid email." },
-      password: { error: false, message: "Please enter a valid password. Required: 8 characters, lowercase, uppercase, special characters, numbers." },
-      confirmPassword: { error: false, message: "Passwords do not match." }
-    });
+  const [validationError, setValidationError] = useState({
+    name: { error: false, message: "Please enter a name." },
+    email: { error: false, message: "Please enter a valid email." },
+    password: {
+      error: false,
+      message:
+        "Please enter a valid password. Required: 8 characters, lowercase, uppercase, special characters, numbers.",
+    },
+    confirmPassword: { error: false, message: "Passwords do not match." },
+  });
 
-  const { setLoggedIn } = useAppContext();
+  const { setLoggedIn, setUserId, setName } = useAppContext();
   const [fields, handleFieldChange] = useFormFields({
     newName: "",
     newEmail: "",
@@ -48,18 +56,20 @@ function SignUp({ history, setUserId = () => { } }) {
 
   async function handleNewUserSubmit(event) {
     event.preventDefault();
-    clearValidationErrors()
+    clearValidationErrors();
 
     if (fields.newName.length === 0) {
       const updatedValidationError = Object.assign({}, validationError);
       updatedValidationError.name.error = true;
       setValidationError(updatedValidationError);
     }
-    if (fields.newEmail.length === 0 || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)) {
+    if (
+      fields.newEmail.length === 0 ||
+      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)
+    ) {
       const updatedValidationError = Object.assign({}, validationError);
       updatedValidationError.email.error = true;
       setValidationError(updatedValidationError);
-
     }
     if (!passwordSchema.validate(fields.newPassword)) {
       const updatedValidationError = Object.assign({}, validationError);
@@ -70,8 +80,7 @@ function SignUp({ history, setUserId = () => { } }) {
       const updatedValidationError = Object.assign({}, validationError);
       updatedValidationError.confirmPassword.error = true;
       setValidationError(updatedValidationError);
-    }
-    else {
+    } else {
       try {
         const newUser = await Auth.signUp({
           username: fields.newEmail,
@@ -90,11 +99,18 @@ function SignUp({ history, setUserId = () => { } }) {
       await Auth.confirmSignUp(fields.newEmail, fields.confirmationCode);
       await Auth.signIn(fields.newEmail, fields.newPassword);
       const userInfo = await Auth.currentUserInfo();
-      const user = { userId: userInfo.username, name: userInfo.attributes.name };
+      const user = {
+        userId: userInfo.username,
+        name: userInfo.attributes.name,
+      };
       axios
-        .post("https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/users", user)
+        .post(
+          "https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/users",
+          user
+        )
         .then((response) => {
           setUserId(user.userId);
+          setName(user.name);
           setLoggedIn(true);
           history.push("/grokit-frontend/");
         })
@@ -111,9 +127,18 @@ function SignUp({ history, setUserId = () => { } }) {
       <div className="forms">
         <Form onSubmit={handleConfirmationSubmit}>
           <Form.Group controlId="confirmationCode" bsSize="large">
-            <Form.Label className="forms__confirmationTitle">Confirmation Code</Form.Label>
-            <Form.Text className="forms__confirmationText">We have just sent you a confirmation code, please check your email</Form.Text>
-            <Form.Control type="tel" placeholder="Confirmation Code" onChange={handleFieldChange} value={fields.confirmationCode} />
+            <Form.Label className="forms__confirmationTitle">
+              Confirmation Code
+            </Form.Label>
+            <Form.Text className="forms__confirmationText">
+              We have just sent you a confirmation code, please check your email
+            </Form.Text>
+            <Form.Control
+              type="tel"
+              placeholder="Confirmation Code"
+              onChange={handleFieldChange}
+              value={fields.confirmationCode}
+            />
           </Form.Group>
           <Button block type="submit" bsSize="large" className="primaryButton">
             Verify
@@ -129,33 +154,74 @@ function SignUp({ history, setUserId = () => { } }) {
           <h2>Create an account</h2>
           <Form.Group controlId="newName">
             <Form.Label> Name</Form.Label>
-            <Form.Control type="name" placeholder="Enter name" value={fields.newName} onChange={handleFieldChange} />
-            {validationError.name.error && <Form.Text style={{ color: "red" }}>{validationError.name.message}</Form.Text>}
+            <Form.Control
+              type="name"
+              placeholder="Enter name"
+              value={fields.newName}
+              onChange={handleFieldChange}
+            />
+            {validationError.name.error && (
+              <Form.Text style={{ color: "red" }}>
+                {validationError.name.message}
+              </Form.Text>
+            )}
           </Form.Group>
 
           <Form.Group controlId="newEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={fields.newEmail} onChange={handleFieldChange} />
-            {validationError.email.error && <Form.Text style={{ color: "red" }}>{validationError.email.message}</Form.Text>}
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              value={fields.newEmail}
+              onChange={handleFieldChange}
+            />
+            {validationError.email.error && (
+              <Form.Text style={{ color: "red" }}>
+                {validationError.email.message}
+              </Form.Text>
+            )}
           </Form.Group>
           <Form.Group controlId="newPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Enter password" value={fields.newPassword} onChange={handleFieldChange} />
-            {validationError.password.error && <Form.Text style={{ color: "red" }}>{validationError.password.message}</Form.Text>}
+            <Form.Control
+              type="password"
+              placeholder="Enter password"
+              value={fields.newPassword}
+              onChange={handleFieldChange}
+            />
+            {validationError.password.error && (
+              <Form.Text style={{ color: "red" }}>
+                {validationError.password.message}
+              </Form.Text>
+            )}
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
-            <Form.Control type="password" placeholder="Confirm password" value={fields.confirmPassword} onChange={handleFieldChange} />
-            {validationError.confirmPassword.error && <Form.Text style={{ color: "red" }}>{validationError.confirmPassword.message}</Form.Text>}
+            <Form.Control
+              type="password"
+              placeholder="Confirm password"
+              value={fields.confirmPassword}
+              onChange={handleFieldChange}
+            />
+            {validationError.confirmPassword.error && (
+              <Form.Text style={{ color: "red" }}>
+                {validationError.confirmPassword.message}
+              </Form.Text>
+            )}
           </Form.Group>
 
-          <button type="submit" className="primaryButton" onClick={handleNewUserSubmit}>
+          <button
+            type="submit"
+            className="primaryButton"
+            onClick={handleNewUserSubmit}
+          >
             Sign up
           </button>
           <div>
             <small>
-              Already have an account? <Link to="/grokit-frontend/signin">Sign in</Link>
+              Already have an account?{" "}
+              <Link to="/grokit-frontend/signin">Sign in</Link>
             </small>
           </div>
         </Form>
