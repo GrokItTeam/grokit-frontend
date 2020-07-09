@@ -1,5 +1,8 @@
 .skillItem {
-  margin: 20px 15px 10px;
+  @include breakpoint(mobileonly) {
+    width: 100%;
+    margin: 0;
+  }
 
   input {
     border: 1px solid #b5b6b7;
@@ -8,11 +11,20 @@
     padding: 0 6px;
     background-color: #f1f0ec;
     color: $NileBlue;
+
+    @include breakpoint(mobileonly) {
+      width: 90%;
+    }
   }
 
   span {
     padding-left: 15px;
     font-weight: 800;
     font-size: 25px;
+
+    @include breakpoint(mobileonly) {
+      width: 10%;
+      padding-left: 8px;
+    }
   }
 }

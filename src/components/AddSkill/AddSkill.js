@@ -21,7 +21,7 @@ function AddSkill({ projectId, addSkill = () => {} }) {
   return (
     <div className="addSkill">
       <input type="text" placeholder="Add New Skill..." value={skill} onChange={modifySkill} onKeyPress={handleKeyPress} />
-      <span onClick={addAndResetSkill}>+</span>
+      <p onClick={addAndResetSkill}>+</p>
     </div>
   );
 }

@@ -1,18 +1,36 @@
 .addSkill {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+
   input {
     width: 50%;
     text-align: center;
     border: 1px solid #b5b6b7;
-    height: 35px;
-    line-height: 35px;
+    height: 25px;
     border-radius: 5px;
     padding: 0 6px;
     background-color: #f1f0ec;
+    color: #193654;
+
+    @include breakpoint(mobileonly) {
+      width: 90%;
+      margin-bottom: 20px;
+    }
   }
 
-  span {
-    font-size: 35px;
-    padding: 10px;
+  p {
+    line-height: 20px;
+    height: 25px;
+    display: inline-block;
+    margin: 0;
     font-weight: 800;
+    font-size: 28px;
+
+    @include breakpoint(mobileonly) {
+      padding-left: 3px;
+      font-size: 28px;
+    }
   }
 }
