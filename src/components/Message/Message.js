@@ -1,7 +1,7 @@
 import React from "react";
 import { useAppContext } from "libs/ContextLib.js";
 
-import "./Message.css";
+import "./Message.scss";
 
 function Message() {
   const { name } = useAppContext();

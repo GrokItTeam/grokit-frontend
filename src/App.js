@@ -15,11 +15,6 @@ import NavBar from "components/NavBar/NavBar";
 import IntroPage from "components/IntroPage/IntroPage";
 import ChartsPage from "components/Charts/ChartsPage";
 
-//hello! I think that useAppContext is the way to go as its then so easy to access from lots of places e.g. signin and signup
-// I see
-// Shall I start by removing props from message? or put name, setName back in AppContext?
-// Let's set up AppContext then when we get there we can delete props
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
