@@ -68,15 +68,15 @@ function App() {
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
-          if (project.projectId === projectId) {
+          if (project.projectId === projectId) {            
             if (!project.skills) {
               return {
                 ...project,
                 skillToDo: response.data.skill.skillId,
-                skills: [response.data.skill, ...skills],
+                skills: [response.data.skill],
               };
             }
-            return { ...project, skills: [response.data.skill, ...skills] };
+            return { ...project, skills: [...skills,response.data.skill] };
           }
           return project;
         });
