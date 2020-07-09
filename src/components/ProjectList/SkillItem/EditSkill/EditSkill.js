@@ -1,35 +1,21 @@
-import React, { useState } from "react";
-import SingleInputModal from "components/Modals/SingleInputModal";
+import React from "react";
 
-function EditSkill({ skillId, name, editSkillName = () => {} }) {
-  const [smShow, setSmShow] = useState(false);
+function EditSkill({ skillId, name, editSkillName = () => {}, deleteSkill = () => {} }) {
+  const delSkill = () => {
+    deleteSkill(skillId);
+  };
 
-  const handleClose = () => setSmShow(false);
-  const handleShow = () => setSmShow(true);
-
-  const onSave = (skillName) => {
-    editSkillName(skillId, skillName);
-    handleClose();
+  const modifySkill = ({ target: { value = "" } = {} }) => {
+    editSkillName(skillId, value);
   };
 
   return (
-    <>
-      <button type="button" className="primaryButton" onClick={handleShow}>
-        Edit skill
-      </button>
-      {smShow ? (
-        <SingleInputModal
-          title="Edit skill name"
-          startValue={name}
-          placeholder="Enter a new skill name"
-          status={smShow}
-          handleClose={handleClose}
-          onSave={onSave}
-        />
-      ) : (
-        ""
-      )}
-    </>
+    <div className="skillItem">
+      <p>
+        <input type="text" defaultValue={name} onChange={modifySkill} />
+        <span onClick={delSkill}>×</span>
+      </p>
+    </div>
   );
 }
 

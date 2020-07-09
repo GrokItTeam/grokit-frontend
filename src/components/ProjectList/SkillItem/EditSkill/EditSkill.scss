@@ -1,0 +1,18 @@
+.skillItem {
+  margin: 20px 15px 10px;
+
+  input {
+    border: 1px solid #b5b6b7;
+    height: 25px;
+    border-radius: 5px;
+    padding: 0 6px;
+    background-color: #f1f0ec;
+    color: $NileBlue;
+  }
+
+  span {
+    padding-left: 15px;
+    font-weight: 800;
+    font-size: 25px;
+  }
+}
