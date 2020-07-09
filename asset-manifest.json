@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/grokit-frontend/static/css/main.5775fcfd.chunk.css",
-    "main.js": "/grokit-frontend/static/js/main.dae2c262.chunk.js",
-    "main.js.map": "/grokit-frontend/static/js/main.dae2c262.chunk.js.map",
+    "main.js": "/grokit-frontend/static/js/main.61852ace.chunk.js",
+    "main.js.map": "/grokit-frontend/static/js/main.61852ace.chunk.js.map",
     "runtime-main.js": "/grokit-frontend/static/js/runtime-main.028a27d6.js",
     "runtime-main.js.map": "/grokit-frontend/static/js/runtime-main.028a27d6.js.map",
-    "static/js/2.548e6c6f.chunk.js": "/grokit-frontend/static/js/2.548e6c6f.chunk.js",
-    "static/js/2.548e6c6f.chunk.js.map": "/grokit-frontend/static/js/2.548e6c6f.chunk.js.map",
+    "static/js/2.7500facf.chunk.js": "/grokit-frontend/static/js/2.7500facf.chunk.js",
+    "static/js/2.7500facf.chunk.js.map": "/grokit-frontend/static/js/2.7500facf.chunk.js.map",
     "index.html": "/grokit-frontend/index.html",
-    "precache-manifest.7815454cb7842b254e6ee7f73b185b5e.js": "/grokit-frontend/precache-manifest.7815454cb7842b254e6ee7f73b185b5e.js",
+    "precache-manifest.39d5bf511be4e93977460583411b85a4.js": "/grokit-frontend/precache-manifest.39d5bf511be4e93977460583411b85a4.js",
     "service-worker.js": "/grokit-frontend/service-worker.js",
     "static/css/main.5775fcfd.chunk.css.map": "/grokit-frontend/static/css/main.5775fcfd.chunk.css.map",
-    "static/js/2.548e6c6f.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.548e6c6f.chunk.js.LICENSE.txt",
+    "static/js/2.7500facf.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.7500facf.chunk.js.LICENSE.txt",
     "static/media/ExampleGraphs.png": "/grokit-frontend/static/media/ExampleGraphs.2ef3bb32.png",
     "static/media/combating-the-forgetting-curve.png": "/grokit-frontend/static/media/combating-the-forgetting-curve.66044795.png",
     "static/media/the-forgetting-curve.png": "/grokit-frontend/static/media/the-forgetting-curve.1d0cb6a1.png"
   },
   "entrypoints": [
     "static/js/runtime-main.028a27d6.js",
-    "static/js/2.548e6c6f.chunk.js",
+    "static/js/2.7500facf.chunk.js",
     "static/css/main.5775fcfd.chunk.css",
-    "static/js/main.dae2c262.chunk.js"
+    "static/js/main.61852ace.chunk.js"
   ]
 }
