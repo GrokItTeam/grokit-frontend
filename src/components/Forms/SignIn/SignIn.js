@@ -10,17 +10,37 @@ import { Link } from "react-router-dom";
 
 function SignIn({ history }) {
   const { setLoggedIn, setUserId } = useAppContext();
-  const [usernameError, setUsernameError] = useState(false);
+  const [validationError, setValidationError] = useState(
+    {email: {error: false, message: "Please enter a valid email."},
+    password: {error: false, message: "Please enter a valid password."}});
   const [fields, handleFieldChange] = useFormFields({
     email: "",
     password: "",
   });
+
+  function clearValidationErrors() {  
+    const updatedValidationError = Object.assign({},validationError);
+    updatedValidationError.email.error = false;
+    updatedValidationError.password.error = false;
+    setValidationError(updatedValidationError);
+  }
+  
   async function handleSignInSubmit(e) {
     e.preventDefault();
+    clearValidationErrors();
 
-    if (fields.email.length === 0 || fields.password.length === 0) {
-      setUsernameError(true);
-    } else {
+
+    if (fields.email.length === 0 || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)) {
+      const updatedValidationError = Object.assign({},validationError);
+      updatedValidationError.email.error = true;
+      setValidationError(updatedValidationError);
+    } 
+    if (fields.password.length < 8) {
+      const updatedValidationError = Object.assign({},validationError);
+      updatedValidationError.password.error = true;
+      setValidationError(updatedValidationError);
+    } 
+    else {
       try {
         await Auth.signIn(fields.email, fields.password);
         const userInfo = await Auth.currentUserInfo();
@@ -39,12 +59,12 @@ function SignIn({ history }) {
         <Form.Group controlId="email">
           <Form.Label className="size">Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" value={fields.email} onChange={handleFieldChange} />
-          {usernameError && <Form.Text style={{ color: "red" }}>Please enter a valid email.</Form.Text>}
+          {validationError.email.error && <Form.Text style={{ color: "red" }}>{validationError.email.message}</Form.Text>}
         </Form.Group>
         <Form.Group controlId="password">
           <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" value={fields.password} onChange={handleFieldChange} />
-          {usernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
+          {validationError.password.error && <Form.Text style={{ color: "red" }}>{validationError.password.message}</Form.Text>}
         </Form.Group>
 
         <button type="submit" className="primaryButton" onClick={handleSignInSubmit}>
