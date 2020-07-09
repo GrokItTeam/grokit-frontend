@@ -16,6 +16,7 @@ import HomePage from "components/SkillsToDo/HomePage";
 import NavBar from "components/NavBar/NavBar";
 import IntroPage from "components/IntroPage/IntroPage";
 import ChartsPage from "components/Charts/ChartsPage";
+import SchedulePage from "components/Schedule/SchedulePage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -224,6 +225,9 @@ function App() {
                   </Route>
                   <Route path="/grokit-frontend/charts">
                       <ChartsPage/>
+                  </Route>
+                  <Route path="/grokit-frontend/schedule">
+                      <SchedulePage projects={projects}/>
                   </Route>
                 </>
               )}
