@@ -1,6 +1,5 @@
 import React from "react";
 import BootstrapModal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 
 function OptionSelectModal({ 
   title = "", 
@@ -19,15 +18,15 @@ function OptionSelectModal({
         <BootstrapModal.Title id={title}>{title}</BootstrapModal.Title>
       </BootstrapModal.Header>
       <BootstrapModal.Footer>
-        <Button variant="success" onClick={() => saveChanges("easy")}>
+        <button className="primaryButton" onClick={() => saveChanges("easy")}>
           Easy
-        </Button>
-        <Button variant="success" onClick={() => saveChanges("medium")}>
+        </button>
+        <button className="primaryButton" onClick={() => saveChanges("medium")}>
           Normal
-        </Button>
-        <Button variant="success" onClick={() => saveChanges("hard")}>
+        </button>
+        <button className="primaryButton" onClick={() => saveChanges("hard")}>
           Hard
-        </Button>
+        </button>
       </BootstrapModal.Footer>
     </BootstrapModal>
   );

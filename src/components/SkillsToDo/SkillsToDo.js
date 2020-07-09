@@ -3,12 +3,15 @@ import { Card } from "react-bootstrap";
 
 import SkillToDoItem from "./SkillToDoItem/SkillToDoItem";
 import Timer from "components/Timer/Timer";
+import Message from "components/Message/Message";
 
 function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {} }) {
   const [showTimer, setShowTimer] = useState(false);
+  const [name] = useState();
 
   return (
-    <div className="skillToDo">
+    <>
+      <Message name={name} />
       {showTimer ? (
         <>
           <button type="button" className="primaryButton" onClick={() => setShowTimer(false)}>
@@ -21,7 +24,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
           Show Pomodoro Timer
         </button>
       )}
-      <Card className="grokitCard">
+      <Card style={{ border: "2px solid black" }}>
         <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open}>
           <h1>Skills to practise today</h1>
         </Card.Header>
@@ -46,7 +49,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
             })}
         </Card.Body>
       </Card>
-    </div>
+    </>
   );
 }
 
