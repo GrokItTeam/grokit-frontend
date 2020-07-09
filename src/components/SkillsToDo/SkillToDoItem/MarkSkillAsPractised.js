@@ -10,6 +10,7 @@ function MarkSkillAsPractised({skill={}, updatePractisedSkill = () => {}}) {
   const handleShow = () => setSmShow(true);
 
   const onSave = (difficulty) => {
+      console.log(difficulty);
       updatePractisedSkill(skill,difficulty)
       handleClose();
   }

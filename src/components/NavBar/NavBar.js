@@ -24,9 +24,14 @@ function Header({ history }) {
             Home
           </Link>
           {loggedIn ? (
+            <>
             <Link className="px-3" to="/grokit-frontend/projects">
               Projects
             </Link>
+            <Link className="px-3" to="/grokit-frontend/charts">
+            Charts
+          </Link>
+          </>
           ) : (
             ""
           )}

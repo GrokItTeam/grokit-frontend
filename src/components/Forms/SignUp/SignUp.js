@@ -3,15 +3,31 @@ import { Form, Button } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import passwordValidator from 'password-validator';
 
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
 import { Link } from "react-router-dom";
 
-function SignUp({ history, setUserId = () => {} }) {
+const passwordSchema = new passwordValidator();
+passwordSchema
+  .is().min(8)
+  .has().uppercase()
+  .has().lowercase()
+  .has().digits()
+  .has().symbols();
+
+function SignUp({ history, setUserId = () => { } }) {
   const [newUser, setNewUser] = useState(null);
-  const [newUsernameError, setNewUsernameError] = useState(false);
+  const [validationError, setValidationError] = useState(
+    {
+      name: { error: false, message: "Please enter a name." },
+      email: { error: false, message: "Please enter a valid email." },
+      password: { error: false, message: "Please enter a valid password. Required: 8 characters, lowercase, uppercase, special characters, numbers." },
+      confirmPassword: { error: false, message: "Passwords do not match." }
+    });
+
   const { setLoggedIn } = useAppContext();
   const [fields, handleFieldChange] = useFormFields({
     newName: "",
@@ -20,18 +36,42 @@ function SignUp({ history, setUserId = () => {} }) {
     confirmPassword: "",
     confirmationCode: "",
   });
+
+  function clearValidationErrors() {
+    const updatedValidationError = Object.assign({}, validationError);
+    updatedValidationError.name.error = false;
+    updatedValidationError.email.error = false;
+    updatedValidationError.password.error = false;
+    updatedValidationError.confirmPassword.error = false;
+    setValidationError(updatedValidationError);
+  }
+
   async function handleNewUserSubmit(event) {
     event.preventDefault();
+    clearValidationErrors()
 
-    if (
-      fields.newName === 0 ||
-      fields.newEmail.length === 0 ||
-      fields.newPassword.length === 0 ||
-      fields.confirmPassword === 0 ||
-      fields.newPassword !== fields.confirmPassword
-    ) {
-      setNewUsernameError(true);
-    } else {
+    if (fields.newName.length === 0) {
+      const updatedValidationError = Object.assign({}, validationError);
+      updatedValidationError.name.error = true;
+      setValidationError(updatedValidationError);
+    }
+    if (fields.newEmail.length === 0 || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)) {
+      const updatedValidationError = Object.assign({}, validationError);
+      updatedValidationError.email.error = true;
+      setValidationError(updatedValidationError);
+
+    }
+    if (!passwordSchema.validate(fields.newPassword)) {
+      const updatedValidationError = Object.assign({}, validationError);
+      updatedValidationError.password.error = true;
+      setValidationError(updatedValidationError);
+    }
+    if (fields.newPassword !== fields.confirmPassword) {
+      const updatedValidationError = Object.assign({}, validationError);
+      updatedValidationError.confirmPassword.error = true;
+      setValidationError(updatedValidationError);
+    }
+    else {
       try {
         const newUser = await Auth.signUp({
           username: fields.newEmail,
@@ -90,24 +130,24 @@ function SignUp({ history, setUserId = () => {} }) {
           <Form.Group controlId="newName">
             <Form.Label> Name</Form.Label>
             <Form.Control type="name" placeholder="Enter name" value={fields.newName} onChange={handleFieldChange} />
-            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid name.</Form.Text>}
+            {validationError.name.error && <Form.Text style={{ color: "red" }}>{validationError.name.message}</Form.Text>}
           </Form.Group>
 
           <Form.Group controlId="newEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" value={fields.newEmail} onChange={handleFieldChange} />
-            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid email.</Form.Text>}
+            {validationError.email.error && <Form.Text style={{ color: "red" }}>{validationError.email.message}</Form.Text>}
           </Form.Group>
           <Form.Group controlId="newPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Enter password" value={fields.newPassword} onChange={handleFieldChange} />
-            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
+            {validationError.password.error && <Form.Text style={{ color: "red" }}>{validationError.password.message}</Form.Text>}
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control type="password" placeholder="Confirm password" value={fields.confirmPassword} onChange={handleFieldChange} />
-            {newUsernameError && <Form.Text style={{ color: "red" }}>Please enter a valid password.</Form.Text>}
+            {validationError.confirmPassword.error && <Form.Text style={{ color: "red" }}>{validationError.confirmPassword.message}</Form.Text>}
           </Form.Group>
 
           <button type="submit" className="primaryButton" onClick={handleNewUserSubmit}>

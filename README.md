@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GrokIt
 
-## Available Scripts
+## Using GrokIt to learn
 
-In the project directory, you can run:
+> grok (verb): to understand completely and intuitively
 
-### `npm start`
+Information is lost from our memory over time if no effort is made to retain it.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Forgetting Curve](https://vectr.com/smbryar/a3qRCjhluB.svg?width=320&height=220&select=a3qRCjhluBpage0)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+*Image from [Growth Engineering](https://www.growthengineering.co.uk/wp-content/uploads/2016/11/the-forgetting-curve.png)*
 
-### `npm test`
+The most effective time to practise a skill or rehearse knowledge is just before you forget it. 
+We will remind you what to work on each day, until you GrokIt.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Spaced Practice](https://vectr.com/smbryar/a1rKHNM3C.svg?width=320&height=220&select=a1rKHNM3Cpage0)
 
-### `npm run build`
+*Image from [Growth Engineering](https://www.growthengineering.co.uk/wp-content/uploads/2016/09/combating-the-forgetting-curve.png)*
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Learn more about Spaced Repition [here](https://www.gwern.net/Spaced-repetition).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## How to use GrokIt
 
-### `npm run eject`
+Visit GrokIt [here](https://grokitteam.github.io/grokit-frontend/).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+After you have set up an account you are able to add your first project that you are working on.
+You can then add the skills that make up that project.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Each day GrokIt will display the optimum skill for you to practise that day.
+Make sure you tell GrokIt that you actually did the practice!
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Extra Features
 
-## Learn More
+### Difficulty Rating
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+When you have done the practice you can rate how difficult you found it that day.
+This directly affects the algorithm deciding when you next see that skill.
+Not sure?
+Just choose medium.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Pomodoro Timer
 
-### Code Splitting
+Having trouble spending enough time on your practise?
+Use the in-built [Pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) timer to give yourself a 25 min interval to get it done.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Behind the scenes
 
-### Analyzing the Bundle Size
+The algorithm used to show the skill to practise each day is based on the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_number).
+In this pattern the values spread out, and so serve as a good basis for how often you should review a skill.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Exactly how often you need to review the skill depends on your retention of it, which is dependent on a wide variety of factors (how much time you spent learning it, how well it is linked to other memories, how complex the skill is etc). 
+To help account for this you can rate the difficulty of the practise each time you do it.
 
-### Making a Progressive Web App
+## Future Work
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Dependent on user feedback, these are the next features we are looking into:
+- Charts to show progress
+- Badges to reward progress
+- Daily notifications
+- Information about each skill and project (e.g. when it was last practised)
+- Ability to add text to each skill/project to add extra information and useful links
+- Predicted upcoming schedule
