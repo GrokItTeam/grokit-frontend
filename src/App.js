@@ -94,7 +94,7 @@ function App() {
       .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`, practisedSkill)
       .then((response) => {
         const updatedSkill = response.data.practisedSkill;
-
+        window.alert(`Great job. You'll see this skill again in about ${updatedSkill.lastGap1} day${updatedSkill.lastGap1 === 1? "":"s"}.`);
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
