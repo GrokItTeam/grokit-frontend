@@ -34,14 +34,14 @@ function ProjectItem({
   return (
     <Card className="grokitCard" key={projectId}>
       <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open} onClick={() => setCardOpen(!cardOpen)}>
-        <h1>{name}</h1>
-        <button type="button" onClick={handleShow}>
-          ✎
-        </button>
-        <>
+        <div className="projectItem__modifier">
+          <h1>{name}</h1>
+          <button type="button" onClick={handleShow}>
+            ✎
+          </button>
           {smShow ? (
             <SingleInputModal
-              title="Edit project name"
+              title="Rename project"
               placeholder="Enter new project name"
               startValue={name}
               status={smShow}
@@ -51,7 +51,7 @@ function ProjectItem({
           ) : (
             ""
           )}
-        </>
+        </div>{" "}
         <div className={`arrow ${cardOpen ? "open" : ""}`}></div>
       </Card.Header>
       <Collapse in={cardOpen}>

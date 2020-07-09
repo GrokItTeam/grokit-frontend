@@ -14,11 +14,8 @@ function EditProject({ projectId, name, editProjectName = () => {} }) {
 
   return (
     <>
-      {/* <button type="button" className="primaryButton" onClick={handleShow}>
+      <button type="button" className="primaryButton" onClick={handleShow}>
         Edit project
-      </button> */}
-      <button type="button" onClick={handleShow}>
-        ✎
       </button>
       {smShow ? (
         <SingleInputModal

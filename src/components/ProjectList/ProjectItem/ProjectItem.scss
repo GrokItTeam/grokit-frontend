@@ -1,0 +1,11 @@
+.projectItem__modifier {
+  display: flex;
+  justify-content: center;
+
+  button {
+    margin-left: 15px;
+    background: none;
+    border: $Cararra;
+    color: $Cararra;
+  }
+}
