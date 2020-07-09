@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Figure } from "react-bootstrap";
+import forgettingCurve from "img/the-forgetting-curve.png";
+import combattingForgettingCurve from "img/combating-the-forgetting-curve.png";
 
 function IntroPage() {
   return (
@@ -27,12 +29,19 @@ function IntroPage() {
         </Col>
       </Row>
       <Row>
-        <Col>
-          <Image src="https://vectr.com/smbryar/a3qRCjhluB.svg?width=320&height=220&select=a3qRCjhluBpage0" rounded />
+        <Col xs={12} lg={6}>
+        <Figure>
+        <Figure.Image src={forgettingCurve} width={450} alt="The Forgetting Curve" rounded/>
+        <Figure.Caption>The Forgetting Curve, image from <a href="https://www.growthengineering.co.uk/wp-content/uploads/2016/11/the-forgetting-curve.png">Growth Engineering</a> </Figure.Caption>
+        </Figure>
+          
           <p>Information is lost from our memory over time if no effort is made to retain it.</p>
         </Col>
-        <Col>
-          <Image src="https://vectr.com/smbryar/a1rKHNM3C.svg?width=320&height=220&select=a1rKHNM3Cpage0" rounded />
+        <Col xs={12} lg={6}>
+        <Figure>
+        <Figure.Image src={combattingForgettingCurve} width={450} alt="Combating the Forgetting Curve" rounded/>
+        <Figure.Caption>Combating the Forgetting Curve, image from <a href="https://www.growthengineering.co.uk/wp-content/uploads/2016/09/combating-the-forgetting-curve.png">Growth Engineering</a> </Figure.Caption>
+        </Figure>
           <p>
             The most effective time to practise a skill or rehearse knowledge is just before you forget it. We will remind you what to work
             on each day, until you{" "}
