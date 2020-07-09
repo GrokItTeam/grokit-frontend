@@ -15,11 +15,16 @@ import NavBar from "components/NavBar/NavBar";
 import IntroPage from "components/IntroPage/IntroPage";
 import ChartsPage from "components/Charts/ChartsPage";
 
+//hello! I think that useAppContext is the way to go as its then so easy to access from lots of places e.g. signin and signup
+// I see
+// Shall I start by removing props from message? or put name, setName back in AppContext?
+// Let's set up AppContext then when we get there we can delete props
+
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
-  const [name, setName] = useState();
+  const [name, setName] = useState(); //this is good!
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     onLoad();
@@ -31,7 +36,7 @@ function App() {
       setLoggedIn(true);
       const userInfo = await Auth.currentUserInfo();
       setUserId(userInfo.username);
-      setName(userInfo.attributes.name);
+      setName(userInfo.attributes.name); // this is good!
     } catch (e) {}
     setIsAuthenticating(false);
   }
@@ -228,10 +233,10 @@ function App() {
                     <IntroPage />
                   </Route>
                   <Route path="/grokit-frontend/signup">
-                    <SignUp setUserId={setUserId} />
+                    <SignUp />
                   </Route>
                   <Route path="/grokit-frontend/signin">
-                    <SignIn name={setName} />
+                    <SignIn />
                   </Route>
                   <Route path="/grokit-frontend/resetpassword">
                     <ResetPassword />

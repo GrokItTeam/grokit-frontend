@@ -11,7 +11,7 @@ function SkillsToDo({
   updatePractisedSkill = () => {},
 }) {
   const [showTimer, setShowTimer] = useState(false);
-  const [name, setName] = useState();
+  const [name] = useState();
 
   return (
     <>

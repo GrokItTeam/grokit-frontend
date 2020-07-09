@@ -1,10 +1,14 @@
 import React from "react";
+import { useAppContext } from "libs/ContextLib.js";
+
 import "./Message.css";
 
-function Message(props) {
+function Message() {
+  const { name } = useAppContext();
+
   return (
     <div className="message">
-      <p>Hello {props.name}your skills to practise today are... </p>
+      <p>Hello {name} your skills to practise today are... </p>
     </div>
   );
 }
