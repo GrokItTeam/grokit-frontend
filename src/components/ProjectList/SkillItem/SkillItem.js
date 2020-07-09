@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Button } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import EditSkill from "components/ProjectList/SkillItem/EditSkill/EditSkill";
 
 function SkillItem({ skillId, name, deleteSkill = () => {}, editSkillName = () => {} }) {

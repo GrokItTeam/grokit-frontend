@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import SingleInputModal from "components/Modals/SingleInputModal";
 
 function EditSkill({ skillId, name, editSkillName = () => {} }) {
