@@ -33,10 +33,11 @@ function LineChart({title = "", height = 250, chartData = []}) {
         <h3> {title}</h3>
             <ResponsiveLine className="graph"
                 data={data}
-                margin={{ top: 10, right: 0, bottom: 50, left: 60 }}
+                margin={{ top: 10, right: 30, bottom: 50, left: 60 }}
                 xScale={{
                     type: "linear",
-                    tickValues: 1
+                    tickValues: 1,
+                    min: 0,
                 }}
                 yScale={{
                     type: "linear",
