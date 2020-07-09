@@ -14,8 +14,8 @@ import NewProject from "components/CreateNewProject/NewProject";
 import ProjectList from "components/ProjectList/ProjectList";
 import HomePage from "components/SkillsToDo/HomePage";
 import NavBar from "components/NavBar/NavBar";
-
-import IntroPage from "components/IntroPage/IntroPage.js";
+import IntroPage from "components/IntroPage/IntroPage";
+import ChartsPage from "components/Charts/ChartsPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -93,7 +93,7 @@ function App() {
     axios
       .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`, practisedSkill)
       .then((response) => {
-        const updatedSkill = response.data.practisedSkill[0];
+        const updatedSkill = response.data.practisedSkill;
 
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -186,7 +186,7 @@ function App() {
   return (
     !isAuthenticating && (
       <Router>
-        <AppContext.Provider value={{ loggedIn, setLoggedIn, setUserId }}>
+        <AppContext.Provider value={{ loggedIn, setLoggedIn, userId, setUserId }}>
           <NavBar />
           <Container className="App">
             <Switch>
@@ -221,6 +221,9 @@ function App() {
                       editSkillName={editSkillName}
                       editProjectName={editProjectName}
                     />
+                  </Route>
+                  <Route path="/grokit-frontend/charts">
+                      <ChartsPage/>
                   </Route>
                 </>
               )}
