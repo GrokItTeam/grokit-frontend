@@ -2,7 +2,9 @@ import React from "react";
 
 function EditSkill({ skillId, name, editSkillName = () => {}, deleteSkill = () => {} }) {
   const delSkill = () => {
-    deleteSkill(skillId);
+    if (window.confirm(`Are you sure you wish to delete "${name}"? This will delete your progress and ${name}'s chart data.`)) {
+      deleteSkill(skillId);
+   }
   };
 
   const modifySkill = ({ target: { value = "" } = {} }) => {
