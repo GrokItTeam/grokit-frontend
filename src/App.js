@@ -17,6 +17,18 @@ import SignUp from "components/Forms/SignUp/SignUp";
 import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
 
 function App() {
+  // listen for use of mouse
+  document.body.addEventListener('mousedown', function () {
+    document.body.classList.add('using-mouse');
+  });
+
+  // listen for use of tab
+  document.body.addEventListener('keydown', function (event) {
+    if (event.keyCode === 9) {
+      document.body.classList.remove('using-mouse');
+    }
+  });
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
