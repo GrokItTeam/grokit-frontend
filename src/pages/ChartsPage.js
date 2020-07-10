@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import { useAppContext } from "libs/ContextLib.js";
@@ -31,18 +31,18 @@ function ChartsPage() {
             {chartData.length === 0 
             ? <NoChartsDisplay/>
             : chartData && chartData.map(({projectName, skills = []}) => (
-                <>
-                <Row key = {projectName}>
+                <Fragment key = {projectName}>
+                <Row>
                     <h3>{projectName}</h3>
                     </Row>
                     <Row>
                     {skills.map((skill) => (
-                        <Col key={skill.skillId}>
+                        <Col key={skill.skillId} xs={12} lg={6}>
                         <LineChart chartData = {skill} title = {skill.skillName} height = {300}/>                            
                         </Col>
                     ))}
                 </Row>
-                </>
+                </Fragment>
             ))}
         </Container>
     );

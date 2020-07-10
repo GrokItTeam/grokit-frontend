@@ -27,6 +27,9 @@ function LineChart({title = "", height = 250, chartData = []}) {
     };
 
     const data = generateLineChartData(chartData);
+    
+    const xValues = data[0].data.map(point => point.x);
+    const maxXValue = Math.max(...xValues);
 
     return (
         <div className = "linechart" style = {{height}}>
@@ -36,8 +39,8 @@ function LineChart({title = "", height = 250, chartData = []}) {
                 margin={{ top: 10, right: 30, bottom: 50, left: 60 }}
                 xScale={{
                     type: "linear",
-                    tickValues: 1,
                     min: 0,
+                    max: maxXValue > 5 ? maxXValue : 5,
                 }}
                 yScale={{
                     type: "linear",
@@ -46,20 +49,21 @@ function LineChart({title = "", height = 250, chartData = []}) {
                 axisTop={null}
                 axisRight={null}
                 axisLeft={{
-                    legend: "Remembered",
+                    legend: "% Remembered",
                     legendPosition: "middle",
                     legendOffset: -50
                 }}
                 axisBottom={{
                     legend: "Days from first practice",
                     legendPosition: "middle",
-                    legendOffset: 40
+                    legendOffset: 40,
+                    tickValues: maxXValue > 5 ? maxXValue : 5,
                 }}
                 theme={theme}
                 curve={"linear"}
                 colors={{ scheme: "accent" }}
                 lineWidth={3}
-                pointSize={5}
+                pointSize={8}
                 enableArea={false}
                 enableGridX={true}
                 enableGridY={true}
