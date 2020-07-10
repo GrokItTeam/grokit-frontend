@@ -58,7 +58,7 @@ function ProjectItem({
           <div 
           tabIndex="0"
             onClick={() => setCardOpen(!cardOpen)}
-            onKeyPress={(target) => target.charCode === 13 ? setCardOpen(!cardOpen) : null}>  
+            onKeyPress={({key}) => key === "Enter" ? setCardOpen(!cardOpen) : null}>  
             <div className={`arrow ${cardOpen ? "open" : ""}`} aria-controls="task-item-contents" aria-expanded={open}></div>
           </div>
         </Card.Header>
