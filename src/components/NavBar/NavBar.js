@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
@@ -14,6 +14,12 @@ function Header({ history }) {
     history.push("/grokit-frontend/");
   }
 
+  let focus = React.createRef();
+
+  useEffect(() => {
+    focus.focus();
+  }, [focus])
+
   return (
     <Navbar className="NavBar" expand="sm" expanded={expanded}>
       <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
@@ -23,7 +29,7 @@ function Header({ history }) {
       />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>
-          <NavLink className="navlink" exact to="/grokit-frontend/">
+          <NavLink ref={el => { focus = el }} className="navlink" exact to="/grokit-frontend/">
             Home
           </NavLink>
           {loggedIn ? (
