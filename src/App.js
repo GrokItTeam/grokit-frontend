@@ -98,7 +98,7 @@ function App() {
               return {
                 ...project,
                 skillToDo: response.data.skill.skillId,
-                skills: [...skills, response.data.skill],
+                skills: [response.data.skill],
               };
             }
             return { ...project, skills: [...skills, response.data.skill] };
