@@ -94,11 +94,11 @@ function App() {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
-            if (project.skills.length === 0) {
+            if (skills.length === 0) {
               return {
                 ...project,
                 skillToDo: response.data.skill.skillId,
-                skills: [response.data.skill],
+                skills: [...skills, response.data.skill],
               };
             }
             return { ...project, skills: [...skills, response.data.skill] };
