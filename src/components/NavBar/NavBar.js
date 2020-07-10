@@ -52,14 +52,14 @@ function Header({ history }) {
             <>
               <button
                 type="button"
-                className="secondaryButton1"
+                className="secondaryButton navSecondaryButton"
                 onClick={() => history.push("/grokit-frontend/signin")}
               >
                 Sign In
               </button>
               <button
                 type="button"
-                className="primaryButton1"
+                className="primaryButton navPrimaryButton"
                 onClick={() => history.push("/grokit-frontend/signup")}
               >
                 Sign up
