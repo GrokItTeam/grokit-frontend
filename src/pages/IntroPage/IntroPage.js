@@ -10,7 +10,7 @@ function IntroPage() {
       <Row className="introPage__introduction">
         <Col>
           <p>
-            Welcome, please click here to <br />
+            Welcome, please click here to <br className="mobile-break"/>
             <Link to="/grokit-frontend/signin">Sign in</Link> or <Link to="/grokit-frontend/signup">Sign Up</Link>{" "}
           </p>
         </Col>
