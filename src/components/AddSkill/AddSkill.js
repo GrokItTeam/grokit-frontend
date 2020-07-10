@@ -14,14 +14,16 @@ function AddSkill({ projectId, addSkill = () => {} }) {
   };
 
   const addAndResetSkill = () => {
-    addSkill(projectId, skill);
-    setSkill("");
+    if (skill.length) {
+      addSkill(projectId, skill);
+      setSkill("");
+    }
   };
 
   return (
     <div className="addSkill row">
       <input type="text" placeholder="Add New Skill..." value={skill} onChange={modifySkill} onKeyPress={handleKeyPress} />
-      <p onClick={addAndResetSkill}>+</p>
+      <p tabIndex="0" onClick={addAndResetSkill} onKeyPress={({key}) => key === "Enter" ? addAndResetSkill() : null}>+</p>
     </div>
   );
 }

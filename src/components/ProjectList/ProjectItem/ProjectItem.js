@@ -7,6 +7,7 @@ import SingleInputModal from "components/Modals/SingleInputModal";
 function ProjectItem({
   project: { projectId, name, skills = [] } = {},
   open = true,
+  skillToDo = false,
   addSkill = () => {},
   deleteSkill = () => {},
   deleteProject = () => {},
@@ -52,7 +53,11 @@ function ProjectItem({
             ""
           )}
         </div>
-        <div onClick={() => setCardOpen(!cardOpen)}>
+        <div
+          tabIndex="0"
+          onClick={() => setCardOpen(!cardOpen)}
+          onKeyPress={({ key }) => (key === "Enter" ? setCardOpen(!cardOpen) : null)}
+        >
           <div className={`arrow ${cardOpen ? "open" : ""}`} aria-controls="task-item-contents" aria-expanded={open}></div>
         </div>
       </Card.Header>
@@ -60,7 +65,14 @@ function ProjectItem({
         <Card.Body>
           <AddSkill projectId={projectId} addSkill={addSkill} />
           {skills.map(({ skillId, name }) => (
-            <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill} editSkillName={editSkillName} />
+            <SkillItem
+              key={skillId}
+              skillId={skillId}
+              name={name}
+              deleteSkill={deleteSkill}
+              editSkillName={editSkillName}
+              skillToDo={skillToDo}
+            />
           ))}
           <button type="button" className="secondaryButton" onClick={handleDeleteProjectButton}>
             Delete Project

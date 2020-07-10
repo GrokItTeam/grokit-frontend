@@ -8,18 +8,26 @@
     &:hover {
       color: $Cararra;
     }
-  }
+  } 
 
-  .navbar-nav {
-    a {
-      color: $Cararra;
-      text-decoration: none;
+  .navlink {
+    margin: 0 15px 0 15px;
+    color: $Cararra;
+    text-decoration: none;
 
-      &:hover {
-        opacity: 0.6;
-      }
+    &.active {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      opacity: 0.6;
     }
   }
+
+  .custom-toggle {
+    border-color: transparent;
+  }
+
   .secondaryButton {
     margin-right: 10px;
 

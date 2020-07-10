@@ -33,6 +33,12 @@ Make sure you tell GrokIt that you actually did the practice!
 
 ## Extra Features
 
+### Schedule
+
+Want to plan your week? 
+The schedule feature shows the predicted skills you will need to practise each day.
+This will change if you rate the practise as harder or easier than normal, or miss a day.
+
 ### Difficulty Rating
 
 When you have done the practice you can rate how difficult you found it that day.
@@ -45,6 +51,11 @@ Just choose medium.
 Having trouble spending enough time on your practise?
 Use the in-built [Pomodoro](https://en.wikipedia.org/wiki/Pomodoro_Technique) timer to give yourself a 25 min interval to get it done.
 
+### Charts
+
+The chart mirrors the forgetting curve, estimating your percentage remembered each day.
+The more you practise, the slower the percentage remembered will reduce.
+
 ## Behind the scenes
 
 The algorithm used to show the skill to practise each day is based on the [Fibonacci Sequence](https://en.wikipedia.org/wiki/Fibonacci_number).
@@ -56,9 +67,8 @@ To help account for this you can rate the difficulty of the practise each time y
 ## Future Work
 
 Dependent on user feedback, these are the next features we are looking into:
-- Charts to show progress
 - Badges to reward progress
 - Daily notifications
-- Information about each skill and project (e.g. when it was last practised)
+- Additional information about each skill and project (e.g. when it was last practised)
 - Ability to add text to each skill/project to add extra information and useful links
-- Predicted upcoming schedule
+- Build online back of projects that you can select from. Extend this so that users can submit their own.

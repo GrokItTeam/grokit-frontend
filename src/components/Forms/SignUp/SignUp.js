@@ -4,6 +4,7 @@ import { Auth } from "aws-amplify";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import passwordValidator from "password-validator";
+import emailValidator from "email-validator";
 
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
@@ -64,8 +65,7 @@ function SignUp({ history }) {
       setValidationError(updatedValidationError);
     }
     if (
-      fields.newEmail.length === 0 ||
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)
+      fields.newEmail.length === 0 || !emailValidator.validate(fields.newEmail)
     ) {
       const updatedValidationError = Object.assign({}, validationError);
       updatedValidationError.email.error = true;

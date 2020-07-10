@@ -4,23 +4,38 @@ import moment from "moment";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Auth } from "aws-amplify";
+
 import { AppContext } from "./libs/ContextLib.js";
+
+import NavBar from "components/NavBar/NavBar";
+import ProjectsPage from "pages/ProjectsPage";
+import HomePage from "pages/HomePage";
+import IntroPage from "pages/IntroPage/IntroPage";
+import ChartsPage from "pages/ChartsPage";
 import SignIn from "components/Forms/SignIn/SignIn";
 import SignUp from "components/Forms/SignUp/SignUp";
 import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
-import NewProject from "components/CreateNewProject/NewProject";
-import ProjectList from "components/ProjectList/ProjectList";
-import HomePage from "components/SkillsToDo/HomePage";
-import NavBar from "components/NavBar/NavBar";
-import IntroPage from "components/IntroPage/IntroPage";
-import ChartsPage from "components/Charts/ChartsPage";
 
 function App() {
+  // listen for use of mouse
+  document.body.addEventListener('mousedown', function () {
+    document.body.classList.add('using-mouse');
+  });
+
+  // listen for use of tab
+  document.body.addEventListener('keydown', function (event) {
+    if (event.keyCode === 9) {
+      document.body.classList.remove('using-mouse');
+    }
+  });
+
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [name, setName] = useState(); //this is good!
   const [projects, setProjects] = useState([]);
+  const [loadingProjects, setLoadingProjects] = useState(true);
+
   useEffect(() => {
     onLoad();
   }, []);
@@ -32,18 +47,20 @@ function App() {
       const userInfo = await Auth.currentUserInfo();
       setUserId(userInfo.username);
       setName(userInfo.attributes.name); // this is good!
-    } catch (e) {}
+    } catch (e) { }
     setIsAuthenticating(false);
   }
 
   useEffect(() => {
     if (userId) {
+      setLoadingProjects(true);
       axios
         .get(
           `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
         )
         .then((response) => {
           setProjects(response.data.projects);
+          setLoadingProjects(false);
         })
         .catch((error) => {
           console.log("Error fetching data", error);
@@ -77,7 +94,7 @@ function App() {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
-            if (!project.skills) {
+            if (skills.length === 0) {
               return {
                 ...project,
                 skillToDo: response.data.skill.skillId,
@@ -105,7 +122,7 @@ function App() {
       )
       .then((response) => {
         const updatedSkill = response.data.practisedSkill;
-        window.alert(`Great job. You'll see this skill again in about ${updatedSkill.lastGap1} day${updatedSkill.lastGap1 === 1? "":"s"}.`);
+        window.alert(`Great job. You'll see this skill again in about ${updatedSkill.lastGap1} day${updatedSkill.lastGap1 === 1 ? "" : "s"}.`);
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
@@ -126,20 +143,35 @@ function App() {
         console.log("Error fetching data", error);
       });
   };
-  const deleteSkill = (skillId) => {
+
+  const deleteSkill = (skillId, skillToDo) => {
     axios
       .delete(
         `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
       )
-      .then((response) => {
-        const updatedProjects = projects.map((project) => {
-          const { skills = [] } = project;
-          return {
-            ...project,
-            skills: skills.filter((skill) => skill.skillId !== skillId),
-          };
-        });
-        setProjects(updatedProjects);
+      .then(() => {
+        if (skillId === skillToDo) {
+          return axios
+            .get(
+              `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
+            )
+            .then((response) => {
+              setProjects(response.data.projects);
+            })
+            .catch((error) => {
+              console.log("Error fetching data", error);
+            });
+        }
+        else {
+          const updatedProjects = projects.map((project) => {
+            const { skills = [] } = project;
+            return {
+              ...project,
+              skills: skills.filter((skill) => skill.skillId !== skillId),
+            };
+          });
+          setProjects(updatedProjects);
+        }
       })
       .catch((error) => {
         console.log("Error deleting skill", error);
@@ -217,6 +249,7 @@ function App() {
             setUserId,
             name,
             setName,
+            loadingProjects,
           }}
         >
           <NavBar />
@@ -248,8 +281,8 @@ function App() {
                     />
                   </Route>
                   <Route path="/grokit-frontend/projects">
-                    <NewProject addProject={addProject} />
-                    <ProjectList
+                    <ProjectsPage
+                      addProject={addProject}
                       projects={projects}
                       addSkill={addSkill}
                       deleteSkill={deleteSkill}

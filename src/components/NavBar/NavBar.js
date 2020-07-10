@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "libs/ContextLib.js";
 
@@ -14,39 +14,61 @@ function Header({ history }) {
     history.push("/grokit-frontend/");
   }
 
+  let focus = React.createRef();
+
+  useEffect(() => {
+    focus.focus();
+  }, [focus])
+
   return (
-    <Navbar className="NavBar" expand="sm" expanded={expanded}>
+    <Navbar className="NavBar" expand="sm" variant="dark" expanded={expanded}>
       <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")} />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Toggle
+      className = "custom-toggle"
+        aria-controls="main-navbar-nav"
+        onClick={() => setExpanded(expanded ? false : "expanded")}
+      />
+      <Navbar.Collapse id="main-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>
-          <Link className="px-3" to="/grokit-frontend/">
+          <NavLink ref={el => { focus = el }} className="navlink" exact to="/grokit-frontend/">
             Home
-          </Link>
+          </NavLink>
           {loggedIn ? (
             <>
-            <Link className="px-3" to="/grokit-frontend/projects">
-              Projects
-            </Link>
-            <Link className="px-3" to="/grokit-frontend/charts">
-            Charts
-          </Link>
-          </>
+              <NavLink className="navlink" to="/grokit-frontend/projects">
+                Projects
+              </NavLink>
+              <NavLink className="navlink" to="/grokit-frontend/charts">
+                Charts
+              </NavLink>
+            </>
           ) : (
             ""
           )}
         </Nav>
         <Nav className="ml-auto">
           {loggedIn ? (
-            <button type="button" className="secondaryButton" onClick={handleLogOut}>
+            <button
+              type="button"
+              className="secondaryButton"
+              onClick={handleLogOut}
+            >
               Sign Out
             </button>
           ) : (
             <>
-              <button type="button" className="secondaryButton" onClick={() => history.push("/grokit-frontend/signin")}>
+              <button
+                type="button"
+                className="secondaryButton navSecondaryButton"
+                onClick={() => history.push("/grokit-frontend/signin")}
+              >
                 Sign In
               </button>
-              <button type="button" className="primaryButton" onClick={() => history.push("/grokit-frontend/signup")}>
+              <button
+                type="button"
+                className="primaryButton navPrimaryButton"
+                onClick={() => history.push("/grokit-frontend/signup")}
+              >
                 Sign up
               </button>
             </>

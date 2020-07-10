@@ -14,7 +14,7 @@ body {
 // component styling
 @import "./App.scss";
 @import "components/NavBar/NavBar.scss";
-@import "components/IntroPage/IntroPage.scss";
+@import "pages/IntroPage/IntroPage.scss";
 @import "components/Forms/Forms.scss";
 @import "components/Forms/SignUp/SignUp.scss";
 @import "components/Forms/ResetPassword/ResetPassword.scss";
@@ -27,3 +27,4 @@ body {
 @import "components/ProjectList/SkillItem/EditSkill/EditSkill.scss";
 @import "components/Timer/Timer.scss";
 @import "components/Charts/LineChart.scss";
+@import "components/Schedule/ProjectSchedule.scss";
