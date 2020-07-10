@@ -4,16 +4,17 @@ import moment from "moment";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Auth } from "aws-amplify";
+
 import { AppContext } from "./libs/ContextLib.js";
+
+import NavBar from "components/NavBar/NavBar";
+import ProjectsPage from "pages/ProjectsPage";
+import HomePage from "pages/HomePage";
+import IntroPage from "pages/IntroPage/IntroPage";
+import ChartsPage from "pages/ChartsPage";
 import SignIn from "components/Forms/SignIn/SignIn";
 import SignUp from "components/Forms/SignUp/SignUp";
 import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
-import NewProject from "components/CreateNewProject/NewProject";
-import ProjectList from "components/ProjectList/ProjectList";
-import HomePage from "components/SkillsToDo/HomePage";
-import NavBar from "components/NavBar/NavBar";
-import IntroPage from "components/IntroPage/IntroPage";
-import ChartsPage from "components/Charts/ChartsPage";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -21,6 +22,8 @@ function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const [name, setName] = useState(); //this is good!
   const [projects, setProjects] = useState([]);
+  const [loadingProjects, setLoadingProjects] = useState(true);
+
   useEffect(() => {
     onLoad();
   }, []);
@@ -38,12 +41,14 @@ function App() {
 
   useEffect(() => {
     if (userId) {
+      setLoadingProjects(true);
       axios
         .get(
           `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
         )
         .then((response) => {
           setProjects(response.data.projects);
+          setLoadingProjects(false);
         })
         .catch((error) => {
           console.log("Error fetching data", error);
@@ -217,6 +222,7 @@ function App() {
             setUserId,
             name,
             setName,
+            loadingProjects,
           }}
         >
           <NavBar />
@@ -248,15 +254,15 @@ function App() {
                     />
                   </Route>
                   <Route path="/grokit-frontend/projects">
-                    <NewProject addProject={addProject} />
-                    <ProjectList
+                    <ProjectsPage 
+                      addProject={addProject}
                       projects={projects}
                       addSkill={addSkill}
                       deleteSkill={deleteSkill}
                       deleteProject={deleteProject}
                       editSkillName={editSkillName}
                       editProjectName={editProjectName}
-                    />
+                      />
                   </Route>
                   <Route path="/grokit-frontend/charts">
                     <ChartsPage />

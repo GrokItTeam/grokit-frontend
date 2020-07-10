@@ -1,0 +1,35 @@
+.projectSchedule {
+    @include breakpoint(mobileonly) {
+      .simpleButton {
+        width: 35px;
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        padding-left: 3px;
+        display: inline-block;
+      }
+    }
+  
+    input {
+      margin-bottom: 10px;
+      width: 60px;
+      border: 1px solid #b5b6b7;
+      height: 25px;
+      border-radius: 5px;
+      padding: 0 6px;
+      background-color: #f1f0ec;
+      color: $NileBlue;
+    }
+  
+    .simpleButton {
+      cursor: pointer;
+      line-height: 20px;
+      height: 25px;
+      display: inline-block;
+      margin: 0px;
+      font-weight: 800;
+      font-size: 28px;
+      padding-left: 5px;
+    }
+  }
+  

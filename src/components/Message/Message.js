@@ -1,8 +1,6 @@
 import React from "react";
 import { useAppContext } from "libs/ContextLib.js";
 
-import "./Message.scss";
-
 function Message() {
   const { name } = useAppContext();
 

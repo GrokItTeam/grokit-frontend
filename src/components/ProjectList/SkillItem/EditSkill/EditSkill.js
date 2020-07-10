@@ -1,25 +1,22 @@
-import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import SingleInputModal from 'components/Modals/SingleInputModal';
+import React from "react";
 
-function EditSkill({ skillId, name, editSkillName = () => {} }) {
-    const [smShow, setSmShow] = useState(false);
+function EditSkill({ skillId, name, editSkillName = () => {}, deleteSkill = () => {} }) {
+  const delSkill = () => {
+    if (window.confirm(`Are you sure you wish to delete "${name}"? This will delete your progress and ${name}'s chart data.`)) {
+      deleteSkill(skillId);
+   }
+  };
 
-    
-  const handleClose = () => setSmShow(false);
-  const handleShow = () => setSmShow(true);
+  const modifySkill = ({ target: { value = "" } = {} }) => {
+    editSkillName(skillId, value);
+  };
 
-  const onSave = (skillName) => {
-      editSkillName(skillId, skillName);
-      handleClose();
-  }
-
-    return (
-        <>
-        <Button onClick={handleShow}>Edit name</Button>
-        {smShow ? <SingleInputModal title="Edit skill name" startValue={name} placeholder="Enter a new skill name" status={smShow} handleClose={handleClose} onSave={onSave}/> : ""}
-        </>
-    );
+  return (
+    <div className="skillItem">
+      <input type="text" defaultValue={name} onChange={modifySkill} />
+      <p onClick={delSkill}>×</p>
+    </div>
+  );
 }
 
 export default EditSkill;
