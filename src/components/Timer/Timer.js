@@ -28,7 +28,7 @@ function Timer({ duration }) {
     isPlaying: playing,
     size: 120,
     strokeWidth: 8,
-    colors: [["#193654"],["#6babff"]]
+    colors: [["#193654"], ["#6babff"]],
   };
 
   const handleResetClick = () => {
@@ -46,22 +46,34 @@ function Timer({ duration }) {
           duration={timerDuration}
           initialRemainingTime={remainingTime}
         >
-          {({ elapsedTime }) => renderTime("minutes", getTimeMinutes(timerDuration - elapsedTime))}
+          {({ elapsedTime }) =>
+            renderTime("minutes", getTimeMinutes(timerDuration - elapsedTime))
+          }
         </CountdownCircleTimer>
         {/* seconds */}
         <CountdownCircleTimer
           {...timerProps}
           duration={minuteSeconds}
           initialRemainingTime={remainingTime % minuteSeconds}
-          onComplete={(totalElapsedTime) => [remainingTime - totalElapsedTime > 0]}
+          onComplete={(totalElapsedTime) => [
+            remainingTime - totalElapsedTime > 0,
+          ]}
         >
-          {({ elapsedTime }) => renderTime("seconds", getTimeSeconds(elapsedTime))}
+          {({ elapsedTime }) =>
+            renderTime("seconds", getTimeSeconds(elapsedTime))
+          }
         </CountdownCircleTimer>
       </Row>
       <Row>
-        <Button onClick={() => setPlaying(true)}>Start</Button>
-        <Button onClick={() => setPlaying(false)}>Pause</Button>
-        <Button onClick={handleResetClick}>Reset</Button>
+        <Button className="startButton" onClick={() => setPlaying(true)}>
+          Start
+        </Button>
+        <Button className="pauseButton" onClick={() => setPlaying(false)}>
+          Pause
+        </Button>
+        <Button className="resetButton" onClick={handleResetClick}>
+          Reset
+        </Button>
       </Row>
     </Container>
   );
