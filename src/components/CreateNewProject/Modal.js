@@ -34,7 +34,7 @@ function Modal({ title = "", status = false, handleClose = () => { }, onSave = (
             placeholder="Enter project name" 
             value={name} name="name" 
             onChange={updateProject} 
-            onKeyPress={({key, event}) => key === "Enter" ? saveChanges() : null}
+            onKeyPress={({key}) => key === "Enter" ? saveChanges() : null}
             />
         </label>
       </BootstrapModal.Body>
