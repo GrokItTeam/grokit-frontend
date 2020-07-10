@@ -21,7 +21,7 @@ function OptionSelectModal({
         <button className="primaryButton" onClick={() => saveChanges("easy")}>
           Easy
         </button>
-        <button className="primaryButton" onClick={() => saveChanges("medium")}>
+        <button autoFocus className="primaryButton" onClick={() => saveChanges("medium")}>
           Normal
         </button>
         <button className="primaryButton" onClick={() => saveChanges("hard")}>

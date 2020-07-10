@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BootstrapModal from "react-bootstrap/Modal";
 
-function Modal({ title = "", status = false, handleClose = () => {}, onSave = () => {} }) {
+function Modal({ title = "", status = false, handleClose = () => { }, onSave = () => { } }) {
   const [project, setProject] = useState({});
 
   const updateProject = ({ target: { value = "", name = "" } = {} }) => {
@@ -14,14 +14,28 @@ function Modal({ title = "", status = false, handleClose = () => {}, onSave = ()
 
   const { name = "" } = project;
 
+  let toInput = React.createRef();
+
+  useEffect(() => {
+    toInput.focus();
+  }, [toInput])
+
   return (
     <BootstrapModal size="sm" show={status} onHide={handleClose} aria-labelledby="example-modal-sizes-title-sm">
       <BootstrapModal.Header closeButton>
         <BootstrapModal.Title id="example-modal-sizes-title-sm">{title}</BootstrapModal.Title>
       </BootstrapModal.Header>
-      <BootstrapModal.Body>
+      <BootstrapModal.Body autoFocus>
         <label className="Modal__label">
-          <input className="Modal__input" type="text" placeholder="Enter project name" value={name} name="name" onChange={updateProject} />
+          <input 
+            ref={el => { toInput = el }} 
+            className="Modal__input" 
+            type="text" 
+            placeholder="Enter project name" 
+            value={name} name="name" 
+            onChange={updateProject} 
+            onKeyPress={({key, event}) => key === "Enter" ? saveChanges() : null}
+            />
         </label>
       </BootstrapModal.Body>
       <BootstrapModal.Footer>
