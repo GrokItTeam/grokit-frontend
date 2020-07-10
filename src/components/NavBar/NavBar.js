@@ -21,7 +21,7 @@ function Header({ history }) {
   }, [focus])
 
   return (
-    <Navbar className="NavBar" expand="sm" expanded={expanded}>
+    <Navbar className="NavBar" expand="sm" variant="dark" expanded={expanded}>
       <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
