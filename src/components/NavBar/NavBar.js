@@ -21,13 +21,14 @@ function Header({ history }) {
   }, [focus])
 
   return (
-    <Navbar className="NavBar" expand="sm" expanded={expanded}>
+    <Navbar className="NavBar" expand="sm" variant="dark" expanded={expanded}>
       <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
       <Navbar.Toggle
-        aria-controls="basic-navbar-nav"
+      className = "custom-toggle"
+        aria-controls="main-navbar-nav"
         onClick={() => setExpanded(expanded ? false : "expanded")}
       />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Collapse id="main-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>
           <NavLink ref={el => { focus = el }} className="navlink" exact to="/grokit-frontend/">
             Home
