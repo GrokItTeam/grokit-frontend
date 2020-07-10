@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/grokit-frontend/static/css/main.86cfdf8c.chunk.css",
-    "main.js": "/grokit-frontend/static/js/main.7345a04a.chunk.js",
-    "main.js.map": "/grokit-frontend/static/js/main.7345a04a.chunk.js.map",
+    "main.js": "/grokit-frontend/static/js/main.8d4452e9.chunk.js",
+    "main.js.map": "/grokit-frontend/static/js/main.8d4452e9.chunk.js.map",
     "runtime-main.js": "/grokit-frontend/static/js/runtime-main.028a27d6.js",
     "runtime-main.js.map": "/grokit-frontend/static/js/runtime-main.028a27d6.js.map",
-    "static/js/2.0b5d6e81.chunk.js": "/grokit-frontend/static/js/2.0b5d6e81.chunk.js",
-    "static/js/2.0b5d6e81.chunk.js.map": "/grokit-frontend/static/js/2.0b5d6e81.chunk.js.map",
+    "static/js/2.f38133b3.chunk.js": "/grokit-frontend/static/js/2.f38133b3.chunk.js",
+    "static/js/2.f38133b3.chunk.js.map": "/grokit-frontend/static/js/2.f38133b3.chunk.js.map",
     "index.html": "/grokit-frontend/index.html",
-    "precache-manifest.28c3095e5713bdc4af1dca68fbfe3d16.js": "/grokit-frontend/precache-manifest.28c3095e5713bdc4af1dca68fbfe3d16.js",
+    "precache-manifest.e9bf4d33f5fcf5ea4298853fe246a656.js": "/grokit-frontend/precache-manifest.e9bf4d33f5fcf5ea4298853fe246a656.js",
     "service-worker.js": "/grokit-frontend/service-worker.js",
     "static/css/main.86cfdf8c.chunk.css.map": "/grokit-frontend/static/css/main.86cfdf8c.chunk.css.map",
-    "static/js/2.0b5d6e81.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.0b5d6e81.chunk.js.LICENSE.txt",
-    "static/media/ExampleGraphs.png": "/grokit-frontend/static/media/ExampleGraphs.2ef3bb32.png",
+    "static/js/2.f38133b3.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.f38133b3.chunk.js.LICENSE.txt",
+    "static/media/SevenTimesTables.png": "/grokit-frontend/static/media/SevenTimesTables.c6afe294.png",
+    "static/media/ThreeTimesTables.png": "/grokit-frontend/static/media/ThreeTimesTables.c8746d0b.png",
     "static/media/combating-the-forgetting-curve.png": "/grokit-frontend/static/media/combating-the-forgetting-curve.66044795.png",
     "static/media/the-forgetting-curve.png": "/grokit-frontend/static/media/the-forgetting-curve.1d0cb6a1.png"
   },
   "entrypoints": [
     "static/js/runtime-main.028a27d6.js",
-    "static/js/2.0b5d6e81.chunk.js",
+    "static/js/2.f38133b3.chunk.js",
     "static/css/main.86cfdf8c.chunk.css",
-    "static/js/main.7345a04a.chunk.js"
+    "static/js/main.8d4452e9.chunk.js"
   ]
 }

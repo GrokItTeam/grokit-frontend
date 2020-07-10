@@ -1,31 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fd26314ee9ad299b0853fee76b1ee22d",
+    "revision": "88e67ce37d7f0579dbd4ceec411b2b69",
     "url": "/grokit-frontend/index.html"
   },
   {
-    "revision": "2fcbd4e26e379699b9d3",
+    "revision": "f624bf1c20b6e0422511",
     "url": "/grokit-frontend/static/css/main.86cfdf8c.chunk.css"
   },
   {
-    "revision": "99b3ca3d2fa8757fa0a2",
-    "url": "/grokit-frontend/static/js/2.0b5d6e81.chunk.js"
+    "revision": "52d4c78d7fb1f150c72e",
+    "url": "/grokit-frontend/static/js/2.f38133b3.chunk.js"
   },
   {
     "revision": "a200174c44a1c583da2ca47c7148e922",
-    "url": "/grokit-frontend/static/js/2.0b5d6e81.chunk.js.LICENSE.txt"
+    "url": "/grokit-frontend/static/js/2.f38133b3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2fcbd4e26e379699b9d3",
-    "url": "/grokit-frontend/static/js/main.7345a04a.chunk.js"
+    "revision": "f624bf1c20b6e0422511",
+    "url": "/grokit-frontend/static/js/main.8d4452e9.chunk.js"
   },
   {
     "revision": "a922b33d079b6e8f794b",
     "url": "/grokit-frontend/static/js/runtime-main.028a27d6.js"
   },
   {
-    "revision": "2ef3bb32513bf44618911eb9eadd4b24",
-    "url": "/grokit-frontend/static/media/ExampleGraphs.2ef3bb32.png"
+    "revision": "c6afe2941531f759286e3f16e7f7e4fb",
+    "url": "/grokit-frontend/static/media/SevenTimesTables.c6afe294.png"
+  },
+  {
+    "revision": "c8746d0bbdfc97d3ebb3003e9897bdfd",
+    "url": "/grokit-frontend/static/media/ThreeTimesTables.c8746d0b.png"
   },
   {
     "revision": "6604479514b3444e8e2a01add1381cfc",
