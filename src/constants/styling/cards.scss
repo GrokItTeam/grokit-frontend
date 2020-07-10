@@ -2,13 +2,19 @@
   background-color: $SanJuan;
   color: $Cararra;
   border: 2px solid $SanJuan;
+  width: 48%;
+
+  @include breakpoint(mobileonly) {
+    margin-bottom: 10px;
+    width: 100%;
+  }
 }
 
 .arrow {
   border: solid $Cararra;
   border-width: 0 5px 5px 0;
   display: inline-block;
-  padding: 3px;
+  padding: 5px;
   transform: rotate(45deg);
   transition: transform 1s;
 

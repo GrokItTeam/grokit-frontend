@@ -4,9 +4,12 @@ body {
 
 // default styling
 @import "constants/styling/colours.scss";
+@import "constants/styling/breakpoints.scss";
+
 @import "constants/styling/cards.scss";
 @import "constants/styling/buttons.scss";
 @import "constants/styling/font.scss";
+@import "constants/styling/modalInputs.scss";
 
 // component styling
 @import "./App.scss";
@@ -18,6 +21,8 @@ body {
 @import "components/SkillsToDo/NoProjects.scss";
 @import "components/CreateNewProject/NewProject.scss";
 @import "components/CreateNewProject/Modal.scss";
+@import "components/ProjectList/ProjectItem/ProjectItem.scss";
+@import "components/AddSkill/AddSkill.scss";
+@import "components/ProjectList/SkillItem/EditSkill/EditSkill.scss";
 @import "components/Timer/Timer.scss";
 @import "components/Charts/LineChart.scss";
-@import "components/Message/Message.scss";

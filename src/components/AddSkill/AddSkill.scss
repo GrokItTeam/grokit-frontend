@@ -1,0 +1,33 @@
+.addSkill {
+  display: flex;
+  justify-content: center;
+
+  input {
+    margin-bottom: 15px;
+    width: 50%;
+    border: 1px solid #b5b6b7;
+    height: 25px;
+    border-radius: 5px;
+    padding: 0 6px;
+    background-color: #f1f0ec;
+    color: #193654;
+
+    @include breakpoint(mobileonly) {
+      width: 90%;
+      margin-bottom: 10px;
+    }
+  }
+
+  p {
+    line-height: 20px;
+    height: 25px;
+    display: inline-block;
+    margin: 0;
+    font-weight: 800;
+    font-size: 28px;
+
+    @include breakpoint(mobileonly) {
+      padding-left: 3px;
+    }
+  }
+}

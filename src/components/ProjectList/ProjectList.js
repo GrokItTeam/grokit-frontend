@@ -2,16 +2,16 @@ import React from "react";
 
 import ProjectItem from "./ProjectItem/ProjectItem";
 
-function ProjectList({ 
-  projects = [], 
-  addSkill = () => {}, 
+function ProjectList({
+  projects = [],
+  addSkill = () => {},
   deleteSkill = () => {},
   deleteProject = () => {},
   editSkillName = () => {},
-  editProjectName = () => {} 
+  editProjectName = () => {},
 }) {
   return (
-    <>
+    <div className="cardContainer">
       {projects.map((project) => (
         <ProjectItem
           key={project.projectId}
@@ -23,7 +23,7 @@ function ProjectList({
           editProjectName={editProjectName}
         />
       ))}
-    </>
+    </div>
   );
 }
 
