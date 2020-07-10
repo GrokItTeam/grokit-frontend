@@ -33,7 +33,9 @@ function ProjectItem({
   return (
     <Col xs={12} md={6} xl={4}>
       <Card className="grokitCard projectItem" key={projectId}>
-        <Card.Header className="h4">
+        <Card.Header 
+        className="h4"        
+        >
           <div className="projectItem__modifier">
             <h2>✎</h2>
             <h1>{name}</h1>
@@ -52,8 +54,11 @@ function ProjectItem({
             ) : (
                 ""
               )}
-          </div>
-          <div onClick={() => setCardOpen(!cardOpen)}>
+        </div>
+          <div 
+          tabIndex="0"
+            onClick={() => setCardOpen(!cardOpen)}
+            onKeyPress={({key}) => key === "Enter" ? setCardOpen(!cardOpen) : null}>  
             <div className={`arrow ${cardOpen ? "open" : ""}`} aria-controls="task-item-contents" aria-expanded={open}></div>
           </div>
         </Card.Header>

@@ -14,7 +14,7 @@ function EditSkill({ skillId, name, editSkillName = () => {}, deleteSkill = () =
   return (
     <div className="skillItem">
       <input type="text" defaultValue={name} onChange={modifySkill} />
-      <p onClick={delSkill}>×</p>
+      <p tabIndex="0" onClick={delSkill} onKeyPress={({key}) => key === "Enter" ? delSkill() : null}>×</p>
     </div>
   );
 }

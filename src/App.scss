@@ -3,3 +3,7 @@
   background-color: #fbfffe;
   margin-top: 30px;
 }
+
+body.using-mouse *:focus {
+  outline: none;
+}
