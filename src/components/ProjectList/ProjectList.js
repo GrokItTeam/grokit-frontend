@@ -1,29 +1,30 @@
 import React from "react";
+import {Row } from "react-bootstrap";
 
 import ProjectItem from "./ProjectItem/ProjectItem";
 
 function ProjectList({
   projects = [],
-  addSkill = () => {},
-  deleteSkill = () => {},
-  deleteProject = () => {},
-  editSkillName = () => {},
-  editProjectName = () => {},
+  addSkill = () => { },
+  deleteSkill = () => { },
+  deleteProject = () => { },
+  editSkillName = () => { },
+  editProjectName = () => { },
 }) {
   return (
-    <div className="cardContainer">
-      {projects.map((project) => (
-        <ProjectItem
-          key={project.projectId}
-          project={project}
-          addSkill={addSkill}
-          deleteProject={deleteProject}
-          deleteSkill={deleteSkill}
-          editSkillName={editSkillName}
-          editProjectName={editProjectName}
-        />
-      ))}
-    </div>
+      <Row className="cardContainer">
+        {projects.map((project) => (
+          <ProjectItem
+            key={project.projectId}
+            project={project}
+            addSkill={addSkill}
+            deleteProject={deleteProject}
+            deleteSkill={deleteSkill}
+            editSkillName={editSkillName}
+            editProjectName={editProjectName}
+          />
+        ))}
+      </Row>
   );
 }
 
