@@ -9,8 +9,8 @@
   color: $Cararra;
   cursor: pointer;
   border-radius: 5px;
-  margin-right: 9px;
-  margin-left: 0.5rem;
+  // margin-right: 9px;
+  // margin-left: 0.5rem;
 
   &:not(:disabled):hover {
     opacity: 0.8;
@@ -35,7 +35,68 @@
   font-weight: 600;
   padding: 5px 15px;
   border-radius: 5px;
+  // margin-bottom: 3px;
+  // margin-left: 0.5rem;
+
+  &.darker {
+    color: $NileBlue;
+    border: 1px solid $NileBlue;
+  }
+
+  &:not(:disabled):hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $Malibu;
+  }
+}
+
+.primaryButton1 {
+  background: none;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 5px 15px;
+  text-decoration: none;
+  border: 1px solid $RoyalBlue;
+  background-color: $RoyalBlue;
+  color: $Cararra;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 9px;
+  margin-left: 0.5rem;
+
+  &:not(:disabled):hover {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $Malibu;
+  }
+}
+
+.secondaryButton1 {
+  color: $Cararra;
+  background: none;
+  letter-spacing: 1px;
+  border: 1px solid $Cararra;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 5px;
   margin-bottom: 3px;
+  margin-right: 8px;
   margin-left: 0.5rem;
 
   &.darker {

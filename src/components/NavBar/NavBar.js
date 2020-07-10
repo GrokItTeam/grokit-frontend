@@ -17,7 +17,10 @@ function Header({ history }) {
   return (
     <Navbar className="NavBar" expand="sm" expanded={expanded}>
       <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")} />
+      <Navbar.Toggle
+        aria-controls="basic-navbar-nav"
+        onClick={() => setExpanded(expanded ? false : "expanded")}
+      />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>
           <Link className="px-3" to="/grokit-frontend/">
@@ -25,28 +28,40 @@ function Header({ history }) {
           </Link>
           {loggedIn ? (
             <>
-            <Link className="px-3" to="/grokit-frontend/projects">
-              Projects
-            </Link>
-            <Link className="px-3" to="/grokit-frontend/charts">
-            Charts
-          </Link>
-          </>
+              <Link className="px-3" to="/grokit-frontend/projects">
+                Projects
+              </Link>
+              <Link className="px-3" to="/grokit-frontend/charts">
+                Charts
+              </Link>
+            </>
           ) : (
             ""
           )}
         </Nav>
         <Nav className="ml-auto">
           {loggedIn ? (
-            <button type="button" className="secondaryButton" onClick={handleLogOut}>
+            <button
+              type="button"
+              className="secondaryButton"
+              onClick={handleLogOut}
+            >
               Sign Out
             </button>
           ) : (
             <>
-              <button type="button" className="secondaryButton" onClick={() => history.push("/grokit-frontend/signin")}>
+              <button
+                type="button"
+                className="secondaryButton1"
+                onClick={() => history.push("/grokit-frontend/signin")}
+              >
                 Sign In
               </button>
-              <button type="button" className="primaryButton" onClick={() => history.push("/grokit-frontend/signup")}>
+              <button
+                type="button"
+                className="primaryButton1"
+                onClick={() => history.push("/grokit-frontend/signup")}
+              >
                 Sign up
               </button>
             </>
