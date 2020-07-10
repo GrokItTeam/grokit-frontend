@@ -10,7 +10,7 @@ function ProjectSchedule({ name = "", projectId = "", datePractised = "" }) {
 
     useEffect(() => {
         axios
-            .get(`https://7nlfdw37m0.execute-api.eu-west-2.amazonaws.com/dev/skills/schedule/${projectId}/${datePractised}?endDate=${moment().add(days-1,"days")}`)
+            .get(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/schedule/${projectId}/${datePractised}?endDate=${moment().add(days-1,"days")}`)
             .then((response) => {
                 setSchedule(response.data.schedule);
             })
