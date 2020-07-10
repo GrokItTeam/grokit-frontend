@@ -2,13 +2,14 @@
   display: flex;
   justify-content: center;
   @include breakpoint(mobileonly) {
-    width: 100%;
-    margin: 0;
+    margin-bottom: 10px;
+  }
 
-    p {
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
+  .primaryButton.small {
+    display: none;
+    width: 55px;
+    margin: 0;
+    @include breakpoint(mobileonly) {
       display: inline-block;
     }
   }
@@ -24,6 +25,7 @@
     color: $NileBlue;
 
     @include breakpoint(mobileonly) {
+      width: calc(100% - 55px);
       margin-bottom: 10px;
     }
   }
@@ -37,8 +39,12 @@
     font-weight: 800;
     font-size: 28px;
     @include breakpoint(mobileonly) {
-      padding-left: 3px;
-      font-size: 20px;
+      display: none;
     }
+  }
+
+  hr {
+    margin: 2px 0 10px;
+    border-color: rgba(255, 255, 255, 0.2);
   }
 }

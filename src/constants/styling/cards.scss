@@ -13,10 +13,10 @@
   background-color: $SanJuan;
   color: $Cararra;
   border: 2px solid $SanJuan;
-  width: 100%;
-  margin: 10px;
+  width: 48%;
 
   @include breakpoint(mobileonly) {
+    margin-bottom: 10px;
     width: 100%;
   }
 }

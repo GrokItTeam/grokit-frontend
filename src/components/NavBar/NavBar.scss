@@ -8,15 +8,18 @@
     &:hover {
       color: $Cararra;
     }
-  } 
+  }
 
   .navlink {
     margin: 0 15px 0 15px;
     color: $Cararra;
     text-decoration: none;
-
+    text-align: center;
+    @include breakpoint(mobile-only) {
+      margin-bottom: 10px;
+    }
     &.active {
-      text-decoration: underline;
+      opacity: 0.8;
     }
 
     &:hover {
