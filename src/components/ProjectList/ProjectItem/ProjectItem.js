@@ -31,7 +31,7 @@ function ProjectItem({
   };
 
   return (
-    <Card className="grokitCard projectItem" key={projectId}>
+    <Card className="projectListCard projectItem" key={projectId}>
       <Card.Header className="h4">
         <div className="projectItem__modifier">
           <h2>✎</h2>

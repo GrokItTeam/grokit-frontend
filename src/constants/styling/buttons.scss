@@ -10,6 +10,11 @@
   cursor: pointer;
   border-radius: 5px;
 
+  &.small {
+    height: 25px;
+    font-size: 10px;
+  }
+
   &:not(:disabled):hover {
     opacity: 0.8;
   }

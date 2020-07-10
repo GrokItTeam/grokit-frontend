@@ -10,7 +10,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
   const [name] = useState();
 
   return (
-    <>
+    <div className="skillToDo">
       <Message name={name} />
       {showTimer ? (
         <>
@@ -24,7 +24,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
           Show Pomodoro Timer
         </button>
       )}
-      <Card style={{ border: "2px solid black" }}>
+      <Card className="primaryCard">
         <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open}>
           <h1>Skills to practise today</h1>
         </Card.Header>
@@ -49,7 +49,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
             })}
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 }
 

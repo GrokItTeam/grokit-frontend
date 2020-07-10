@@ -1,4 +1,15 @@
-.grokitCard {
+.primaryCard {
+  background-color: $SanJuan;
+  color: $Cararra;
+  border: 2px solid $SanJuan;
+  margin: 30px 0 20px;
+
+  @include breakpoint(mobileonly) {
+    flex-direction: column;
+  }
+}
+
+.projectListCard {
   background-color: $SanJuan;
   color: $Cararra;
   border: 2px solid $SanJuan;

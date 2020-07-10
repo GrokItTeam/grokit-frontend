@@ -1,5 +1,7 @@
 .skillToDo {
   .primaryButton {
-    margin: 30px 0 20px;
+    &.small {
+      margin-right: 12px;
+    }
   }
 }

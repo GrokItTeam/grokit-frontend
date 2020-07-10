@@ -19,11 +19,11 @@
   input {
     margin-bottom: 10px;
     width: 50%;
-    border: 1px solid #b5b6b7;
+    border: 1px solid $Bombay;
     height: 25px;
     border-radius: 5px;
     padding: 0 6px;
-    background-color: #f1f0ec;
+    background-color: $Cararra;
     color: $NileBlue;
 
     @include breakpoint(mobileonly) {
