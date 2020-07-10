@@ -5,6 +5,7 @@ import ProjectItem from "./ProjectItem/ProjectItem";
 
 function ProjectList({
   projects = [],
+  skillToDo = false,
   addSkill = () => {},
   deleteSkill = () => {},
   deleteProject = () => {},
@@ -22,6 +23,7 @@ function ProjectList({
           deleteSkill={deleteSkill}
           editSkillName={editSkillName}
           editProjectName={editProjectName}
+          skillToDo={project.skillToDo}
         />
       ))}
     </Row>
