@@ -15,7 +15,7 @@ function Header({ history }) {
   }
 
   return (
-    <Navbar className="NavBar" expand="sm" expanded={expanded}>
+    <Navbar className="NavBar" fixed="top" expand="sm" expanded={expanded}>
       <Navbar.Brand className="grokitLogo">GrokIt</Navbar.Brand>
       <Navbar.Toggle
         aria-controls="basic-navbar-nav"
