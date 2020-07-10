@@ -21,7 +21,8 @@ function ProjectSchedule({ name = "", projectId = "", datePractised = "" }) {
 
     return (
         <>
-            <Form>
+            <Form
+            onSubmit = {e => e.preventDefault()}>
                 <Form.Row>
                         <Form.Label>Choose number of days to show the predicted schedule for.</Form.Label>
                         <Form.Control
@@ -30,8 +31,6 @@ function ProjectSchedule({ name = "", projectId = "", datePractised = "" }) {
                             onChange={e=>setDays(e.target.value)}
                         />
                 </Form.Row>
-
-
             </Form>
             <Table bordered size="sm" responsive>
                 <thead>
