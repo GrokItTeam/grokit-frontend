@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/grokit-frontend/static/css/main.86cfdf8c.chunk.css",
-    "main.js": "/grokit-frontend/static/js/main.89059fba.chunk.js",
-    "main.js.map": "/grokit-frontend/static/js/main.89059fba.chunk.js.map",
+    "main.css": "/grokit-frontend/static/css/main.f5d1ee32.chunk.css",
+    "main.js": "/grokit-frontend/static/js/main.7e5edeef.chunk.js",
+    "main.js.map": "/grokit-frontend/static/js/main.7e5edeef.chunk.js.map",
     "runtime-main.js": "/grokit-frontend/static/js/runtime-main.028a27d6.js",
     "runtime-main.js.map": "/grokit-frontend/static/js/runtime-main.028a27d6.js.map",
-    "static/js/2.6a4efa82.chunk.js": "/grokit-frontend/static/js/2.6a4efa82.chunk.js",
-    "static/js/2.6a4efa82.chunk.js.map": "/grokit-frontend/static/js/2.6a4efa82.chunk.js.map",
+    "static/js/2.6ec8c21b.chunk.js": "/grokit-frontend/static/js/2.6ec8c21b.chunk.js",
+    "static/js/2.6ec8c21b.chunk.js.map": "/grokit-frontend/static/js/2.6ec8c21b.chunk.js.map",
     "index.html": "/grokit-frontend/index.html",
-    "precache-manifest.da0177264c1a9d296f6b2121ad1065dd.js": "/grokit-frontend/precache-manifest.da0177264c1a9d296f6b2121ad1065dd.js",
+    "precache-manifest.16105c41791a01fc63c62a488d95678d.js": "/grokit-frontend/precache-manifest.16105c41791a01fc63c62a488d95678d.js",
     "service-worker.js": "/grokit-frontend/service-worker.js",
-    "static/css/main.86cfdf8c.chunk.css.map": "/grokit-frontend/static/css/main.86cfdf8c.chunk.css.map",
-    "static/js/2.6a4efa82.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.6a4efa82.chunk.js.LICENSE.txt",
+    "static/css/main.f5d1ee32.chunk.css.map": "/grokit-frontend/static/css/main.f5d1ee32.chunk.css.map",
+    "static/js/2.6ec8c21b.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.6ec8c21b.chunk.js.LICENSE.txt",
     "static/media/SevenTimesTables.png": "/grokit-frontend/static/media/SevenTimesTables.c6afe294.png",
     "static/media/ThreeTimesTables.png": "/grokit-frontend/static/media/ThreeTimesTables.c8746d0b.png",
     "static/media/combating-the-forgetting-curve.png": "/grokit-frontend/static/media/combating-the-forgetting-curve.66044795.png",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.028a27d6.js",
-    "static/js/2.6a4efa82.chunk.js",
-    "static/css/main.86cfdf8c.chunk.css",
-    "static/js/main.89059fba.chunk.js"
+    "static/js/2.6ec8c21b.chunk.js",
+    "static/css/main.f5d1ee32.chunk.css",
+    "static/js/main.7e5edeef.chunk.js"
   ]
 }
