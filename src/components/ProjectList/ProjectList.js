@@ -1,4 +1,5 @@
 import React from "react";
+import {Row} from "react-bootstrap";
 
 import ProjectItem from "./ProjectItem/ProjectItem";
 
@@ -11,7 +12,7 @@ function ProjectList({
   editProjectName = () => {},
 }) {
   return (
-    <div className="cardContainer">
+    <Row className="cardContainer">
       {projects.map((project) => (
         <ProjectItem
           key={project.projectId}
@@ -23,7 +24,7 @@ function ProjectList({
           editProjectName={editProjectName}
         />
       ))}
-    </div>
+    </Row>
   );
 }
 
