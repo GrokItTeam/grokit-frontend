@@ -8,18 +8,22 @@
     &:hover {
       color: $Cararra;
     }
-  }
+  } 
 
-  .navbar-nav {
-    a {
+    .navlink {
+      margin: 0 15px 0 15px;
       color: $Cararra;
       text-decoration: none;
+
+      &.active {
+        border-bottom:2px solid $Cararra;
+      }
 
       &:hover {
         opacity: 0.6;
       }
     }
-  }
+
   .secondaryButton {
     margin-right: 10px;
   }

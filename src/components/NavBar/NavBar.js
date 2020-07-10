@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Link, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { useAppContext } from "libs/ContextLib.js";
 
@@ -20,17 +20,17 @@ function Header({ history }) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={() => setExpanded(expanded ? false : "expanded")} />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav onClick={() => setExpanded(false)}>
-          <Link className="px-3" to="/grokit-frontend/">
+          <NavLink className="navlink" exact to="/grokit-frontend/">
             Home
-          </Link>
+          </NavLink>
           {loggedIn ? (
             <>
-            <Link className="px-3" to="/grokit-frontend/projects">
+            <NavLink className="navlink" to="/grokit-frontend/projects">
               Projects
-            </Link>
-            <Link className="px-3" to="/grokit-frontend/charts">
+            </NavLink>
+            <NavLink className="navlink" to="/grokit-frontend/charts">
             Charts
-          </Link>
+          </NavLink>
           </>
           ) : (
             ""
