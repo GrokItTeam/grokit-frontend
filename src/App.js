@@ -179,7 +179,6 @@ function App() {
   };
 
   const editSkillName = (skillId, skillName) => {
-    console.log("making request");
     axios
       .put(
         `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
