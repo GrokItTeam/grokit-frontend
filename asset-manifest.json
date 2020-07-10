@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/grokit-frontend/static/css/main.81713e92.chunk.css",
-    "main.js": "/grokit-frontend/static/js/main.c637d322.chunk.js",
-    "main.js.map": "/grokit-frontend/static/js/main.c637d322.chunk.js.map",
+    "main.js": "/grokit-frontend/static/js/main.6ac26b8a.chunk.js",
+    "main.js.map": "/grokit-frontend/static/js/main.6ac26b8a.chunk.js.map",
     "runtime-main.js": "/grokit-frontend/static/js/runtime-main.028a27d6.js",
     "runtime-main.js.map": "/grokit-frontend/static/js/runtime-main.028a27d6.js.map",
-    "static/js/2.6ec8c21b.chunk.js": "/grokit-frontend/static/js/2.6ec8c21b.chunk.js",
-    "static/js/2.6ec8c21b.chunk.js.map": "/grokit-frontend/static/js/2.6ec8c21b.chunk.js.map",
+    "static/js/2.f33a50f8.chunk.js": "/grokit-frontend/static/js/2.f33a50f8.chunk.js",
+    "static/js/2.f33a50f8.chunk.js.map": "/grokit-frontend/static/js/2.f33a50f8.chunk.js.map",
     "index.html": "/grokit-frontend/index.html",
-    "precache-manifest.903465b772878a58d986a56586edaae1.js": "/grokit-frontend/precache-manifest.903465b772878a58d986a56586edaae1.js",
+    "precache-manifest.ceafaa8619efecbb104615e4e0559b74.js": "/grokit-frontend/precache-manifest.ceafaa8619efecbb104615e4e0559b74.js",
     "service-worker.js": "/grokit-frontend/service-worker.js",
     "static/css/main.81713e92.chunk.css.map": "/grokit-frontend/static/css/main.81713e92.chunk.css.map",
-    "static/js/2.6ec8c21b.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.6ec8c21b.chunk.js.LICENSE.txt",
+    "static/js/2.f33a50f8.chunk.js.LICENSE.txt": "/grokit-frontend/static/js/2.f33a50f8.chunk.js.LICENSE.txt",
     "static/media/SevenTimesTables.png": "/grokit-frontend/static/media/SevenTimesTables.c6afe294.png",
     "static/media/ThreeTimesTables.png": "/grokit-frontend/static/media/ThreeTimesTables.c8746d0b.png",
     "static/media/combating-the-forgetting-curve.png": "/grokit-frontend/static/media/combating-the-forgetting-curve.66044795.png",
@@ -19,8 +19,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.028a27d6.js",
-    "static/js/2.6ec8c21b.chunk.js",
+    "static/js/2.f33a50f8.chunk.js",
     "static/css/main.81713e92.chunk.css",
-    "static/js/main.c637d322.chunk.js"
+    "static/js/main.6ac26b8a.chunk.js"
   ]
 }
