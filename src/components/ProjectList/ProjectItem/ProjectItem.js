@@ -7,6 +7,7 @@ import SingleInputModal from "components/Modals/SingleInputModal";
 function ProjectItem({
   project: { projectId, name, skills = [] } = {},
   open = true,
+  skillToDo = false,
   addSkill = () => { },
   deleteSkill = () => { },
   deleteProject = () => { },
@@ -66,7 +67,7 @@ function ProjectItem({
           <Card.Body>
             <AddSkill projectId={projectId} addSkill={addSkill} />
             {skills.map(({ skillId, name }) => (
-              <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill} editSkillName={editSkillName} />
+              <SkillItem key={skillId} skillId={skillId} name={name} deleteSkill={deleteSkill} editSkillName={editSkillName} skillToDo={skillToDo}/>
             ))}
             <button type="button" className="secondaryButton" onClick={handleDeleteProjectButton}>
               Delete Project

@@ -47,7 +47,7 @@ function App() {
       const userInfo = await Auth.currentUserInfo();
       setUserId(userInfo.username);
       setName(userInfo.attributes.name); // this is good!
-    } catch (e) {}
+    } catch (e) { }
     setIsAuthenticating(false);
   }
 
@@ -94,7 +94,7 @@ function App() {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
-            if (!project.skills) {
+            if (project.skills.length === 0) {
               return {
                 ...project,
                 skillToDo: response.data.skill.skillId,
@@ -122,7 +122,7 @@ function App() {
       )
       .then((response) => {
         const updatedSkill = response.data.practisedSkill;
-        window.alert(`Great job. You'll see this skill again in about ${updatedSkill.lastGap1} day${updatedSkill.lastGap1 === 1? "":"s"}.`);
+        window.alert(`Great job. You'll see this skill again in about ${updatedSkill.lastGap1} day${updatedSkill.lastGap1 === 1 ? "" : "s"}.`);
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
           if (project.projectId === projectId) {
@@ -143,20 +143,35 @@ function App() {
         console.log("Error fetching data", error);
       });
   };
-  const deleteSkill = (skillId) => {
+
+  const deleteSkill = (skillId, skillToDo) => {
     axios
       .delete(
         `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
       )
-      .then((response) => {
-        const updatedProjects = projects.map((project) => {
-          const { skills = [] } = project;
-          return {
-            ...project,
-            skills: skills.filter((skill) => skill.skillId !== skillId),
-          };
-        });
-        setProjects(updatedProjects);
+      .then(() => {
+        if (skillId === skillToDo) {
+          return axios
+            .get(
+              `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
+            )
+            .then((response) => {
+              setProjects(response.data.projects);
+            })
+            .catch((error) => {
+              console.log("Error fetching data", error);
+            });
+        }
+        else {
+          const updatedProjects = projects.map((project) => {
+            const { skills = [] } = project;
+            return {
+              ...project,
+              skills: skills.filter((skill) => skill.skillId !== skillId),
+            };
+          });
+          setProjects(updatedProjects);
+        }
       })
       .catch((error) => {
         console.log("Error deleting skill", error);
@@ -266,7 +281,7 @@ function App() {
                     />
                   </Route>
                   <Route path="/grokit-frontend/projects">
-                    <ProjectsPage 
+                    <ProjectsPage
                       addProject={addProject}
                       projects={projects}
                       addSkill={addSkill}
@@ -274,7 +289,7 @@ function App() {
                       deleteProject={deleteProject}
                       editSkillName={editSkillName}
                       editProjectName={editProjectName}
-                      />
+                    />
                   </Route>
                   <Route path="/grokit-frontend/charts">
                     <ChartsPage />

@@ -1,9 +1,9 @@
 import React from "react";
 
-function EditSkill({ skillId, name, editSkillName = () => {}, deleteSkill = () => {} }) {
+function EditSkill({ skillId, name, skillToDo = false, editSkillName = () => {}, deleteSkill = () => {} }) {
   const delSkill = () => {
     if (window.confirm(`Are you sure you wish to delete "${name}"? This will delete your progress and ${name}'s chart data.`)) {
-      deleteSkill(skillId);
+      deleteSkill(skillId, skillToDo);
    }
   };
 
