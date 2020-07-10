@@ -1,0 +1,32 @@
+.cardContainer {
+  display: flex;
+  justify-content: space-between;
+  @include breakpoint(mobileonly) {
+    flex-direction: column;
+  }
+
+  .projectItem {
+    .secondaryButton {
+      margin-top: 10px;
+    }
+
+    .projectItem__modifier {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+
+      h2 {
+        margin-right: auto;
+        visibility: hidden;
+      }
+
+      button {
+        margin-left: auto;
+        background: none;
+        border: $Cararra;
+        color: $Cararra;
+      }
+    }
+  }
+}

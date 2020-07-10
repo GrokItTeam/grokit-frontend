@@ -4,9 +4,7 @@ import moment from "moment";
 import { Container } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Auth } from "aws-amplify";
-
 import { AppContext } from "./libs/ContextLib.js";
-
 import SignIn from "components/Forms/SignIn/SignIn";
 import SignUp from "components/Forms/SignUp/SignUp";
 import ResetPassword from "components/Forms/ResetPassword/ResetPassword";
@@ -22,6 +20,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [name, setName] = useState(); //this is good!
   const [projects, setProjects] = useState([]);
   useEffect(() => {
     onLoad();
@@ -33,6 +32,7 @@ function App() {
       setLoggedIn(true);
       const userInfo = await Auth.currentUserInfo();
       setUserId(userInfo.username);
+      setName(userInfo.attributes.name); // this is good!
     } catch (e) {}
     setIsAuthenticating(false);
   }
@@ -40,7 +40,9 @@ function App() {
   useEffect(() => {
     if (userId) {
       axios
-        .get(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`)
+        .get(
+          `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects?userId=${userId}`
+        )
         .then((response) => {
           setProjects(response.data.projects);
         })
@@ -53,7 +55,10 @@ function App() {
   const addProject = ({ name = "" }) => {
     const newProject = { name, userId, datePracticed: Date.now() };
     axios
-      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`, newProject)
+      .post(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects`,
+        newProject
+      )
       .then(({ data: { projects: resProject = [] } = {} }) => {
         setProjects([...projects, ...resProject]);
       })
@@ -65,11 +70,14 @@ function App() {
   const addSkill = (projectId, skillName) => {
     const newSkill = { name: skillName, projectId: projectId };
     axios
-      .post(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`, newSkill)
+      .post(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills`,
+        newSkill
+      )
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
-          if (project.projectId === projectId) {            
+          if (project.projectId === projectId) {
             if (!project.skills) {
               return {
                 ...project,
@@ -77,7 +85,7 @@ function App() {
                 skills: [response.data.skill],
               };
             }
-            return { ...project, skills: [...skills,response.data.skill] };
+            return { ...project, skills: [...skills, response.data.skill] };
           }
           return project;
         });
@@ -92,7 +100,10 @@ function App() {
     const { projectId, skillId } = practisedSkill;
 
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`, practisedSkill)
+      .put(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/markAsPractised/${difficulty}`,
+        practisedSkill
+      )
       .then((response) => {
         const updatedSkill = response.data.practisedSkill;
         window.alert(`Great job. You'll see this skill again in about ${updatedSkill.lastGap1} day${updatedSkill.lastGap1 === 1? "":"s"}.`);
@@ -118,7 +129,9 @@ function App() {
   };
   const deleteSkill = (skillId) => {
     axios
-      .delete(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`)
+      .delete(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`
+      )
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -136,7 +149,10 @@ function App() {
 
   const editSkillName = (skillId, skillName) => {
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`, { name: skillName })
+      .put(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/skills/${skillId}`,
+        { name: skillName }
+      )
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           const { skills = [] } = project;
@@ -157,9 +173,13 @@ function App() {
 
   const deleteProject = (projectId) => {
     axios
-      .delete(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`)
+      .delete(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`
+      )
       .then((response) => {
-        const updatedProjects = projects.filter((project) => (project.projectId !== projectId ? project : null));
+        const updatedProjects = projects.filter((project) =>
+          project.projectId !== projectId ? project : null
+        );
         setProjects(updatedProjects);
       })
       .catch((error) => {
@@ -169,7 +189,10 @@ function App() {
 
   const editProjectName = (projectId, projectName) => {
     axios
-      .put(`https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`, { name: projectName })
+      .put(
+        `https://zlld6v728l.execute-api.eu-west-2.amazonaws.com/dev/projects/${projectId}`,
+        { name: projectName }
+      )
       .then((response) => {
         const updatedProjects = projects.map((project) => {
           if (project.projectId === projectId) {
@@ -187,7 +210,16 @@ function App() {
   return (
     !isAuthenticating && (
       <Router>
-        <AppContext.Provider value={{ loggedIn, setLoggedIn, userId, setUserId }}>
+        <AppContext.Provider
+          value={{
+            loggedIn,
+            setLoggedIn,
+            userId,
+            setUserId,
+            name,
+            setName,
+          }}
+        >
           <NavBar />
           <Container className="App">
             <Switch>
@@ -197,7 +229,7 @@ function App() {
                     <IntroPage />
                   </Route>
                   <Route path="/grokit-frontend/signup">
-                    <SignUp setUserId={setUserId} />
+                    <SignUp />
                   </Route>
                   <Route path="/grokit-frontend/signin">
                     <SignIn />
@@ -210,7 +242,11 @@ function App() {
               {loggedIn && (
                 <>
                   <Route exact path="/grokit-frontend/">
-                    <HomePage projects={projects} updatePractisedSkill={updatePractisedSkill} addProject={addProject}/>
+                    <HomePage
+                      projects={projects}
+                      updatePractisedSkill={updatePractisedSkill}
+                      addProject={addProject}
+                    />
                   </Route>
                   <Route path="/grokit-frontend/projects">
                     <NewProject addProject={addProject} />
@@ -224,7 +260,7 @@ function App() {
                     />
                   </Route>
                   <Route path="/grokit-frontend/charts">
-                      <ChartsPage/>
+                    <ChartsPage />
                   </Route>
                   <Route path="/grokit-frontend/schedule">
                       <SchedulePage projects={projects}/>
