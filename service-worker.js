@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/grokit-frontend/precache-manifest.ba3a3d72ea1c9d08752f05461cf19d73.js"
+  "/grokit-frontend/precache-manifest.7c682634dc981e9199274f0440094b42.js"
 );
 
 self.addEventListener('message', (event) => {
