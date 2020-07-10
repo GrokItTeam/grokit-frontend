@@ -10,6 +10,11 @@
   cursor: pointer;
   border-radius: 5px;
 
+  &.navPrimaryButton {
+    margin-right: 9px;
+    margin-left: 0.5rem;
+  }
+
   &:not(:disabled):hover {
     opacity: 0.8;
   }
@@ -34,6 +39,10 @@
   padding: 5px 15px;
   border-radius: 5px;
 
+  &.navSecondaryButton {
+    margin-bottom: 3px;
+    margin-left: 0.5rem;
+  }
   &.darker {
     color: $NileBlue;
     border: 1px solid $NileBlue;
