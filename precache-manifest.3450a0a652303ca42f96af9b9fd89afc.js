@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "24b09050d6a963b39eb0a8b104481f72",
+    "revision": "8dad2c1ee3f82d94f008823df6cb21d2",
     "url": "/grokit-frontend/index.html"
   },
   {
-    "revision": "a2be37728ad5fe2557b4",
-    "url": "/grokit-frontend/static/css/main.31c99c4e.chunk.css"
+    "revision": "69c4ef16ce639c386c9a",
+    "url": "/grokit-frontend/static/css/main.43dc2b3c.chunk.css"
   },
   {
     "revision": "fd509d939c52d8b1a045",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/grokit-frontend/static/js/2.8c713059.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a2be37728ad5fe2557b4",
-    "url": "/grokit-frontend/static/js/main.024ccf6a.chunk.js"
+    "revision": "69c4ef16ce639c386c9a",
+    "url": "/grokit-frontend/static/js/main.9612ea23.chunk.js"
   },
   {
     "revision": "a922b33d079b6e8f794b",
