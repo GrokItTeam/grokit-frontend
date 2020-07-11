@@ -8,7 +8,7 @@ function ExampleProject({ project: { name, skills = [] } = {}, open = true }) {
   return (
     <Card className="primaryCard" key={name}>
       <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open} onClick={() => setCardOpen(!cardOpen)}>
-        <h1>{name}</h1>
+        <h1 onClick={() => setCardOpen(!cardOpen)}>{name}</h1>
         <div className={`arrow ${cardOpen ? "open" : ""}`}></div>
       </Card.Header>
       <Collapse in={cardOpen}>
