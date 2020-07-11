@@ -3,21 +3,12 @@
   justify-content: center;
   width: 100%;
   margin: 0;
-  @include breakpoint(mobileonly) {
-    p {
-      width: 35px;
-      margin: 0;
-      font-size: 24px;
-      font-weight: 700;
-      display: inline-block;
-    }
-  }
 
   input {
     margin-bottom: 10px;
     width: 50%;
     border: 1px solid $Bombay;
-    height: 25px;
+    height: 48px;
     border-radius: 5px;
     padding: 0 6px;
     background-color: $Cararra;
@@ -30,15 +21,14 @@
 
   p {
     cursor: pointer;
-    line-height: 20px;
-    height: 25px;
+    line-height: 40px;
+    height: 48px;
     display: inline-block;
     margin: 0;
     font-weight: 800;
-    font-size: 28px;
+    font-size: 48px;
     @include breakpoint(mobileonly) {
       padding-left: 3px;
-      font-size: 20px;
     }
   }
 }

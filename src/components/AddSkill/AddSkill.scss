@@ -1,46 +1,38 @@
 .addSkill {
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin: 0;
+
   @include breakpoint(mobileonly) {
     margin-bottom: 10px;
-  }
-
-  .primaryButton.small {
-    display: none;
-    width: 65px;
-    margin: 0;
-    @include breakpoint(mobileonly) {
-      display: inline-block;
-      font-size: 10px;
-    }
   }
 
   input {
     margin-bottom: 15px;
     width: 50%;
     border: 1px solid $Bombay;
-    height: 25px;
+    height: 48px;
     border-radius: 5px;
     padding: 0 6px;
     background-color: $Cararra;
     color: $NileBlue;
 
     @include breakpoint(mobileonly) {
-      width: calc(100% - 65px);
-      margin-bottom: 10px;
+      width: 90%;
     }
   }
 
   p {
     cursor: pointer;
-    line-height: 20px;
-    height: 25px;
+    line-height: 40px;
+    height: 48px;
     display: inline-block;
     margin: 0;
     font-weight: 800;
-    font-size: 28px;
+    font-size: 48px;
     @include breakpoint(mobileonly) {
-      display: none;
+      padding-left: 3px;
     }
   }
 }
