@@ -30,7 +30,6 @@ function LineChart({title = "", height = 250, chartData = []}) {
     
     const xValues = data[0].data.map(point => point.x);
     const maxXValue = Math.max(...xValues);
-    console.log(title + maxXValue);
 
     return (
         <div className = "linechart" style = {{height}}>
