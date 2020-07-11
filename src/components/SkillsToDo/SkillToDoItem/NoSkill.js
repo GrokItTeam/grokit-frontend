@@ -4,7 +4,7 @@ import { Row } from 'react-bootstrap';
 
 function NoSkill({ projectName = "" }) {
     return (
-        <Row>{projectName}: No task today</Row>
+        <Row className="center-skillToDo">{projectName}: No task today</Row>
     )
 }
 

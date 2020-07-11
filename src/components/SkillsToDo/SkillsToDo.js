@@ -47,13 +47,11 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
           Show Pomodoro Timer
         </button>
       )}
-      <Row>
+      <Row className="schedule-header">
         <Col>
-          <p>
-            Below you can see the predicted schedule for each of your projects.
-            <br />
-            It is likely to change if you add or remove skills, or rate the difficulty of practise as easy or hard.
-          </p>
+          <h5>
+            Predicted Project Schedule
+          </h5>
         </Col>
       </Row>
       <Row>

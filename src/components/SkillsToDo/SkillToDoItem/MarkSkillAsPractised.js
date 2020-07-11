@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import OptionSelectModal from "components/Modals/OptionSelectModal";
 
 function MarkSkillAsPractised({ skill = {}, updatePractisedSkill = () => {} }) {
@@ -16,7 +15,7 @@ function MarkSkillAsPractised({ skill = {}, updatePractisedSkill = () => {} }) {
   return (
     <>
       <button className="primaryButton small" onClick={handleShow}>
-        Mark as Complete
+      ✓
       </button>
       {smShow ? <OptionSelectModal title="How did the practice feel?" status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}
     </>
