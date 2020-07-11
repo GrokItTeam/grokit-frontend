@@ -10,7 +10,7 @@ function IntroPage() {
       <Row className="introPage__introduction">
         <Col>
           <p>
-            Welcome, please click here to <br className="mobile-break"/>
+            Welcome, please click here to <br />
             <Link to="/grokit-frontend/signin">Sign in</Link> or <Link to="/grokit-frontend/signup">Sign Up</Link>{" "}
           </p>
         </Col>
@@ -30,18 +30,26 @@ function IntroPage() {
       </Row>
       <Row>
         <Col xs={12} lg={6}>
-        <Figure>
-        <Figure.Image src={forgettingCurve} width={450} alt="The Forgetting Curve" rounded/>
-        <Figure.Caption>The Forgetting Curve, image from <a href="https://www.growthengineering.co.uk/wp-content/uploads/2016/11/the-forgetting-curve.png">Growth Engineering</a> </Figure.Caption>
-        </Figure>
-          
+          <Figure>
+            <Figure.Image src={forgettingCurve} width={450} alt="The Forgetting Curve" rounded />
+            <Figure.Caption>
+              The Forgetting Curve, image from{" "}
+              <a href="https://www.growthengineering.co.uk/wp-content/uploads/2016/11/the-forgetting-curve.png">Growth Engineering</a>{" "}
+            </Figure.Caption>
+          </Figure>
+
           <p>Information is lost from our memory over time if no effort is made to retain it.</p>
         </Col>
         <Col xs={12} lg={6}>
-        <Figure>
-        <Figure.Image src={combattingForgettingCurve} width={450} alt="Combating the Forgetting Curve" rounded/>
-        <Figure.Caption>Combating the Forgetting Curve, image from <a href="https://www.growthengineering.co.uk/wp-content/uploads/2016/09/combating-the-forgetting-curve.png">Growth Engineering</a> </Figure.Caption>
-        </Figure>
+          <Figure>
+            <Figure.Image src={combattingForgettingCurve} width={450} alt="Combating the Forgetting Curve" rounded />
+            <Figure.Caption>
+              Combating the Forgetting Curve, image from{" "}
+              <a href="https://www.growthengineering.co.uk/wp-content/uploads/2016/09/combating-the-forgetting-curve.png">
+                Growth Engineering
+              </a>{" "}
+            </Figure.Caption>
+          </Figure>
           <p>
             The most effective time to practise a skill or rehearse knowledge is just before you forget it. We will remind you what to work
             on each day, until you{" "}

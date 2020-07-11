@@ -18,6 +18,7 @@ body {
 @import "components/Forms/Forms.scss";
 @import "components/Forms/SignUp/SignUp.scss";
 @import "components/Forms/ResetPassword/ResetPassword.scss";
+@import "components/SkillsToDo/SkillToDoItem/MarkSkillAsPractised.scss";
 @import "components/SkillsToDo/NoProjects.scss";
 @import "components/CreateNewProject/NewProject.scss";
 @import "components/CreateNewProject/Modal.scss";
@@ -27,3 +28,5 @@ body {
 @import "components/Timer/Timer.scss";
 @import "components/Charts/LineChart.scss";
 @import "components/Schedule/ProjectSchedule.scss";
+@import "components/Message/Message.scss";
+@import "components/Charts/NoChartsDisplay.scss";

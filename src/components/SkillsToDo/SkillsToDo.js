@@ -6,12 +6,12 @@ import Timer from "components/Timer/Timer";
 import Message from "components/Message/Message";
 import ProjectSchedule from "components/Schedule/ProjectSchedules";
 
-function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => { } }) {
+function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {} }) {
   const [showTimer, setShowTimer] = useState(false);
   const [name] = useState();
 
   return (
-    <>
+    <div className="skillToDo">
       <Message name={name} />
       {showTimer ? (
         <>
@@ -21,11 +21,11 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
           <Timer duration={1500} />
         </>
       ) : (
-          <button type="button" className="primaryButton" onClick={() => setShowTimer(true)}>
-            Show Pomodoro Timer
-          </button>
-        )}
-      <Card style={{ border: "2px solid black" }}>
+        <button type="button" className="primaryButton" onClick={() => setShowTimer(true)}>
+          Show Pomodoro Timer
+        </button>
+      )}
+      <Card className="primaryCard">
         <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open}>
           <h1>Skills to practise today</h1>
         </Card.Header>
@@ -52,8 +52,11 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
       </Card>
       <Row>
         <Col>
-          <p>Below you can see the predicted schedule for each of your projects. 
-            <br/>It is likely to change if you add or remove skills, or rate the difficulty of practise as easy or hard.</p>
+          <p>
+            Below you can see the predicted schedule for each of your projects.
+            <br />
+            It is likely to change if you add or remove skills, or rate the difficulty of practise as easy or hard.
+          </p>
         </Col>
       </Row>
       <Row>
@@ -63,8 +66,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
           </Col>
         ))}
       </Row>
-
-    </>
+    </div>
   );
 }
 

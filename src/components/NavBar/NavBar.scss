@@ -8,23 +8,35 @@
     &:hover {
       color: $Cararra;
     }
-  } 
+  }
 
-    .navlink {
-      margin: 0 15px 0 15px;
-      color: $Cararra;
-      text-decoration: none;
-
-      &.active {
-        border-bottom:2px solid $Cararra;
-      }
-
-      &:hover {
-        opacity: 0.6;
-      }
+  .navlink {
+    margin: 0 15px 0 15px;
+    color: $Cararra;
+    text-decoration: none;
+    text-align: center;
+    @include breakpoint(mobile-only) {
+      margin-bottom: 10px;
     }
+    &.active {
+      opacity: 0.8;
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  .custom-toggle {
+    border-color: transparent;
+  }
 
   .secondaryButton {
     margin-right: 10px;
+
+    @include breakpoint(mobileonly) {
+      margin-right: 0;
+      margin-bottom: 5px;
+    }
   }
 }

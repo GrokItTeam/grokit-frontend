@@ -1,19 +1,31 @@
 .addSkill {
   display: flex;
   justify-content: center;
+  @include breakpoint(mobileonly) {
+    margin-bottom: 10px;
+  }
+
+  .primaryButton.small {
+    display: none;
+    width: 55px;
+    margin: 0;
+    @include breakpoint(mobileonly) {
+      display: inline-block;
+    }
+  }
 
   input {
     margin-bottom: 15px;
     width: 50%;
-    border: 1px solid #b5b6b7;
+    border: 1px solid $Bombay;
     height: 25px;
     border-radius: 5px;
     padding: 0 6px;
-    background-color: #f1f0ec;
-    color: #193654;
+    background-color: $Cararra;
+    color: $NileBlue;
 
     @include breakpoint(mobileonly) {
-      width: 90%;
+      width: calc(100% - 55px);
       margin-bottom: 10px;
     }
   }
@@ -26,9 +38,8 @@
     margin: 0;
     font-weight: 800;
     font-size: 28px;
-
     @include breakpoint(mobileonly) {
-      padding-left: 3px;
+      display: none;
     }
   }
 }

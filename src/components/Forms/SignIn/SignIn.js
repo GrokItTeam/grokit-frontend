@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Form } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
+import emailValidator from "email-validator";
 
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
@@ -31,8 +32,7 @@ function SignIn({ history }) {
     clearValidationErrors();
 
     if (
-      fields.email.length === 0 ||
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(fields.email)
+      fields.email.length === 0 ||!emailValidator.validate(fields.email)
     ) {
       const updatedValidationError = Object.assign({}, validationError);
       updatedValidationError.email.error = true;

@@ -10,9 +10,9 @@
   cursor: pointer;
   border-radius: 5px;
 
-  &.navPrimaryButton {
-    margin-right: 9px;
-    margin-left: 0.5rem;
+  &.small {
+    height: 25px;
+    font-size: 10px;
   }
 
   &:not(:disabled):hover {
