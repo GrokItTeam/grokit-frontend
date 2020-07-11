@@ -56,8 +56,7 @@ function LineChart({title = "", height = 250, chartData = []}) {
                 axisBottom={{
                     legend: "Days from first practice",
                     legendPosition: "middle",
-                    legendOffset: 40,
-                    tickValues: maxXValue > 5 ? maxXValue : 5,
+                    legendOffset: 40
                 }}
                 theme={theme}
                 curve={"linear"}
