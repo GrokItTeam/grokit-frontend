@@ -57,7 +57,7 @@ function LineChart({title = "", height = 250, chartData = []}) {
                     legend: "Days from first practice",
                     legendPosition: "middle",
                     legendOffset: 40,
-                    tickValues: maxXValue > 5 ? maxXValue : 5,
+                    tickValues: maxXValue > 5 ? maxXValue / Math.floor(maxXValue/5) : 5
                 }}
                 theme={theme}
                 curve={"linear"}
