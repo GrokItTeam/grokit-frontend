@@ -49,7 +49,7 @@ function Header({ history }) {
             ""
           )}
         </Nav>
-        <Nav className="ml-auto">
+        <Nav className="ml-auto" onClick={() => setExpanded(false)}>
           {loggedIn ? (
             <button type="button" className="secondaryButton" onClick={handleLogOut}>
               Sign Out

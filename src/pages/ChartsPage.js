@@ -32,10 +32,10 @@ function ChartsPage() {
             ? <NoChartsDisplay/>
             : chartData && chartData.map(({projectName, skills = []}) => (
                 <Fragment key = {projectName}>
-                <Row>
+                <Row className="chart-row-header">
                     <h3>{projectName}</h3>
                     </Row>
-                    <Row>
+                    <Row className="chart-row">
                     {skills.map((skill) => (
                         <Col key={skill.skillId} xs={12} lg={6}>
                         <LineChart chartData = {skill} title = {skill.skillName} height = {300}/>                            
