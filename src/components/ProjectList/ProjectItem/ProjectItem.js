@@ -36,7 +36,7 @@ function ProjectItem({
       <Card.Header className="h4">
         <div className="projectItem__modifier">
           <h2>✎</h2>
-          <h1>{name}</h1>
+          <h1 onClick={() => setCardOpen(!cardOpen)}>{name}</h1>
           <button type="button" title="Edit project name" onClick={handleShow}>
             ✎
           </button>

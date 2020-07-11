@@ -17,8 +17,11 @@
     text-decoration: none;
     text-align: center;
     @include breakpoint(mobileonly) {
-      margin-bottom: 10px;
+      &:last-of-type {
+        margin-bottom: 15px;
+      }
     }
+
     &.active {
       opacity: 0.6;
       border-bottom: 2px solid $Cararra;
