@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { Auth } from "aws-amplify";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import axios from "axios";
 import passwordValidator from "password-validator";
 import emailValidator from "email-validator";
@@ -9,7 +9,6 @@ import emailValidator from "email-validator";
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
-import { Link } from "react-router-dom";
 
 const passwordSchema = new passwordValidator();
 passwordSchema
@@ -26,6 +25,7 @@ passwordSchema
 
 function SignUp({ history }) {
   const [newUser, setNewUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState({
     name: { error: false, message: "Please enter a name." },
     email: { error: false, message: "Please enter a valid email." },
@@ -81,6 +81,7 @@ function SignUp({ history }) {
       updatedValidationError.confirmPassword.error = true;
       setValidationError(updatedValidationError);
     } else {
+      setIsLoading(true);
       try {
         const newUser = await Auth.signUp({
           username: fields.newEmail,
@@ -88,13 +89,16 @@ function SignUp({ history }) {
           attributes: { name: fields.newName },
         });
         setNewUser(newUser);
+        setIsLoading(false);
       } catch (error) {
+        setIsLoading(false);
         onError(error);
       }
     }
   }
   async function handleConfirmationSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       await Auth.confirmSignUp(fields.newEmail, fields.confirmationCode);
       await Auth.signIn(fields.newEmail, fields.newPassword);
@@ -113,11 +117,13 @@ function SignUp({ history }) {
           setName(user.name);
           setLoggedIn(true);
           history.push("/grokit-frontend/");
+          setIsLoading(false);
         })
         .catch((error) => {
           console.log("Error fetching data", error);
         });
     } catch (e) {
+      setIsLoading(false);
       onError(e);
     }
   }
@@ -141,7 +147,7 @@ function SignUp({ history }) {
             />
           </Form.Group>
           <Button block type="submit" bsSize="large" className="primaryButton">
-            Verify
+          {isLoading && <Spinner className="spinner-button" animation="border" role="status" size="sm"/>} Verify
           </Button>
         </Form>
       </div>
@@ -216,7 +222,7 @@ function SignUp({ history }) {
             className="primaryButton"
             onClick={handleNewUserSubmit}
           >
-            Sign up
+            {isLoading && <Spinner className="spinner-button" animation="border" role="status" size="sm"/>} Sign up
           </button>
           <div>
             <small>

@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-import { Form } from "react-bootstrap";
-import { withRouter } from "react-router-dom";
+import { Form, Spinner } from "react-bootstrap";
+import { withRouter, Link } from "react-router-dom";
 import emailValidator from "email-validator";
 
 import { useFormFields } from "libs/HooksLib.js";
 import { useAppContext } from "libs/ContextLib.js";
 import { onError } from "libs/ErrorLib.js";
-import { Link } from "react-router-dom";
 
 function SignIn({ history }) {
   const { setLoggedIn, setUserId, setName } = useAppContext();
+  const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState({
     email: { error: false, message: "Please enter a valid email." },
     password: { error: false, message: "Please enter a valid password." },
@@ -43,6 +43,7 @@ function SignIn({ history }) {
       updatedValidationError.password.error = true;
       setValidationError(updatedValidationError);
     } else {
+      setIsLoading(true);
       try {
         await Auth.signIn(fields.email, fields.password);
         const userInfo = await Auth.currentUserInfo();
@@ -50,7 +51,9 @@ function SignIn({ history }) {
         setUserId(userInfo.username);
         setName(userInfo.attributes.name);
         history.push("/grokit-frontend/");
+        setIsLoading(false);
       } catch (e) {
+        setIsLoading(false);
         onError(e);
       }
     }
@@ -93,7 +96,7 @@ function SignIn({ history }) {
           className="primaryButton"
           onClick={handleSignInSubmit}
         >
-          Sign In
+          {isLoading && <Spinner className="spinner-button" animation="border" role="status" size="sm"/>} Sign In
         </button>
 
         <div>
