@@ -34,6 +34,7 @@ function AddSkill({ projectId, addSkill = () => {} }) {
       <p
         className="plusAdd"
         tabIndex="0"
+        title="Add skill"
         onClick={addAndResetSkill}
         onKeyPress={({ key }) => (key === "Enter" ? addAndResetSkill() : null)}
       >

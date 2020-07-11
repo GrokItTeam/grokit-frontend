@@ -37,7 +37,7 @@ function ProjectItem({
         <div className="projectItem__modifier">
           <h2>✎</h2>
           <h1>{name}</h1>
-          <button type="button" onClick={handleShow}>
+          <button type="button" title="Edit project name" onClick={handleShow}>
             ✎
           </button>
           {smShow ? (
@@ -55,6 +55,7 @@ function ProjectItem({
         </div>
         <div
           tabIndex="0"
+          title={`${cardOpen ? "Hide skills" : "View skills"}`}
           onClick={() => setCardOpen(!cardOpen)}
           onKeyPress={({ key }) => (key === "Enter" ? setCardOpen(!cardOpen) : null)}
         >
