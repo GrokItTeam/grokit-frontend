@@ -49,9 +49,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
       )}
       <Row className="schedule-header">
         <Col>
-          <h5>
-            Predicted Project Schedule
-          </h5>
+          <h5 className="schedule-header__title">Predicted Project Schedule</h5>
         </Col>
       </Row>
       <Row>

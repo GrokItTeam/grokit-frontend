@@ -1,18 +1,26 @@
 .linechart {
-    padding: 20px 0 40px 0 ;
+  padding: 20px 0 40px 0;
+  h3 {
+    color: $SanJuan;
+  }
 }
 
 .linechart__tooltip {
-    background-color: $NileBlue;
-    color: $Cararra;
-    padding: 5px;
-    border-radius: 10px;
+  background-color: $NileBlue;
+  color: $Cararra;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .chart-row {
-    padding-bottom: 60px;
+  padding-bottom: 60px;
 }
 
 .chart-row-header {
-    justify-content: center;
+  justify-content: center;
+  h3 {
+    color: $SanJuan;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
 }
