@@ -30,6 +30,7 @@ function LineChart({title = "", height = 250, chartData = []}) {
     
     const xValues = data[0].data.map(point => point.x);
     const maxXValue = Math.max(...xValues);
+    console.log(title + maxXValue);
 
     return (
         <div className = "linechart" style = {{height}}>
@@ -56,7 +57,8 @@ function LineChart({title = "", height = 250, chartData = []}) {
                 axisBottom={{
                     legend: "Days from first practice",
                     legendPosition: "middle",
-                    legendOffset: 40
+                    legendOffset: 40,
+                    tickValues: maxXValue > 5 ? maxXValue / Math.floor(maxXValue/5) : 5
                 }}
                 theme={theme}
                 curve={"linear"}
