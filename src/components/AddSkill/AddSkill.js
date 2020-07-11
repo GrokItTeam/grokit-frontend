@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Row} from "react-bootstrap";
 
 function AddSkill({ projectId, addSkill = () => {} }) {
   const [skill, setSkill] = useState("");
@@ -21,16 +22,9 @@ function AddSkill({ projectId, addSkill = () => {} }) {
   };
 
   return (
-    <div className="addSkill row">
+    <Row>
+    <div className="addSkill">
       <input type="text" placeholder="Add New Skill..." value={skill} onChange={modifySkill} onKeyPress={handleKeyPress} />
-      <button
-        className="primaryButton small"
-        tabIndex="0"
-        onClick={addAndResetSkill}
-        onKeyPress={({ key }) => (key === "Enter" ? addAndResetSkill() : null)}
-      >
-        Add
-      </button>
       <p
         className="plusAdd"
         tabIndex="0"
@@ -41,6 +35,7 @@ function AddSkill({ projectId, addSkill = () => {} }) {
         +
       </p>
     </div>
+    </Row>
   );
 }
 
