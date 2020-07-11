@@ -1,11 +1,14 @@
 .cardContainer {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
   @include breakpoint(mobileonly) {
     flex-direction: column;
   }
 
   .projectItem {
+    margin-bottom: 20px;
     .secondaryButton {
       margin-top: 10px;
     }

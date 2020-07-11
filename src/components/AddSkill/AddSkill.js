@@ -23,7 +23,22 @@ function AddSkill({ projectId, addSkill = () => {} }) {
   return (
     <div className="addSkill row">
       <input type="text" placeholder="Add New Skill..." value={skill} onChange={modifySkill} onKeyPress={handleKeyPress} />
-      <p tabIndex="0" onClick={addAndResetSkill} onKeyPress={({key}) => key === "Enter" ? addAndResetSkill() : null}>+</p>
+      <button
+        className="primaryButton small"
+        tabIndex="0"
+        onClick={addAndResetSkill}
+        onKeyPress={({ key }) => (key === "Enter" ? addAndResetSkill() : null)}
+      >
+        Add
+      </button>
+      <p
+        className="plusAdd"
+        tabIndex="0"
+        onClick={addAndResetSkill}
+        onKeyPress={({ key }) => (key === "Enter" ? addAndResetSkill() : null)}
+      >
+        +
+      </p>
     </div>
   );
 }
