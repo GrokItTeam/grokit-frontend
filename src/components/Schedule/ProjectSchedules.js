@@ -26,23 +26,24 @@ function ProjectSchedule({ name = "", projectId = "", datePractised = "" }) {
 
     return (
         <>
-            <p>Choose number of days to show the predicted schedule for.</p>
             <div className="projectSchedule">
-                <input
-                    type="number"
-                    value={daysValue}
-                    onChange={e => setDaysValue(e.target.value)}
-                    onKeyPress={({ key }) => key === "Enter" ? changeDaysShown() : null} />
-                <p
-                    className="simpleButton"
-                    tabIndex="0"
-                    onKeyPress={({ key }) => key === "Enter" ? changeDaysShown() : null}
-                    onClick={changeDaysShown}>✓</p>
+                <span>
+                    <label>Number of days to show: </label>
+                    <input
+                        type="number"
+                        value={daysValue}
+                        onChange={e => setDaysValue(e.target.value)}
+                        onKeyPress={({ key }) => key === "Enter" ? changeDaysShown() : null} />
+                    <p
+                        className="simpleButton"
+                        tabIndex="0"
+                        onKeyPress={({ key }) => key === "Enter" ? changeDaysShown() : null}
+                        onClick={changeDaysShown}>✓</p></span>
             </div>
-            <Table bordered size="sm" responsive>
+            <Table className="schedule-table" bordered size="sm" responsive>
                 <thead>
                     <tr>
-                        <th colSpan="2">{name}</th>
+                        <th colSpan="2">Project: {name}</th>
                     </tr>
                 </thead>
                 <thead>

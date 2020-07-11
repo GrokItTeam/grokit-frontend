@@ -13,23 +13,8 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
   return (
     <div className="skillToDo">
       <Message name={name} />
-      {showTimer ? (
-        <>
-          <button type="button" className="primaryButton" onClick={() => setShowTimer(false)}>
-            Close Pomodoro Timer
-          </button>
-          <Timer duration={1500} />
-        </>
-      ) : (
-        <button type="button" className="primaryButton" onClick={() => setShowTimer(true)}>
-          Show Pomodoro Timer
-        </button>
-      )}
       <Card className="primaryCard">
-        <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open}>
-          <h1>Skills to practise today</h1>
-        </Card.Header>
-        <Card.Body>
+        <Card.Body className="h5">
           {projects &&
             projects.map(({ projectId, datePractised, name, skillToDo, skills = [] }) => {
               if (!skills.length) {
@@ -50,13 +35,23 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
             })}
         </Card.Body>
       </Card>
-      <Row>
+      {showTimer ? (
+        <>
+          <button type="button" className="primaryButton" onClick={() => setShowTimer(false)}>
+            Close Pomodoro Timer
+          </button>
+          <Timer duration={1500} />
+        </>
+      ) : (
+        <button type="button" className="primaryButton" onClick={() => setShowTimer(true)}>
+          Show Pomodoro Timer
+        </button>
+      )}
+      <Row className="schedule-header">
         <Col>
-          <p>
-            Below you can see the predicted schedule for each of your projects.
-            <br />
-            It is likely to change if you add or remove skills, or rate the difficulty of practise as easy or hard.
-          </p>
+          <h5>
+            Predicted Project Schedule
+          </h5>
         </Col>
       </Row>
       <Row>

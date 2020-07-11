@@ -4,7 +4,7 @@ import { Row } from 'react-bootstrap';
 
 function PractisedToday({ projectName = "" }) {
     return (
-        <Row>{projectName}: Done for today</Row>
+        <Row className="center-skillToDo">{projectName}: Done for today</Row>
     )
 }
 

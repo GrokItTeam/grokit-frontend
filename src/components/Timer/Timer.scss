@@ -1,25 +1,23 @@
 .timer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   font-family: sans-serif;
   text-align: center;
   padding: 10px 0px 10px 0px;
+
+  .timer-circle {
+    padding: 5px;
+  }
 }
 
 .time {
   font-size: 32px;
 }
-.resetButton {
-  margin-left: 14.5rem;
-  margin-bottom: 5px;
+
+.timer-button {
+  margin: 5px;
 }
 
-.pauseButton {
-  margin-left: 14.5rem;
-  margin-bottom: 5px;
-}
-
-.startButton {
-  margin-left: 14.5rem;
-  margin-bottom: 5px;
+.button-row {
+  justify-content: center;
 }
