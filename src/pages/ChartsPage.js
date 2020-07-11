@@ -5,6 +5,7 @@ import { useAppContext } from "libs/ContextLib.js";
 
 import LineChart from "components/Charts/LineChart";
 import NoChartsDisplay from "components/Charts/NoChartsDisplay";
+import LoadingSpinner from "components/LoadingSpinner/LoadingSpinner";
 
 
 function ChartsPage() {
@@ -48,7 +49,7 @@ function ChartsPage() {
     );
     }
     else {
-      return null;
+      return (<LoadingSpinner/>);
     }
 
     

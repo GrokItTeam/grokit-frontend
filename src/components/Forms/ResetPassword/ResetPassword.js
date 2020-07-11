@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { useFormFields } from "libs/HooksLib.js";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Spinner } from "react-bootstrap";
 import { onError } from "libs/ErrorLib.js";
 import { Link } from "react-router-dom";
 
@@ -14,23 +14,30 @@ function ResetPassword() {
   });
   const [codeSent, setCodeSent] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSendCodeClick(event) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       await Auth.forgotPassword(fields.email);
       setCodeSent(true);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       onError(error);
     }
   }
 
   async function handleConfirmClick(event) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       await Auth.forgotPasswordSubmit(fields.email, fields.code, fields.password);
       setConfirmed(true);
+      setIsLoading(false);
     } catch (error) {
+      setIsLoading(false);
       onError(error);
     }
   }
@@ -43,7 +50,7 @@ function ResetPassword() {
             <Form.Control autoFocus type="email" value={fields.email} onChange={handleFieldChange} />
           </Form.Group>
           <Button block type="submit" bsSize="large" className="primaryButton">
-            Send Confirmation
+          {isLoading && <Spinner className="spinner-button" animation="border" role="status" size="sm"/>} Send Confirmation
           </Button>
         </Form>
         <div>
@@ -78,7 +85,7 @@ function ResetPassword() {
             <Form.Control type="password" value={fields.confirmPassword} onChange={handleFieldChange} />
           </Form.Group>
           <Button block type="submit" bsSize="large" className="primaryButton">
-            Confirm
+          {isLoading && <Spinner className="spinner-button" animation="border" role="status" size="sm"/>} Confirm
           </Button>
         </Form>
       </div>
@@ -89,7 +96,7 @@ function ResetPassword() {
       <div className="success">
         <p>Your password has been reset.</p>
         <p>
-          Click <Link to="/signin">here </Link>to sign in with your new password.
+          Click <Link to="/grokit-frontend/signin">here </Link>to sign in with your new password.
         </p>
       </div>
     );
