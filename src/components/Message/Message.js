@@ -6,7 +6,7 @@ function Message() {
 
   return (
     <div className="message">
-      <p>Hello {name} your skills to practise today are... </p>
+      <h4>Hello {name} your skills to practise today are... </h4>
     </div>
   );
 }

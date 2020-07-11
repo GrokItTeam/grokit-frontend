@@ -13,23 +13,8 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
   return (
     <div className="skillToDo">
       <Message name={name} />
-      {showTimer ? (
-        <>
-          <button type="button" className="primaryButton" onClick={() => setShowTimer(false)}>
-            Close Pomodoro Timer
-          </button>
-          <Timer duration={1500} />
-        </>
-      ) : (
-        <button type="button" className="primaryButton" onClick={() => setShowTimer(true)}>
-          Show Pomodoro Timer
-        </button>
-      )}
       <Card className="primaryCard">
-        <Card.Header className="h4" aria-controls="task-item-contents" aria-expanded={open}>
-          <h1>Skills to practise today</h1>
-        </Card.Header>
-        <Card.Body>
+        <Card.Body className="h5">
           {projects &&
             projects.map(({ projectId, datePractised, name, skillToDo, skills = [] }) => {
               if (!skills.length) {
@@ -50,6 +35,18 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
             })}
         </Card.Body>
       </Card>
+      {showTimer ? (
+        <>
+          <button type="button" className="primaryButton" onClick={() => setShowTimer(false)}>
+            Close Pomodoro Timer
+          </button>
+          <Timer duration={1500} />
+        </>
+      ) : (
+        <button type="button" className="primaryButton" onClick={() => setShowTimer(true)}>
+          Show Pomodoro Timer
+        </button>
+      )}
       <Row>
         <Col>
           <p>

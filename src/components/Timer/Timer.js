@@ -39,19 +39,23 @@ function Timer({ duration }) {
   return (
     <Container>
       <Row className="timer" key={timerKey}>
-        {/* minutes */}
-        <CountdownCircleTimer
-          onComplete={() => window.alert("Time for a break")}
-          {...timerProps}
-          duration={timerDuration}
-          initialRemainingTime={remainingTime}
-        >
-          {({ elapsedTime }) =>
-            renderTime("minutes", getTimeMinutes(timerDuration - elapsedTime))
-          }
-        </CountdownCircleTimer>
-        {/* seconds */}
-        <CountdownCircleTimer
+        <div
+          className="timer-circle">
+          <CountdownCircleTimer
+            onComplete={() => window.alert("Time for a break")}
+            {...timerProps}
+            duration={timerDuration}
+            initialRemainingTime={remainingTime}
+          >
+            {({ elapsedTime }) =>
+              renderTime("minutes", getTimeMinutes(timerDuration - elapsedTime))
+            }
+          </CountdownCircleTimer>
+        </div>
+        <div
+          className="timer-circle">
+            <CountdownCircleTimer
+          className="timer-circle"
           {...timerProps}
           duration={minuteSeconds}
           initialRemainingTime={remainingTime % minuteSeconds}
@@ -63,15 +67,17 @@ function Timer({ duration }) {
             renderTime("seconds", getTimeSeconds(elapsedTime))
           }
         </CountdownCircleTimer>
+          </div>
+        
       </Row>
-      <Row>
-        <Button className="startButton" onClick={() => setPlaying(true)}>
+      <Row className="button-row">
+        <Button className="timer-button" onClick={() => setPlaying(true)}>
           Start
         </Button>
-        <Button className="pauseButton" onClick={() => setPlaying(false)}>
+        <Button className="timer-button" onClick={() => setPlaying(false)}>
           Pause
         </Button>
-        <Button className="resetButton" onClick={handleResetClick}>
+        <Button className="timer-button" onClick={handleResetClick}>
           Reset
         </Button>
       </Row>
