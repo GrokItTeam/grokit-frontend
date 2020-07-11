@@ -14,7 +14,7 @@ function MarkSkillAsPractised({ skill = {}, updatePractisedSkill = () => {} }) {
 
   return (
     <>
-      <button className="primaryButton small" onClick={handleShow}>
+      <button className="primaryButton small" title="Mark as practised" onClick={handleShow}>
       ✓
       </button>
       {smShow ? <OptionSelectModal title="How did the practice feel?" status={smShow} handleClose={handleClose} onSave={onSave} /> : ""}

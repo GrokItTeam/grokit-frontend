@@ -37,6 +37,7 @@ function ProjectSchedule({ name = "", projectId = "", datePractised = "" }) {
                     <p
                         className="simpleButton"
                         tabIndex="0"
+                        title="View schedule"
                         onKeyPress={({ key }) => key === "Enter" ? changeDaysShown() : null}
                         onClick={changeDaysShown}>✓</p></span>
             </div>

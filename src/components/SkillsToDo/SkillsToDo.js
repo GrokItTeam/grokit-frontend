@@ -56,7 +56,7 @@ function SkillsToDo({ projects = [], open = true, updatePractisedSkill = () => {
       </Row>
       <Row>
         {projects.map(({ projectId, name, datePractised }) => (
-          <Col key={projectId} xs={12} md={6} xl={3}>
+          <Col key={projectId} xs={12} md={6} xl={4}>
             <ProjectSchedule projectId={projectId} name={name} datePractised={datePractised} />
           </Col>
         ))}
