@@ -1,9 +1,12 @@
 .schedule-header {
-  margin-top: 20px;
+  margin-top: 25px;
+  .schedule-header__title {
+    color: $SanJuan;
+    font-weight: 700;
+  }
 }
 
 .projectSchedule {
-  
   @include breakpoint(mobileonly) {
     .simpleButton {
       width: 35px;
