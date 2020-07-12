@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c7bbb73fc24178178efed6af3d229490",
+    "revision": "850b2872c33a86a3bac41fd1bd61747c",
     "url": "/grokit-frontend/index.html"
   },
   {
-    "revision": "f3e95ca4f5deb285b974",
+    "revision": "8a084e0bdc58956f5783",
     "url": "/grokit-frontend/static/css/main.fb50f953.chunk.css"
   },
   {
-    "revision": "339f4328c2cf89551bed",
-    "url": "/grokit-frontend/static/js/2.b6214972.chunk.js"
+    "revision": "a8d7058448939979bbca",
+    "url": "/grokit-frontend/static/js/2.24dc1c96.chunk.js"
   },
   {
     "revision": "a200174c44a1c583da2ca47c7148e922",
-    "url": "/grokit-frontend/static/js/2.b6214972.chunk.js.LICENSE.txt"
+    "url": "/grokit-frontend/static/js/2.24dc1c96.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f3e95ca4f5deb285b974",
-    "url": "/grokit-frontend/static/js/main.40b6eeb4.chunk.js"
+    "revision": "8a084e0bdc58956f5783",
+    "url": "/grokit-frontend/static/js/main.d7f42734.chunk.js"
   },
   {
     "revision": "a922b33d079b6e8f794b",
